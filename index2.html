@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+
+
+<html class="hydrated">
+
+<head>
+    <style data-styles="">
+        ion-icon {
+            visibility: hidden
+        }
+
+        .hydrated {
+            visibility: inherit
+        }
+    </style>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-H4BNC15YXM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        if (window.location.hostname.search("localhost") != -1) {
+            gtag('config', 'G-H4BNC15YXM', {
+                'debug_mode': true
+            });
+        } else {
+            gtag('config', 'G-H4BNC15YXM');
+        }
+    </script>
+
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>-->
+
+    <!-- define canonical page -->
+    <link rel="canonical" href="https://people.physics.anu.edu.au/~ecs103/chart/">
+
+    <!-- android viewport header -->
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <!-- Open graph (facebook and google plus) share -->
+    <meta property="og:url" content="https://people.physics.anu.edu.au/~ecs103/chart/">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Colourful Nuclide Chart">
+    <meta property="og:description" content="Putting the joy back into nuclear data.">
+    <meta property="og:image" content="https://people.physics.anu.edu.au/~ecs103/chart/card2d.png">
+
+    <!-- Twitter share -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@SuperSubatomic">
+    <meta name="twitter:creator" content="@SuperSubatomic">
+    <meta name="twitter:title" content="Colourful Nuclide Chart">
+    <meta name="twitter:description" content="Putting the joy back into nuclear data.">
+    <meta name="twitter:image" content="http://people.physics.anu.edu.au/~ecs103/chart-beta/card2d.png">
+
+    <!-- local style sheets -->
+    <link rel="stylesheet" type="text/css" href="css/chart.css">
+    <link rel="stylesheet" type="text/css" href="css/svg.css">
+    <link rel="stylesheet" type="text/css" href="css/accordion.css">
+
+    <!--
+    <link rel="stylesheet" type="text/css" href="css/panel.css"/>
+    <link rel="stylesheet" type="text/css" href="css/fonts.css"/>
+    -->
+
+    <!-- custom fonts -->
+    <!-- todo: sort out fonts -->
+    <!--
+    <link href="https://fonts.googleapis.com/css?family=Alegreya%7CAlegreya+Sans%7CMerriweather%7CMerriweather+Sans%7CNunito%7CNunito+Sans%7CQuattrocento%7CQuattrocento+Sans%7CRoboto:300,400,900%7CRoboto+Mono%7CRoboto+Slab%7CMali" rel="stylesheet"/> 
+    -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,700;1,800&amp;display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,700;1,800&amp;display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&amp;display=swap" rel="stylesheet">
+</head>
+
+<body id="documentbody" onload="init();">--&gt;
+
+    <!-- Font awesome for social media icons -->
+    <!--<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css"/>-->
+
+
+
+    <!-- jQuery and jQuery-UI -->
+    <!--<link rel="stylesheet" href="../common/jquery/jquery-ui.css">-->
+    <script src="js-external/jquery-3.6.0.js"></script>
+    <script src="js-external/jquery-ui.js"></script>
+
+    <!-- PDF export support - needs work -->
+    <!--
+    <script src="js-external/pdfkit.js"></script>
+    <script src="js-external/source.js"></script>
+    <script src="js-external/blobstream.js"></script>
+    -->
+
+    <!-- common scripts -->
+    <script type="text/javascript" src="js/key.js"></script>
+    <script type="text/javascript" src="js/chart.js"></script>
+    <script type="text/javascript" src="js/chart_canvas.js"></script>
+    <script type="text/javascript" src="js/stats.min.js"></script>
+
+    <!-- local scripts -->
+    <script type="text/javascript" src="js/colour.js"></script>
+    <script type="text/javascript" src="js/gui.js"></script>
+    <script type="text/javascript" src="js/info.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/init.js"></script>
+    <script type="text/javascript" src="js/data.js"></script>
+
+    <!-- javascript modules - hooray -->
+    <script type="module" src="js/chart_svg.js"></script>
+    <script type="module" src="js/chart_threejs.js"></script>
+
+    <!-- todo: pdf export - do we need these with SVG export? -->
+    <script src="js/blob-stream.js"></script>
+
+    <!-- todo: check this logo works -->
+    <link rel="icon" href="png/logo.png">
+
+    <title>Colourful Nuclide Chart</title>
+
+
+
+
+
+    <!-- New accordion -->
+
+
+    <div id="accordion-toggle">
+        <h2 id="imageClose" style="display: none;"><ion-icon name="close-sharp" role="img" class="md hydrated"></ion-icon><span>COLOURFUL NUCLIDE CHART</span></h2>
+        <h2><ion-icon name="menu-outline" id="imageMenu" role="img" class="md hydrated" style=""></ion-icon></h2>
+    </div>
+
+    <script>
+        $(function() {
+            $("#accordion").accordion({
+                heightStyle: "content",
+                collapsible: true,
+                animate: false,
+                active: false
+            });
+        });
+    </script>
+
+    <script>
+        $(function() {
+            $("#imageMenu").click(function() {
+                $("#accordion-wrapper").show();
+                $("#imageMenu").hide();
+                $("#imageClose").show();
+            });
+            $("#imageClose").click(function() {
+                $("#accordion-wrapper").hide();
+                $("#imageMenu").show();
+                $("#imageClose").hide();
+            });
+        });
+    </script>
+
+    <!-- Some dummies used for handling styles consistently. These can
+then be used to measure font sizes in the raster version, whilst the
+svg version uses the css classes?-->
+
+    <div class="nuclide_text_wrapper" style="display:none">
+        <div class="nuclide_text" style="display: none; font-weight: normal; font-style: italic; font-variant: normal;"></div>
+        <div class="nuclide_text nuclide_text_mass" style="display: none; font-weight: normal; font-style: italic; font-variant: normal;"></div>
+        <div class="nuclide_text nuclide_text_symbol" style="display: none; font-weight: normal; font-style: italic; font-variant: normal;"></div>
+        <div class="nuclide_text nuclide_text_value" style="display: none; font-weight: normal; font-style: italic; font-variant: normal;"></div>
+        <div class="nuclide_text nuclide_square" style="display: none; font-weight: normal; font-style: italic; font-variant: normal;"></div>
+        <div class="nuclide_text nuclide_estimated" style="display: none; font-weight: normal; font-style: italic; font-variant: normal;"></div>
+    </div>
+
+    <div id="accordion-wrapper" style="display: none;">
+        <div id="accordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist">
+
+            <h3 id="nuclideInfoTab" class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-icons ui-accordion-header-collapsed ui-corner-all" role="tab" aria-controls="ui-id-1" aria-selected="false" aria-expanded="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span><ion-icon name="information-circle-outline" role="img" class="md hydrated"></ion-icon><span>Nuclide Info</span></h3>
+            <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-1" aria-labelledby="nuclideInfoTab" role="tabpanel" aria-hidden="true" style="display: none;">
+                <article id="nuclideInfo">
+                    <h4>Uranium-221 (Z=92, N=129)</h4>Discovered 2015&nbsp;&nbsp;<a href="https://doi.org/10.1088/1674-1137/abddae">[5]</a><br>t<sub>1/2</sub> = 660±140 ns&nbsp;&nbsp;<a href="https://doi.org/10.1088/1674-1137/abddae">[5]</a><br>J<sup>π</sup> = 9/2<sup>+</sup><sup>*</sup>&nbsp;&nbsp;<a href="https://doi.org/10.1088/1674-1137/abddae">[5]</a><br>
+                    <h5>Decay modes</h5>α ~ 100%&nbsp;&nbsp;<a href="https://doi.org/10.1088/1674-1137/abddae">[5]</a><br>β<sup>+</sup> (possible)&nbsp;&nbsp;<a href="https://doi.org/10.1088/1674-1137/abddae">[5]</a><br>
+                    <h5>Mass properties</h5>
+                    <div class="grid_wrapper_eight"><span>Q<sub>H</sub></span><span>=</span><span>2.54149</span><span>±</span><span>0.0734212</span><span>MeV</span><span>&nbsp;</span><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a><span>Q<sub>α</sub></span><span>=</span><span>9.88930</span><span>±</span><span>0.0713499</span><span>MeV</span><span>&nbsp;</span><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a><span>M</span><span>=</span><span>2.21026e+8</span><span>±</span><span>77.44</span><span>micro-u</span><span>&nbsp;</span><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a><span>E<sub>β</sub></span><span>=</span><span>-5.39</span><span>±</span><span>0.213</span><span>MeV</span><span><sup>*</sup></span><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a><span>Q<sub>β-n</sub></span><span>=</span><span>-14.0263</span><span>±</span><span>0.0784032</span><span>MeV</span><span>&nbsp;</span><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a><span>B/A</span><span>=</span><span>7.63468</span><span>±</span><span>0.0003264</span><span>MeV</span><span>&nbsp;</span><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a><span>Q<sub>2β</sub></span><span>=</span><span>-11.41</span><span>±</span><span>0.308</span><span>MeV</span><span><sup>*</sup></span><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a><span>M<sub>ex</sub></span><span>=</span><span>24.5200</span><span>±</span><span>0.072135</span><span>MeV</span><span>&nbsp;</span><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a><span>S<sub>n</sub></span><span>=</span><span>6.565</span><span>±</span><span>0.124</span><span>MeV</span><span><sup>*</sup></span><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a><span>S<sub>p</sub></span><span>=</span><span>3.04737</span><span>±</span><span>0.0736086</span><span>MeV</span><span>&nbsp;</span><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a><span>B</span><span>=</span><span>1687.27</span><span>±</span><span>0.0721344</span><span>MeV</span><span>&nbsp;</span><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a><span>S<sub>2n</sub></span><span>=</span><span>14.9186</span><span>±</span><span>0.0733579</span><span>MeV</span><span>&nbsp;</span><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a><span>S<sub>2p</sub></span><span>=</span><span>4.52073</span><span>±</span><span>0.0916025</span><span>MeV</span><span>&nbsp;</span><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a></div><sup>*</sup>=Estimated<h5>References</h5>
+                    <p>When using data, please always refer to the relevant sources.</p><a href="https://doi.org/10.1088/1674-1137/abddb0">[1]</a>&nbsp;Atomic Mass Evaluation 2020<br><a href="https://www-nds.iaea.org/relnsd/NdsEnsdf/QueryForm.html">[2]</a>&nbsp;Evaluated Nuclear Structure Data File<br><a href="https://doi.org/10.1016/j.adt.2015.10.002">[3]</a>&nbsp;Finite Range Liquid Drop Model 2012<br><a href="http://www.oecd-nea.org/dbdata/jeff/jeff33/">[4]</a>&nbsp;Joint Evaluated Fission and Fusion (JEFF)<br><a href="https://doi.org/10.1088/1674-1137/abddae">[5]</a>&nbsp;NuBASE 2020<br>
+                    <h5>Further Links</h5><a href="http://www.nndc.bnl.gov/nudat3/getdataset.jsp?nucleus=221U&amp;unc=nds" target="_blank">NNDC Brookhaven Adopted Levels</a><br><a href="http://www.nndc.bnl.gov/nudat3/decaysearchdirect.jsp?nuc=221U&amp;unc=nds" target="_blank">NNDC Brookhaven Decay Radiation</a><br><a href="http://cdfe.sinp.msu.ru/cgi-bin/muh/radcard.cgi?z=92&amp;a=221&amp;td=123456" target="_blank">CDFE nucleus size and shape</a><br>
+                </article>
+            </div>
+
+            <h3 id="dataTab" class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-icons ui-accordion-header-active ui-state-active" role="tab" aria-controls="ui-id-2" aria-selected="true" aria-expanded="true" tabindex="0"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-s"></span><ion-icon name="analytics-outline" role="img" class="md hydrated"></ion-icon><span>Data</span></h3>
+            <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content ui-accordion-content-active" id="ui-id-2" aria-labelledby="dataTab" role="tabpanel" aria-hidden="false" style="">
+                <h4>Current property</h4>
+                <div class="grid_wrapper_two">
+                    <p>Property:</p>
+                    <p id="propertyLongname">U-238 400 keV Independent Neutron Induce</p>
+                    <!--<p>Description</p><p id="propertyDescription"></p>-->
+                    <p>Source:</p>
+                    <p id="sourceLongname">Joint Evaluated Fission and Fusion (JEFF)</p>
+                    <p>Reference:</p>
+                    <p id="sourceReference"><a href="http://www.oecd-nea.org/dbdata/jeff/jeff33/" target="_blank">Nuclear Energy Agency</a></p>
+                </div>
+
+                <hr>
+                <h4>Data selection</h4>
+
+                <form class="grid_wrapper_two" autocomplete="off">
+                    <span>Source:</span>
+                    <select id="selectSource" onchange="gui.updateCombo();">
+                        <option value="all" label="All Basic Properties">All Basic Properties</option>
+                        <option value="ame2020" label="Atomic Mass Evaluation 2020">Atomic Mass Evaluation 2020</option>
+                        <option value="ensdf" label="Evaluated Nuclear Structure Data File">Evaluated Nuclear Structure Data File</option>
+                        <option value="frldm" label="Finite Range Liquid Drop Model 2012">Finite Range Liquid Drop Model 2012</option>
+                        <option value="jeff" label="Joint Evaluated Fission and Fusion (JEFF)">Joint Evaluated Fission and Fusion (JEFF)</option>
+                        <option value="nubase2020" label="NuBASE 2020">NuBASE 2020</option>
+                    </select>
+                    <span>Property:</span>
+                    <select id="selectProperty" onchange="gui.changeData();">
+                        <option value="qep" label="1H Q-value" style="display: none;">1H Q-value [ame2020]</option>
+                        <option value="qa" label="Alpha Q-value" style="display: none;">Alpha Q-value [ame2020]</option>
+                        <option value="m" label="Atomic Mass" style="display: none;">Atomic Mass [ame2020]</option>
+                        <option value="eb" label="Beta-Decay Energy" style="display: none;">Beta-Decay Energy [ame2020]</option>
+                        <option value="qbn" label="Beta-n Q-value" style="display: none;">Beta-n Q-value [ame2020]</option>
+                        <option value="bpn" label="Binding Energy per Nucleon" style="display: none;">Binding Energy per Nucleon [ame2020]</option>
+                        <option value="q2b" label="Double Beta-decay Q-value" style="display: none;">Double Beta-decay Q-value [ame2020]</option>
+                        <option value="mex" label="Mass Excess" style="display: none;">Mass Excess [ame2020]</option>
+                        <option value="sn" label="Neutron separation energy" style="display: none;">Neutron separation energy [ame2020]</option>
+                        <option value="sp" label="Proton separation energy" style="display: none;">Proton separation energy [ame2020]</option>
+                        <option value="q4b" label="Quadruple Beta-decay Q-value" style="display: none;">Quadruple Beta-decay Q-value [ame2020]</option>
+                        <option value="b" label="Total Binding Energy" style="display: none;">Total Binding Energy [ame2020]</option>
+                        <option value="s2n" label="Two-neutron separation energy" style="display: none;">Two-neutron separation energy [ame2020]</option>
+                        <option value="s2p" label="Two-proton separation energy" style="display: none;">Two-proton separation energy [ame2020]</option>
+                        <option value="fourtwo" label="4+/2+ ratio" style="display: none;">4+/2+ ratio [ensdf]</option>
+                        <option value="twoplus" label="First 2+ energy" style="display: none;">First 2+ energy [ensdf]</option>
+                        <option value="threeminus" label="First 3- energy" style="display: none;">First 3- energy [ensdf]</option>
+                        <option value="fourplus" label="First 4+ energy" style="display: none;">First 4+ energy [ensdf]</option>
+                        <option value="frldmmex" label="FRLDM Mass Excess" style="display: none;">FRLDM Mass Excess [frldm]</option>
+                        <option value="Am241nfth0" label="Am-241 0.0253 eV Independent Neutron Ind" style="display: block;">Am-241 0.0253 eV Independent Neutron Ind [jeff]</option>
+                        <option value="Am241nfin0" label="Am-241 400 keV Independent Neutron Induc" style="display: block;">Am-241 400 keV Independent Neutron Induc [jeff]</option>
+                        <option value="Am242nfth0" label="Am-242 0.0253 eV Independent Neutron Ind" style="display: block;">Am-242 0.0253 eV Independent Neutron Ind [jeff]</option>
+                        <option value="Am242nfin0" label="Am-242 400 keV Independent Neutron Induc" style="display: block;">Am-242 400 keV Independent Neutron Induc [jeff]</option>
+                        <option value="Am243nfth0" label="Am-243 0.0253 eV Independent Neutron Ind" style="display: block;">Am-243 0.0253 eV Independent Neutron Ind [jeff]</option>
+                        <option value="Am243nfin0" label="Am-243 400 keV Independent Neutron Induc" style="display: block;">Am-243 400 keV Independent Neutron Induc [jeff]</option>
+                        <option value="Cf252sf" label="Cf-252 Independent Spontaneous Fission Y" style="display: block;">Cf-252 Independent Spontaneous Fission Y [jeff]</option>
+                        <option value="Cm242sf" label="Cm-242 Independent Spontaneous Fission Y" style="display: block;">Cm-242 Independent Spontaneous Fission Y [jeff]</option>
+                        <option value="Cm243nfth0" label="Cm-243 0.0253 eV Independent Neutron Ind" style="display: block;">Cm-243 0.0253 eV Independent Neutron Ind [jeff]</option>
+                        <option value="Cm243nfin0" label="Cm-243 400 keV Independent Neutron Induc" style="display: block;">Cm-243 400 keV Independent Neutron Induc [jeff]</option>
+                        <option value="Cm244nfth0" label="Cm-244 0.0253 eV Independent Neutron Ind" style="display: block;">Cm-244 0.0253 eV Independent Neutron Ind [jeff]</option>
+                        <option value="Cm244nfin0" label="Cm-244 400 keV Independent Neutron Induc" style="display: block;">Cm-244 400 keV Independent Neutron Induc [jeff]</option>
+                        <option value="Cm244sf" label="Cm-244 Independent Spontaneous Fission Y" style="display: block;">Cm-244 Independent Spontaneous Fission Y [jeff]</option>
+                        <option value="Cm245nfth0" label="Cm-245 0.0253 eV Independent Neutron Ind" style="display: block;">Cm-245 0.0253 eV Independent Neutron Ind [jeff]</option>
+                        <option value="Cm245nfin0" label="Cm-245 400 keV Independent Neutron Induc" style="display: block;">Cm-245 400 keV Independent Neutron Induc [jeff]</option>
+                        <option value="Np237nfth0" label="Np-237 0.0253 eV Independent Neutron Ind" style="display: block;">Np-237 0.0253 eV Independent Neutron Ind [jeff]</option>
+                        <option value="Np237nfin0" label="Np-237 400 keV Independent Neutron Induc" style="display: block;">Np-237 400 keV Independent Neutron Induc [jeff]</option>
+                        <option value="Np238nfth0" label="Np-238 0.0253 eV Independent Neutron Ind" style="display: block;">Np-238 0.0253 eV Independent Neutron Ind [jeff]</option>
+                        <option value="Np238nfin0" label="Np-238 400 keV Independent Neutron Induc" style="display: block;">Np-238 400 keV Independent Neutron Induc [jeff]</option>
+                        <option value="Pu238nfth0" label="Pu-238 0.0253 eV Independent Neutron Ind" style="display: block;">Pu-238 0.0253 eV Independent Neutron Ind [jeff]</option>
+                        <option value="Pu238nfin0" label="Pu-238 400 keV Independent Neutron Induc" style="display: block;">Pu-238 400 keV Independent Neutron Induc [jeff]</option>
+                        <option value="Pu239nfth0" label="Pu-239 0.0253 eV Independent Neutron Ind" style="display: block;">Pu-239 0.0253 eV Independent Neutron Ind [jeff]</option>
+                        <option value="Pu239nfin0" label="Pu-239 400 keV Independent Neutron Induc" style="display: block;">Pu-239 400 keV Independent Neutron Induc [jeff]</option>
+                        <option value="Pu240nfth0" label="Pu-240 0.0253 eV Independent Neutron Ind" style="display: block;">Pu-240 0.0253 eV Independent Neutron Ind [jeff]</option>
+                        <option value="Pu240nfin0" label="Pu-240 400 keV Independent Neutron Induc" style="display: block;">Pu-240 400 keV Independent Neutron Induc [jeff]</option>
+                        <option value="Pu242nfin0" label="Pu-242 400 keV Independent Neutron Induc" style="display: block;">Pu-242 400 keV Independent Neutron Induc [jeff]</option>
+                        <option value="Th231nfhe0" label="Th-231 14 MeV Independent Neutron Induce" style="display: block;">Th-231 14 MeV Independent Neutron Induce [jeff]</option>
+                        <option value="Th231nfin0" label="Th-231 400 keV Independent Neutron Induc" style="display: block;">Th-231 400 keV Independent Neutron Induc [jeff]</option>
+                        <option value="U233nfth0" label="U-233 0.0253 eV Independent Neutron Indu" style="display: block;">U-233 0.0253 eV Independent Neutron Indu [jeff]</option>
+                        <option value="U233nfhe0" label="U-233 14 MeV Independent Neutron Induced" style="display: block;">U-233 14 MeV Independent Neutron Induced [jeff]</option>
+                        <option value="U233nfin0" label="U-233 400 keV Independent Neutron Induce" style="display: block;">U-233 400 keV Independent Neutron Induce [jeff]</option>
+                        <option value="U234nfin0" label="U-234 400 keV Independent Neutron Induce" style="display: block;">U-234 400 keV Independent Neutron Induce [jeff]</option>
+                        <option value="U235nfth0" label="U-235 0.0253 eV Independent Neutron Indu" style="display: block;">U-235 0.0253 eV Independent Neutron Indu [jeff]</option>
+                        <option value="U235nfhe0" label="U-235 14 MeV Independent Neutron Induced" style="display: block;">U-235 14 MeV Independent Neutron Induced [jeff]</option>
+                        <option value="U235nfin0" label="U-235 400 keV Independent Neutron Induce" style="display: block;">U-235 400 keV Independent Neutron Induce [jeff]</option>
+                        <option value="U236nfth0" label="U-236 0.0253 eV Independent Neutron Indu" style="display: block;">U-236 0.0253 eV Independent Neutron Indu [jeff]</option>
+                        <option value="U236nfin0" label="U-236 400 keV Independent Neutron Induce" style="display: block;">U-236 400 keV Independent Neutron Induce [jeff]</option>
+                        <option value="U238nfhe0" label="U-238 14 MeV Independent Neutron Induced" style="display: block;">U-238 14 MeV Independent Neutron Induced [jeff]</option>
+                        <option value="U238nfin0" label="U-238 400 keV Independent Neutron Induce" style="display: block;">U-238 400 keV Independent Neutron Induce [jeff]</option>
+                        <option value="year" label="Discovery Year" style="display: none;">Discovery Year [nubase2020]</option>
+                        <option value="hl" label="Half-life" style="display: none;">Half-life [nubase2020]</option>
+                        <option value="dm" label="Primary Decay Mode" style="display: none;">Primary Decay Mode [nubase2020]</option>
+                    </select>
+                </form><br>
+
+                <form class="grid_wrapper_two" autocomplete="off">
+                    <input id="radioShowAll" type="radio" onchange="gui.changeDataOption();" name="showwhat" value="all">
+                    <label for="radioShowAll">Show all</label>
+                    <input id="radioHideUnknown" type="radio" onchange="gui.changeDataOption();" name="showwhat" value="nounknown" checked="checked">
+                    <label for="radioHideUnknown">Hide unknown</label>
+                    <input id="radioHideEstimated" type="radio" onchange="gui.changeDataOption();" name="showwhat" value="noestimated">
+                    <label for="radioHideEstimated">Hide estimated and unknown</label>
+                    <input id="checkEvenEven" type="checkbox" onchange="gui.changeDataOption();">
+                    <label for="checkEvenEven">Even-even only</label>
+                    <input id="checkStableOnly" type="checkbox" onchange="gui.changeDataOption();">
+                    <label for="checkStableOnly">Stable only</label>
+                    <input id="checkPlotLogarithmic" onchange="gui.changeDataMode()" type="checkbox">
+                    <label for="checkPlotLogarithmic">Logarithmic colour scale</label>
+                </form>
+
+
+                <hr>
+                <h4>N and Z range</h4>
+
+                <form class="grid_wrapper_four" autocomplete="off">
+                    <p>Z<sub>min</sub></p>
+                    <input class="inputNumberNarrow" onchange="gui.changeDataOption();" type="number" id="inputZmin" min="0" max="120" step="1" value="0">
+                    <p>Z<sub>max</sub></p>
+                    <input class="inputNumberNarrow" onchange="gui.changeDataOption();" type="number" id="inputZmax" min="0" max="120" step="1" value="120">
+                    <p>N<sub>min</sub></p>
+                    <input class="inputNumberNarrow" onchange="gui.changeDataOption();" type="number" id="inputNmin" min="0" max="180" step="1" value="0">
+                    <p>N<sub>max</sub></p>
+                    <input class="inputNumberNarrow" onchange="gui.changeDataOption();" type="number" id="inputNmax" min="0" max="180" step="1" value="180">
+                </form><br>
+
+                <button class="button" onclick="gui.resetNZRanges();return false;">Reset</button>
+
+                <hr>
+                <h4>Data limits</h4>
+                <form class="grid_wrapper_three" autocomplete="off">
+                    <span>Minimum</span>
+                    <input id="rangeMinValue" class="inputNumberWide" type="input" onchange="gui.changeMinMaxValue();chart.update();" min="NaN" max="NaN" step="NaN">
+                    <span id="MinUnit"> %</span>
+                    <span>Maximum</span>
+                    <input id="rangeMaxValue" class="inputNumberWide" type="input" onchange="gui.changeMinMaxValue();chart.update();" min="NaN" max="NaN" step="NaN">
+                    <span id="MaxUnit"> %</span>
+                </form><br>
+
+                <p>Note in the case of logarithmic colour scales, the above minimum and maximum are the exponents for the relevant limit.</p>
+
+                <button class="button" onclick="gui.resetMinMaxValue();chart.update();return false;">Reset</button>
+
+                <hr>
+                <h4>Quantity to plot</h4>
+                <form class="grid_wrapper_two" autocomplete="off">
+                    <input id="radioValue" type="radio" checked="checked" name="datamode" value="Value" onchange="gui.changeDataMode();">
+                    <label>Value</label>
+                    <input id="radioMinusValue" type="radio" name="datamode" value="MinusValue" onchange="gui.changeDataMode();">
+                    <label>Negative of Value</label>
+                    <input id="radioError" type="radio" name="datamode" value="Error" onchange="gui.changeDataMode();">
+                    <label>Error</label>
+                    <input id="radioGradientSingle" type="radio" name="datamode" value="Single" onchange="gui.changeDataMode();">
+                    <label>Single Difference</label>
+                    <input id="radioGradientDouble" type="radio" name="datamode" value="Double" onchange="gui.changeDataMode();">
+                    <label>Double Difference</label>
+                </form><br>
+
+                <form class="grid_wrapper_four" autocomplete="off">
+                    <span>Direction</span>
+                    <span><input id="radioGradientN" type="radio" disabled="" name="GradientDirection" value="N" onchange="gui.changeDataMode();" checked="checked"><span style="font-size:200%">→</span></span>
+                    <span><input id="radioGradientZ" type="radio" disabled="" name="GradientDirection" value="Z" onchange="gui.changeDataMode();"><span style="font-size:200%">↑</span></span>
+                    <span><input id="radioGradientNZ" type="radio" disabled="" name="GradientDirection" value="NZ" onchange="gui.changeDataMode();"><span style="font-size:200%">↗</span></span>
+                </form>
+
+                <p>
+                    <span>
+                        Single [D<sub>1</sub>(N,Z)] and double [D<sub>2</sub>(N,Z)]
+                        difference modes for quantity V(N,Z) are defined as follows:
+                    </span>
+                </p>
+
+                <p>
+                    D<sub>1</sub> = [V(N+dN,Z+dZ)-V(N-dN,Z-dZ)]/2(dZ<sup>2</sup>+dN<sup>2</sup>)<sup>1/2</sup><br>
+                    D<sub>2</sub> = [V(N+dN,Z+dZ)-2V(N,Z)+V(N-dN,Z-dZ)]/2(dZ<sup>2</sup>+dN<sup>2</sup>)<sup>1/2</sup>
+                </p>
+
+                <p>
+                    where dN and dZ are 0 or 1 in the case of D<sub>1</sub> and 2 in
+                    the case of D<sub>2</sub>. The direction of the difference is
+                    set by the radio button. These differences approximate the
+                    first and second derivatives of quantity V(N,Z). For some
+                    introductory discussions on this see:
+                </p>
+
+                <p>
+                    E. C. Simpson and M. Shelley<br>
+                    Nuclear cartography: patterns in binding energies and subatomic structure<br>
+                    Physics Education 52, 064002 (2017)
+                </p>
+
+
+                <p>
+                    The Colourful Nuclide Chart displays data from a number of different
+                    nuclear data sources, references for which are given above. You must
+                    cite these references when using the data! Whilst the data displayed
+                    should be correct, no guarantee is given as to the accuracy of the
+                    presented information. If mistakes are spotted please let me know.
+                </p>
+            </div>
+
+            <h3 id="coloursTab" class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-icons ui-accordion-header-collapsed ui-corner-all" role="tab" aria-controls="ui-id-3" aria-selected="false" aria-expanded="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span><ion-icon name="color-palette-outline" role="img" class="md hydrated"></ion-icon><span>Colours</span></h3>
+            <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-3" aria-labelledby="coloursTab" role="tabpanel" aria-hidden="true" style="display: none;">
+                <h4>Nuclides</h4>
+
+                <form class="grid_wrapper_two" autocomplete="off" onchange="colour.setAllColours();gui.updateStyles();chart.key.build();gui.saveGUICookies();chart.update();">
+                    <label for="selectColourMode">Colour mode</label>
+                    <select id="selectColourMode" onchange="gui.changeColourMode()">
+                        <option value="varyHue">Vary Hue</option>
+                        <option value="varyLightness">Vary Lightness</option>
+                    </select>
+                    <label for="rangeColourRange">Range</label>
+                    <input id="rangeColourRange" type="range" min="0" max="1" value="0.9" step="0.05">
+                    <label for="rangeColourSaturation">Saturation</label>
+                    <input id="rangeColourSaturation" type="range" min="0" max="1" value="1.0" step="0.1">
+                    <label for="rangeColourLightness">Lightness</label>
+                    <input id="rangeColourLightness" type="range" min="0" max="1" value="0.6" step="0.1">
+                    <label for="rangeColourHueOffset">Hue</label>
+                    <input id="rangeColourHueOffset" type="range" min="0" max="360" value="0" step="10">
+                </form><br>
+
+                <form class="grid_wrapper_two" autocomplete="off" onchange="colour.setAllColours();gui.updateStyles();gui.saveGUICookies();chart.update();">
+                    <input id="checkColourDirection" type="checkbox">
+                    <label for="checkColourDirection">Flip colour direction</label>
+                    <input id="checkFlipBetaHue" type="checkbox" disabled="">
+                    <label for="checkFlipBetaHue">Swap β<sup>+</sup>/β<sup>-</sup> hues</label>
+                    <input id="checkYorkMode" type="checkbox">
+                    <label for="checkYorkMode">Force Binding Blocks decay mode colours</label>
+                </form>
+
+                <hr>
+
+                <h4>Background</h4>
+
+                <form class="grid_wrapper_three" autocomplete="off" onchange="gui.saveGUICookies();gui.updateStyles();chart.key.update();">
+                    <span>Black</span>
+                    <input id="rangeBackgroundLightness" type="range" min="0" max="1" value="1" step="0.1" onchange="chart.update();chart.draw();">
+                    <span>White</span>
+                </form><br>
+
+                <form class="grid_wrapper_two" autocomplete="off" onchange="gui.saveGUICookies();">
+                    <input id="checkBackgroundTransparent" type="checkbox" onchange="chart.update();chart.draw();">
+                    <label for="checkBackgroundTransparent">Transparent</label>
+                </form>
+
+            </div>
+
+            <h3 id="displayTab" class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" aria-controls="ui-id-4" aria-selected="false" aria-expanded="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span><ion-icon name="options-outline" role="img" class="md hydrated"></ion-icon><span>Display</span></h3>
+            <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-4" aria-labelledby="displayTab" role="tabpanel" aria-hidden="true" style="display: none;">
+                <h4>Options</h4>
+
+                <form id="engine" class="grid_wrapper_two" onchange="gui.saveGUICookies();gui.createChart();" autocomplete="off">
+                    <label for="selectEngine">Engine</label>
+                    <select id="selectEngine">
+                        <option name="Engine" value="canvas" selected="selected">2D Raster</option>
+                        <option name="Engine" value="svg">2D Vector</option>
+                        <option name="Engine" value="threejs">3D</option>
+                    </select>
+                </form><br>
+
+                <form class="grid_wrapper_two" autocomplete="off" onchange="gui.saveGUICookies();chart.measureText();chart.update();chart.draw();">
+                    <input id="checkStable" type="checkbox" checked="checked">
+                    <label for="checkStable">Outline long-lived nuclides</label>
+                    <input id="checkShowMagic" class="is2D" type="checkbox" checked="checked" style="display: none;">
+                    <label for="checkShowMagic" class="is2D" style="display: none;">Show magic numbers</label>
+                    <input id="checkShowNuclideLabels" type="checkbox" checked="checked">
+                    <label for="checkShowNuclideLabels">Show nuclide labels</label>
+                    <input id="checkShowValue" class="is2D" type="checkbox" checked="checked" style="display: none;">
+                    <label for="checkShowValue" class="is2D" style="display: none;">Show value</label>
+                    <input id="checkShowElementLabels" class="is2D" type="checkbox" checked="checked" style="display: none;">
+                    <label for="checkShowElementLabels" class="is2D" style="display: none;">Show element names</label>
+                    <!--
+    <input id="checkShadow" class="is3D" type="checkbox" onchange="ChangeMade();"/>
+    <label for="checkShadow" class="is3D" >Enable shadows</label>
+    -->
+                </form>
+
+                <form class="grid_wrapper_three" autocomplete="off" onchange="gui.saveGUICookies();">
+                    <label for="rangeHeightScale" class="is3D" style="">Height</label>
+                    <input id="rangeHeightScale" class="is3D" type="range" min="0.1" max="2" value="0.5" step="0.1" onchange="chart.build();" style="">
+                    <span>&nbsp;</span>
+                    <!--
+    <label for="rangeShininess"class="is3D" >Shininess</label>
+    <input id="rangeShininess" class="is3D" type="range" min="0" max="100" value="0.5" step="5" onchange="chart.build();"/>
+    <span class="is3D">&nbsp;</span>
+    -->
+                    <span class="is3D" style="">Dark</span>
+                    <input id="rangeLight" class="is3D" type="range" min="0.1" max="2" value="1.5" step="0.1" onchange="chart.changeLight();" style="">
+                    <span class="is3D" style="">Bright</span>
+                    <span class="is3D" style="">Ambient</span>
+                    <input id="rangeAmbient" class="is3D" type="range" min="0" max="1" value="0.8" step="0.1" onchange="chart.changeLight();" style="">
+                    <span class="is3D" style="">Point</span>
+                    <label for="rangeLightLongitude" class="is3D" style="">Light longitude</label>
+                    <input id="rangeLightLongitude" class="is3D" type="range" min="0" max="360" value="0" step="15" onchange="chart.changeLight();" style="">
+                    <span class="is3D" style="">&nbsp;</span>
+                    <label for="rangeLightLatitude" class="is3D" style="">Light latitude</label>
+                    <input id="rangeLightLatitude" class="is3D" type="range" min="0" max="90" value="45" step="5" onchange="chart.changeLight();" style="">
+                    <span class="is3D" style="">&nbsp;</span>
+                </form>
+
+                <br>
+                <p>
+                    For most users, it is recommended to use the 2D Raster or 3D
+                    engines. The 2D Vector engine can be used to export to SVG or PDF
+                    vector graphics files, but is slower than the 2D Raster.
+                </p>
+
+                <!--
+    <input id="checkLabel"   type="checkbox" onchange="SetAllColours();"/><label for="checkLabel">Enable isotope labels</label> <br/>
+    <input id="checkReverse" type="checkbox" onchange="SetAllColours();"/><label for="checkReverse">Reverse vertical</label> <br/>
+
+    <!--<input id="checkIsotopeLabels" type="checkbox" checked="checked" onchange="SetAllColours();"/><label for="checkIsotopeLabels">Show nuclide labels</label> <br/>-->
+
+                <hr>
+
+                <h4>Font</h4>
+
+                <form class="grid_wrapper_two" autocomplete="off" onchange="gui.saveGUICookies();gui.updateStyles();chart.update();">
+                    <label for="selectFont">Typeface</label>
+                    <select id="selectFont">
+                        <option value="Helvetica, Arial, sans" style="font-family: Helvetica, Arial, sans-serif;">Helvetica</option>
+                        <option value="'Times New Roman', serif" style="font-family: 'Times New Roman', serif;">Times New Roman</option>
+                        <option value="'Courier New', monospace" style="font-family: 'Courier New', monospace;">Courier New</option>
+                        <option value="'Comic Sans, Brush Script MT', cursive" style="font-family: 'Comic Sans', 'Brush Script MT', cursive;">Brush Script MT</option>
+                        <option value="serif" style="font-family: sans;">Default Serif</option>
+                        <option value="sans-serif" style="font-family: sans-serif;" selected="selected">Default Sans-serif</option>
+                        <option value="cursive" style="font-family: cursive;">Default Cursive</option>
+                        <option value="monospace" style="font-family: monospace;">Default Monospace</option>
+                    </select>
+                </form><br>
+
+                <form class="grid_wrapper_two" autocomplete="off" onchange="gui.saveGUICookies();gui.updateStyles();chart.update();">
+                    <input id="checkFontBold" type="checkbox">
+                    <label for="checkFontBold">Bold</label>
+                    <input id="checkFontItalic" type="checkbox">
+                    <label for="checkFontItalic">Italic</label>
+                    <input id="checkFontSmallCaps" type="checkbox">
+                    <label for="checkFontSmallCaps">Small caps</label>
+                </form><br>
+
+                <div class="grid_wrapper_two" autocomplete="off" onchange="gui.saveGUICookies();gui.updateStyles();chart.update();">
+                    <label for="rangeFontSize">Size</label>
+                    <input id="rangeFontSize" name="rangeFontSize" type="range" min="0.5" max="1.5" value="0.9" step="0.1">
+                </div>
+
+                <hr>
+
+                <h4>Key</h4>
+
+                <form id="formKey" class="grid_wrapper_two" name="formKey" autocomplete="off" onchange="gui.saveGUICookies();">
+                    <input id="checkKey" type="checkbox" checked="checked" onchange="chart.key.update();chart.draw()">
+                    <label for="checkKey">Show Key</label>
+                    <input id="checkKeyBackground" type="checkbox" checked="checked" onchange="chart.key.update();chart.draw();">
+                    <label for="checkKeyBackground">Transparent background</label>
+                </form><br>
+
+                <div class="grid_wrapper_three" autocomplete="off" onchange="gui.saveGUICookies();">
+                    <label for="rangeKeySize">Size</label>
+                    <input id="rangeKeySize" type="range" min="0.1" max="3" value="1.0" step="0.01" onchange="chart.key.update();chart.draw();">
+                    <span></span>
+                    <span>Left</span>
+                    <input id="rangeKeyX" type="range" min="0.0" max="1.0" value="1.0" step="0.005" onchange="chart.draw();">
+                    <span>Right</span>
+                    <span>Top</span>
+                    <input id="rangeKeyY" type="range" min="0.0" max="1.0" value="1.0" step="0.005" onchange="chart.draw();">
+                    <span>Bottom</span>
+                </div><br>
+
+                <input id="buttonResetKey" type="button" value="Reset Key" onclick="centerKey();">
+
+            </div>
+
+            <h3 id="saveTab" class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" aria-controls="ui-id-5" aria-selected="false" aria-expanded="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span><ion-icon name="save-outline" role="img" class="md hydrated"></ion-icon><span>Save</span></h3>
+            <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-5" aria-labelledby="saveTab" role="tabpanel" aria-hidden="true" style="display: none;">
+                <h4>Save to file</h4>
+                <p>
+                    The available options to save depend on the chosen engine. If you
+                    require a different file format, try changing the engine option on the
+                    Display tab. For some formats the saving can take some time - please
+                    be patient.
+                </p>
+
+                <form>
+                    <div class="isCanvas is3D" style=""><button class="button" onclick="chart.savePNG();return false;">PNG</button></div>
+                    <div class="isSVG" style="display: none;"><button class="button" onclick="chart.saveSVG();return false;">SVG</button></div>
+                    <!--<div class="isSVG"><button class="button" onclick="chart.savePDF();return false;">PDF</button></div>-->
+                    <div class="is3D" style=""><button class="button" onclick="chart.saveGLTF();return false;">GLTF (3D model)</button></div>
+                    <div><button class="button" onclick="chart.saveData();return false;">Data table</button></div>
+                </form><br>
+
+                <h4>Share link</h4>
+                <p>Want to link to exactly what you see now? Just use the link below:</p>
+
+                <a id="shareurl" href="https://people.physics.anu.edu.au/~ecs103/chart3d/?engine=threejs&amp;cookiewarning=none&amp;datamode=Value&amp;colourrange=0.9&amp;coloursaturation=1&amp;colourlightness=0.7&amp;colourhueoffset=0&amp;outlinestable=true&amp;showmagic=true&amp;showvalue=true&amp;showelementlabels=true&amp;fontbold=false&amp;fontsmallcaps=false&amp;fontsize=0.9&amp;showkey=true&amp;keybackground=true&amp;keysize=1&amp;keyx=1&amp;keyy=1&amp;lightlong=0&amp;lightlat=45&amp;lightbrightness=1.5&amp;lightambient=undefined&amp;shininess=undefined&amp;heightscale=0.6&amp;fontitalic=true&amp;typeface=&amp;colourdirection=false&amp;flipbetahue=false&amp;yorkmode=true&amp;backgroundtransparent=true&amp;backgroundlightness=1&amp;showwhat=noestimated&amp;plotlog=false&amp;eveneven=false&amp;source=jeff&amp;property=U238nfin0&amp;cameraRelativeX=32.203405409913955&amp;cameraRelativeY=32.203405409912364&amp;cameraRelativeZ=32.20340540991225&amp;nCenter=71.39037294100322&amp;targetY=-8.384276634967829e-15&amp;zCenter=37.899815330596574" target="_blank">Colourful Nuclide Chart</a>
+            </div>
+
+            <h3 id="aboutTab" class="ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons" role="tab" aria-controls="ui-id-6" aria-selected="false" aria-expanded="false" tabindex="-1"><span class="ui-accordion-header-icon ui-icon ui-icon-triangle-1-e"></span><ion-icon name="document-text-outline" role="img" class="md hydrated"></ion-icon><span>About</span></h3>
+            <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-6" aria-labelledby="aboutTab" role="tabpanel" aria-hidden="true" style="display: none;">
+                <h4>About</h4>
+
+                <p>
+                    The Colourful Nuclide Chart gives easy access to a wide variety of
+                    nuclear properties, and allows you to save high quality chart
+                    images for publications, presentations and outreach.
+                </p>
+
+                <!--
+<p>
+ <i>
+ Click and drag to move.<br/>
+ Double click to select.<br/>
+ Scroll to zoom.<br/>
+ Type to zoom to a nuclide.
+ </i>
+</p>
+
+-->
+                <p>
+                    The Colourful Nuclide Chart displays data from a number of
+                    different nuclear data sources. Appropriate references are given
+                    on the Data Selection tab. Whilst the data displayed should be
+                    correct, no guarantee is given as to the accuracy of the presented
+                    information. If mistakes are spotted please let me know.
+                </p>
+
+                <p>If you like the Colouful Nuclide Chart, please tell your friends
+                    and colleagues about it!</p>
+
+                <div id="sharediv" style="text-align:center;width:100%">
+                    <!-- Twitter -->
+                    <a id="sharetwitter" href="http://twitter.com/intent/tweet?url=https://people.physics.anu.edu.au/~ecs103/chart3d/&amp;amp;text=The%20Colourful%20Nuclide%20Chart!&amp;amp;via=SuperSubatomic" target="_blank"><ion-icon name="logo-twitter" role="img" class="md hydrated"></ion-icon></a>
+                    <!-- Facebook -->
+                    <a id="sharefacebook" href="http://facebook.com/sharer.php?u=https://people.physics.anu.edu.au/~ecs103/chart3d/" target="_blank"><ion-icon name="logo-facebook" role="img" class="md hydrated"></ion-icon></a>
+                </div>
+
+                <!-- set the urls use javascript -->
+                <script type="text/javascript">
+                    /* Twitter */
+                    var url = 'http://twitter.com/intent/tweet?url=' + window.location.href.split("?")[0];
+                    url += '&amp;text=The%20Colourful%20Nuclide%20Chart!&amp;via=SuperSubatomic';
+                    document.getElementById("sharetwitter").href = url;
+                    /* Facebook */
+                    var url = "http://facebook.com/sharer.php?u=" + window.location.href.split("?")[0];
+                    document.getElementById("sharefacebook").href = url;
+                </script>
+
+
+                <p>
+                    If you have any feedback or feature suggestions, contact me via
+                    e-mail or twitter.
+                </p>
+
+                <p>
+                </p>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>E-mail: </td>
+                            <td> edward.simpson[at]anu.edu.au </td>
+                        </tr>
+                        <tr>
+                            <td>Twitter:</td>
+                            <td> <a href="https://twitter.com/SuperSubatomic" target="_blank">SuperSubatomic</a> </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p></p>
+
+                <p>
+                    The Colourful Nuclide Chart uses external libraries including:
+                </p>
+                <ul>
+                    <li><a href="https://threejs.org/">Threejs</a></li>
+                    <li><a href="https://jquery.com/">jQuery</a></li>
+                    <li><a href="https://ionic.io/ionicons">ionicons</a></li>
+                </ul>
+                <p></p>
+
+                <h4>Change Log</h4>
+
+                <h5>Update (2023-05-07)</h5>
+                <p>Updates to GUI.</p>
+
+                <h5>Update (2022-05-30)</h5>
+                <p>First release of the Colourful Nuclide Chart Version 2.</p>
+
+                <h5>Update (2022-02-20)</h5>
+                <p>First testing release of the Colourful Nuclide Chart Version 2.</p>
+
+
+                <h4>Troubleshooting</h4>
+                <form>
+                    <div><input type="checkbox" onclick="chart.toggleStats();">Show FPS</div>
+                    <div><button "button"="" id="buttonClearCookie" onclick="gui.clearCookie();return false;">Clear Cookie</button></div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Ends panelWrapper -->
+
+
+    <!--#########################################################################-->
+    <div id="loading" style="display: none;">
+        <!--  <div class="loading-mover"/></div> -->
+        <div class="loading-circle">
+            <h2 class="chart2d">COLOURFUL</h2>
+            <h1 class="chart2d">NUCLIDE CHART</h1>
+            <!--<div class="loading-mover" style="animation-delay:-0.5s"/></div>-->
+            <span class="loading-spinner"></span>
+            <span id="message"></span>
+            <span id="version">Version 2.152</span>
+        </div>
+        <!--<h1 style="font-size:200%" class="chart3d">The 3D Colourful Nuclide Chart</h1>-->
+        <!--
+<img id="loadinglogo" src="../common/png/logo.png" /><br/><br/>
+-->
+    </div>
+
+    <div id="cookiewarning" style="display: none;">
+        <p>
+            This site uses cookies to store information about the user interface
+            (e.g., what data is displayed and how). We also use Google Analytics
+            to track user interactions and to help improve the site.
+        </p>
+        <ion-icon name="close-sharp" onclick="gui.cookieWarning();" role="img" class="md hydrated"></ion-icon>
+    </div>
+
+    <div id="newmessage" style="display:none">
+        <p>
+            This is the new version of the Colouful Nuclide Chart. If you have any
+            issues or feature requests, please contact me at edward.simpson[at]anu.edu.au;
+        </p>
+        <ion-icon name="close-sharp" onclick="gui.newMessage();" role="img" class="md hydrated"></ion-icon>
+    </div>
+
+
+    <!--
+<div id="LoadingIcon" style="position:absolute;left:0;bottom:0;z-index:10;width:100%;height:100%;background-color:rgba(255,255,255,0.5)">
+<img id="loadinglogo" style="position:absolute;right:0;bottom:0;padding:1em;" src="../common/png/logo.png" />
+</div>
+-->
+
+
+    <div id="chart-container" style="position: absolute; width: 972px; height: 599px;"><canvas width="972" height="599" style="display: block; position: absolute; touch-action: none; width: 972px; height: 599px;"></canvas><canvas id="keycanvas" width="972" height="599" style="position: absolute; pointer-events: none;"></canvas></div>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+
+    <img style="display: none;">
+    <div id="stats" style="position: fixed; top: 0px; left: 0px; cursor: pointer; opacity: 0.9; z-index: 10000; display: none;"><canvas width="80" height="48" style="width: 80px; height: 48px; display: block; position: fixed; bottom: 0px; right: 0px;"></canvas><canvas width="80" height="48" style="width: 80px; height: 48px; display: none;"></canvas><canvas width="80" height="48" style="width: 80px; height: 48px; display: none;"></canvas></div><svg id="keySVG" width="300" height="104.07436481775933" style="font-weight: normal; font-style: italic; font-variant: normal; font-family: &quot;Open Sans&quot;, sans-serif;" viewBox="-50 -71.28468322753906 2194.4443359375 761.28466796875">
+        <rect x="-50" y="-71.2846851348877" width="2194.4443359375" height="761.28466796875" fill="rgba(255,255,255,0)" id="keyBackground"></rect><text x="0" y="0" font="italic normal 400 &quot;Open Sans&quot;, sans-serif" font-size="100" dominant-baseline="hanging">U-238 400 keV Independent Neutron Induce [%]</text><text x="50" y="120" font="italic normal 400 &quot;Open Sans&quot;, sans-serif" font-size="60" dominant-baseline="hanging" text-anchor="middle">0</text><text x="297.5" y="120" font="italic normal 400 &quot;Open Sans&quot;, sans-serif" font-size="60" dominant-baseline="hanging" text-anchor="middle">1.24</text><text x="545" y="120" font="italic normal 400 &quot;Open Sans&quot;, sans-serif" font-size="60" dominant-baseline="hanging" text-anchor="middle">2.49</text><text x="792.5" y="120" font="italic normal 400 &quot;Open Sans&quot;, sans-serif" font-size="60" dominant-baseline="hanging" text-anchor="middle">3.73</text><text x="1040" y="120" font="italic normal 400 &quot;Open Sans&quot;, sans-serif" font-size="60" dominant-baseline="hanging" text-anchor="middle">4.98</text>
+        <rect x="0" y="190" width="100" height="100" fill="#ff6666"></rect>
+        <rect x="110" y="190" width="100" height="100" fill="#ffb966"></rect>
+        <rect x="220" y="190" width="100" height="100" fill="#f3ff66"></rect>
+        <rect x="330" y="190" width="100" height="100" fill="#a0ff66"></rect>
+        <rect x="440" y="190" width="100" height="100" fill="#66ff7e"></rect>
+        <rect x="550" y="190" width="100" height="100" fill="#66ffd1"></rect>
+        <rect x="660" y="190" width="100" height="100" fill="#66daff"></rect>
+        <rect x="770" y="190" width="100" height="100" fill="#6688ff"></rect>
+        <rect x="880" y="190" width="100" height="100" fill="#9766ff"></rect>
+        <rect x="990" y="190" width="100" height="100" fill="#ea66ff"></rect>
+        <rect x="0" y="320" width="100" height="100" stroke="#000000" stroke-width="4" fill="#FFFFFF"></rect><text x="120" y="370" font-size="60" dominant-baseline="middle" text-anchor="left">Long-lived</text>
+        <rect x="0" y="430" width="100" height="100" stroke="#999999" stroke-width="4" fill="#FFFFFF"></rect><text x="120" y="480" font-size="60" dominant-baseline="middle" text-anchor="left">Estimated</text>
+        <rect x="0" y="540" width="100" height="100" stroke="none" stroke-width="4" fill="#cccccc"></rect><text x="120" y="590" font-size="60" dominant-baseline="middle" text-anchor="left">Unknown</text>
+    </svg><img width="300" height="104" src="blob:https://people.physics.anu.edu.au/2e0af645-d23a-45c3-b887-a628b4c4e90e" style="display: none;">
+</body>
+
+</html>
