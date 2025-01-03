@@ -1,0 +1,188 @@
+/* Note that the below have the desired functionality for desktop. For
+   phones, we may want to use media queries to change the scrolling
+   behaviour to the whole thing. This likely involves setting
+   accordion-wrapper to overflow: scroll, disabling for the content,
+   and changing the jquery-ui style option from fill. */
+
+:root {
+    --small: 800px;
+}
+
+#accordion-toggle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+    background-color: #FFFFFFBB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+/*    padding-right: 1em;*/
+}
+
+#accordion-wrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 99;
+    width: 500px;
+    height: 100%;
+    overflow: scroll;
+    background: white;
+    border: 1px #DDDDDD solid;
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    #accordion-wrapper {
+        width: 100%;
+    }
+}
+
+#accordion {
+    width: 100%;
+    margin-top: 3.5em;
+    line-height: normal;
+}
+
+#accordion h3 {
+    padding-left: 1em;
+    font-weight: 400!important;
+}
+
+#accordion h4 {
+    margin: 0em;
+    margin-bottom: 0.2em;
+}
+
+#accordion button {
+    padding: 0.3em;
+    margin: 0.3em;
+    margin-left: 0em;
+}
+
+.ui-accordion-header {
+    padding: 0.5em;
+    margin: 0.0em;
+    background-color: #FDFDFD;
+    cursor: pointer;
+    border-top: 1px solid #F0F0F0;
+}
+
+#aboutTab {
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.ui-accordion-header:hover {
+    padding: 0.5em;
+    margin: 0.0em;
+    background-color: #F3F3F3;
+    cursor: pointer;
+}
+
+.ui-accordion-content {
+    padding: 0.5em;
+    margin: 0.2em;
+    margin-left: 1.5em;
+    margin-right:1em;
+}
+
+#accordion .inputNumberNarrow {
+    width: 4em;
+}
+
+#accordion .inputNumberWide {
+    width: 10em;
+}
+
+.is2D, .is3D, .isSVG, .isCanvas {
+    
+}
+
+[class*="grid_wrapper"] {
+    display: inline-grid;
+    grid-gap: 0px 1em;
+    align-items: center;
+    grid-auto-rows: minmax(1em, auto);
+    grid-auto-columns: min-content;
+}
+
+[class*="grid_wrapper"] * {
+    margin: 0em;
+}
+
+[class*="grid_wrapper"] select,
+[class*="grid_wrapper"] input
+{
+    margin-bottom: 0.2em;
+}
+
+.grid_wrapper_two {
+    grid-template-columns: repeat(2,minmax(0,auto));
+}
+
+.grid_wrapper_three {
+    grid-template-columns: repeat(3,minmax(0,auto));
+}
+
+.grid_wrapper_four {
+    grid-template-columns: repeat(4,minmax(0,auto));
+}
+
+.grid_wrapper_eight {
+    grid-template-columns: repeat(8,minmax(0,auto));
+    width: 100%;
+}
+
+#nuclideInfo h4 {
+
+}
+
+#nuclideInfo h5 {
+    margin-bottom: 0em;
+}
+
+#nuclideInfo .grid_wrapper_eight {
+    font-size:85%;
+}
+
+#accordion td {
+    padding: 0em;
+    height: 1em;
+}
+
+/* Socials */
+#sharediv .fa-facebook    { color: #3B5998; }
+#sharediv .fa-pinterest   { color: #E60023; }
+#sharediv .fa-twitter     { color: #6CADDE; }
+#sharediv .fa { font-size: 2em!important; padding-right: 1em; cursor: pointer; }
+
+#accordion .fa {
+    font-size: 1.5em;
+    padding-right: 1em;
+    vertical-align: middle;
+    font-weight: 400;
+}
+
+#accordion span, #imageClose span {
+    vertical-align: middle;
+}
+
+ion-icon {
+    vertical-align: middle;
+    width: 2.0em;
+    height: 2.0em;
+}
+
+#accordion ion-icon {
+    margin-right: 0.5em;
+}
+
+#accordion-toggle h2 {
+    margin:1em;
+    font-weight: 300;
+}
+
+#accordion-toggle ion-icon {
+}

@@ -1,0 +1,49 @@
+/* This CSS file contains the sizing of all elements and controls the
+scaling over different devices. */
+
+/* This first set should apply to all screen types. */
+@media screen {
+    body {
+        font-size: 100%;
+    }
+
+    .panelTab img, #panelControls img {
+        height: 4em;
+        width: 4em;
+    }
+
+    #panelWrapper {
+	width: 650px;
+    }
+
+    #panelNuclideWrapper {
+	width: 400px;
+    }
+}
+
+
+/* Portrait vs Landscape */
+@media (orientation:portrait) {
+    .panelControls {
+        flex-direction: column;
+    }
+    .panelContent {
+        padding: 3em 2em 2em 5em;   
+    }
+}
+
+/* Now custom for smaller screens */
+@media screen and (max-width: 1000px) {
+    body {
+	font-size: 90%;
+    }
+        
+    .panelTab img,  #panelControls img {
+        height: 2.5em;
+        width: 2.5em;
+    }
+
+    .panelContent {
+        padding: 2em 2em 2em 2em;
+    }
+}

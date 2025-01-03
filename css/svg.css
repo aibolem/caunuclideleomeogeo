@@ -1,0 +1,60 @@
+
+html, body { -webkit-text-size-adjust: none }
+
+.nuclide, .nuclide_text, .nuclide_text_mass, .nuclide_text_symbol, .nuclide_text_value {
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+}
+
+
+text, tspan {
+    pointer-events: none;
+}
+
+.nuclide_square_stable, .nuclide_square_estimated {
+    pointer-events: none;
+}
+
+.nuclide_text_wrapper {
+    font-size: 10em;
+}
+
+/* This is larger to avoid Chrome min font size problems. */
+.nuclide_text {
+    font-size: 1em;
+}
+
+.nuclide_square:hover {
+    fill-opacity: 0.5;
+}
+
+.nuclide_text_mass {
+    font-size: 20%;
+}
+
+.nuclide_text_symbol {
+    font-size: 35%;
+}
+
+.nuclide_text_value {
+    font-size: 15%;
+}
+
+#keySVG {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#chart-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.magic_line {
+    
+}

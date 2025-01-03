@@ -1,0 +1,261 @@
+body {
+    font-family: "Open Sans",sans-serif;
+    font-size: 100%;
+    font-weight: 300;
+    color: black;
+    background-color: white;
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+html {	
+    height: 100%;
+    padding:0;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    overflow: hidden;
+}
+
+h1 {
+    font-family: "Open Sans",sans;
+    font-weight: 400;
+    font-size: 175%;
+    margin: 0.1em 0 0.1em 0;
+}
+
+h2 {
+    font-size: 100%;
+}
+
+h3 {
+    font-size: 1em;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+hr {
+    margin: 1.0em 0.0em 1.0em 0.0em;
+}
+
+#cookiewarning, #newmessage {
+    display:flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 2em);
+    padding: 1em;
+    border-top: 1px solid #888;
+    z-index: 101;
+}
+
+#cookiewarning {
+    background: #eee;
+}
+
+#newmessage {
+    background: #FF8;
+}
+
+#cookiewarning p, #newmessage p{
+    flex-grow: 10;
+}
+
+#cookiewarning img, #newmessage img {
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+}
+
+#shadow {
+    display: none;
+}
+
+
+.inputbox {
+    width: 4em;
+}
+
+
+a {
+    color: rgb(150,150,255);
+}
+
+a:visited {
+    color: rgb(220,150,220);
+}
+
+#nuclideBox sup {
+    font-size: 60%;
+}
+
+#references {
+    margin: 0px auto;
+    text-align: justify;
+    width: 600px;
+}
+
+/* hint */
+#menuHint {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+
+/* tip panel */
+#tippanel {
+    position: absolute;
+    bottom: 0em;
+    right: 0em;
+    padding: 0.0em 1.0em 0.5em 1.0em;
+    background-color: rgba(240,240,235,0.8);
+    border-left: solid 1em rgba(50,50,50,0.8);
+    border-top: solid 1em rgba(50,50,50,0.8);
+    border-radius: 0.2em 0.0em 0.0em 0.0em;
+    width: 11em;
+    height: 9em;
+    visibility:hidden;
+}
+
+.forminputvol {
+    width: 4em;
+}
+
+.forminputpage {
+    width: 7em;
+}
+
+#nuclideBox {
+    font-size: 4.0em;
+    font-weight: 600;
+    display: block;
+}
+
+#formKey {
+
+}
+
+/* loading screen */
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
+#loading {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction:column;
+    bottom:0px;
+    right:0px;
+    font-size:100%;
+    color: black;
+    background-color: rgb(255,255,255);
+    height: 100%;
+    width: 100%;
+    /*
+    border-left: solid 1px rgb(200,200,200);
+    border-top: solid 1px rgb(200,200,200);
+    */
+    z-index: 102;
+}
+
+.loading-circle {
+    display: flex;
+    height: 16em;
+    width: 16em;
+    border-radius: 8em;
+    justify-content: center;
+    flex-direction:column;    
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    border: solid 1px #ddd;
+    animation: spinner 1.2s linear infinite, colour-animation linear 2.3s infinite;
+    position: relative;
+    text-align: center;
+    margin: 3em auto 3em auto;
+}
+  
+.loading-spinner:before, .loading-spinner:after {
+    content: '';
+    position: absolute;
+    top: -0.2em;
+    left: -0.2em;
+    display: block;
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    border: 0.2em solid transparent;
+    border-top-color: #DDDD00;
+}
+
+.loading-spinner:after {
+    border-top-color: transparent;
+    border-bottom-color: #00DDDD;
+}
+
+
+@keyframes spinner {
+  0% { transform: rotate(0); }
+  100% { transform: rotate(360deg); }
+}
+
+#loading h1, #loading h2 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    color: #000000;
+    padding: 0.0em;
+    margin: 0em;
+}
+
+#version {
+    font-size: 75%;
+    color: #888;
+}
+
+#message {
+    min-height: 1em;
+    padding-bottom: 1em;
+    font-size: 100%;
+    color: #888;
+}
+
+#loadinglogo {
+    margin-top: 2em;
+    height: 80px;
+    animation: combo 1.8s linear infinite;
+}
+
+@keyframes colour-animation {
+    0% {   filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+
+/*
+@keyframes position-animation {
+    0%   { transform: translateX(2em);  }
+    50%  { transform: translateX(6em);   }
+    100% { transform: translateX(10em);  }
+}
+
+.loading-mover {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    height: 0.2em;
+    width: 4.0em;
+    border-radius: 0.1em;
+    animation: position-animation ease-in-out 0.5s infinite alternate, colour-animation linear 2.3s infinite;
+    background-color: #FFFF00;
+}
+*/

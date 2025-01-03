@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!--<script async src="https://www.googletagmanager.com/gtag/js?id=*-**********"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      if(window.location.hostname.search("localhost")!=-1) {
+          gtag('config', '*-**********',{ 'debug_mode':true });
+      }
+      else {
+	  gtag('config', '*-**********');
+      }
+    </script>-->
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <!-- define canonical page -->
+    <link rel="canonical" href="index3.html"/>
+
+    <!-- android viewport header -->
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+    <!-- Open graph (facebook and google plus) share -->
+    <meta property="og:url"           content="index3.html" />
+    <meta property="og:type"          content="article" />
+    <meta property="og:title"         content="CAU Nuclide LEOMEOGEO Chart" />
+    <meta property="og:description"   content="Putting the joy back into nuclear data." />
+        <meta property="og:image"         content="card2d.png" />
+      
+    <!-- Twitter share -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@YNKDBVLGARI" />
+    <meta name="twitter:creator" content="@YNKDBVLGARI" />
+    <meta name="twitter:title" content="CAU Nuclide LEOMEOGEO ©°hÅ℞T" />
+    <meta name="twitter:description" content="Putting the joy back into nuclear data." />
+    <meta name="twitter:image" content="card2d.png"/>
+
+    <!-- local style sheets -->
+    <link rel="stylesheet" type="text/css" href="css/chart.css"/>
+    <link rel="stylesheet" type="text/css" href="css/svg.css"/>
+    <link rel="stylesheet" type="text/css" href="css/accordion.css"/>
+
+    
+    <link rel="stylesheet" type="text/css" href="css/panel.css"/>
+    <link rel="stylesheet" type="text/css" href="css/fonts.css"/>
+  
+    
+    <!-- custom fonts -->
+    <!-- todo: sort out fonts -->
+
+    <link href="https://fonts.googleapis.com/css?family=Alegreya%7CAlegreya+Sans%7CMerriweather%7CMerriweather+Sans%7CNunito%7CNunito+Sans%7CQuattrocento%7CQuattrocento+Sans%7CRoboto:300,400,900%7CRoboto+Mono%7CRoboto+Slab%7CMali" rel="stylesheet"/> 
+    
+    
+    <!--<link rel="preconnect" href="https://fonts.googleapis.com">-->
+    <!--<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,700;1,800&display=swap" rel="stylesheet">
+
+    <!--<link rel="preconnect" href="https://fonts.googleapis.com">-->
+    <!--<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,700;1,800&display=swap" rel="stylesheet"> 
+
+    <!--<link rel="preconnect" href="https://fonts.googleapis.com">-->
+    <!--<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+    <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet"> 
+
+    
+    <!-- Font awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
+
+
+    <!-- jQuery and jQuery-UI -->	
+    <link rel="stylesheet" href="js-external/jquery-ui.css">
+    <script src="js-external/jquery-3.6.0.js"></script>
+    <script src="js-external/jquery-ui.js"></script>
+
+    <!-- PDF export support - needs work -->
+    
+    <script src="js-external/pdfkit.js"></script>
+    <script src="js-external/source.js"></script>
+    <script src="js-external/blobstream.js"></script>
+  
+	
+    <!-- common scripts -->
+    <script type="text/javascript" src="js/key.js"></script>
+    <script type="text/javascript" src="js/chart.js"></script>
+    <script type="text/javascript" src="js/chart_canvas.js"></script>
+    <script type="text/javascript" src="js/stats.min.js"></script>
+
+    <!-- local scripts -->
+    <script type="text/javascript" src="js/colour.js"></script>
+    <script type="text/javascript" src="js/gui.js"></script>
+    <script type="text/javascript" src="js/info.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+    <script type="text/javascript" src="js/init.js"></script>
+    <script type="text/javascript" src="js/data.js"></script>
+    
+    <!-- javascript modules - hooray -->
+    <script type="module" src="js/chart_svg.js"></script>
+    <script type="module" src="js/chart_threejs.js"></script>
+
+    <!-- todo: pdf export - do we need these with SVG export? -->
+    <script src="js/blob-stream.js"></script>
+
+    <!-- todo: check this logo works -->
+    <link rel="icon" href="png/logo.png"/>
+
+    <title>CAU Nuclide LEOMEOGEO ©°hÅ℞T</title>
+    
+  </head>  
+
+  <body id="documentbody" onload="init();">
+
+<!-- New accordion -->
+ 
+
+<div id="accordion-toggle">
+  <h2 id="imageClose" style="display:none;"><ion-icon name="close-sharp"></ion-icon><span>CAU Nuclide LEOMEOGEO ©°hÅ℞T</span></h2>
+  <h2><ion-icon name="menu-outline" id="imageMenu"></ion-icon></h2>
+</div>
+
+<script>
+$( function() {
+    $( "#accordion" ).accordion({
+        heightStyle: "content",
+	collapsible: true,
+	animate: false,
+	active: false
+    });
+} );
+</script>
+
+<script>
+$( function() {
+    $("#imageMenu").click(function() {
+	$("#accordion-wrapper").show();
+	$("#imageMenu").hide();
+	$("#imageClose").show();
+    });
+    $("#imageClose").click(function() {
+	$("#accordion-wrapper").hide();
+	$("#imageMenu").show();
+	$("#imageClose").hide();
+    });
+});
+</script>
+
+<!-- Some dummies used for handling styles consistently. These can
+then be used to measure font sizes in the raster version, whilst the
+svg version uses the css classes?-->
+
+<div class="nuclide_text_wrapper" style="display:none">
+    <div class="nuclide_text" style="display:none"></div>
+    <div class="nuclide_text nuclide_text_mass" style="display:none"></div>
+    <div class="nuclide_text nuclide_text_symbol" style="display:none"></div>
+    <div class="nuclide_text nuclide_text_value" style="display:none"></div>
+    <div class="nuclide_text nuclide_square" style="display:none"></div>
+    <div class="nuclide_text nuclide_estimated" style="display:none"></div>
+</div>
+
+<div id="accordion-wrapper">
+  <div id="accordion">
+
+    <h3 id="nuclideInfoTab"><ion-icon name="information-circle-outline"></ion-icon><span>Nuclide Info</span></h3>
+    <div>
+      <article id="nuclideInfo">
+  
+<p>
+To view more information about a nuclide, simply double click on it. 
+</p>
+
+</article>
+    </div>
+
+    <h3 id="dataTab"><ion-icon name="analytics-outline"></ion-icon><span>Data</span></h3>
+    <div>
+      <h4>Current property</h4>
+<div class="grid_wrapper_two">
+ <p>Property:</p><p id="propertyLongname"></p>
+ <p>Description</p><p id="propertyDescription"></p>
+ <p>Source:</p><p id="sourceLongname"></p>
+ <p>Reference:</p><p id="sourceReference"></p>
+</div>
+
+<hr/>
+<h4>Data selection</h4>
+
+<form class="grid_wrapper_two" autocomplete="off">
+<span>Source:</span>
+<select id="selectSource" onchange="gui.updateCombo();"></select>
+<span>Property:</span>
+<select id="selectProperty" onchange="gui.changeData();"></select>
+</form><br/>
+
+<form class="grid_wrapper_two" autocomplete="off">
+  <input id="radioShowAll" type="radio" onchange="gui.changeDataOption();" name="showwhat" value="all"/>
+  <label for="radioShowAll">Show all</label>
+  <input id="radioHideUnknown" type="radio" onchange="gui.changeDataOption();" name="showwhat" value="nounknown" checked="checked" />
+  <label for="radioHideUnknown">Hide unknown</label>
+  <input id="radioHideEstimated" type="radio" onchange="gui.changeDataOption();" name="showwhat" value="noestimated"/>
+  <label for="radioHideEstimated">Hide estimated and unknown</label>
+  <input id="checkEvenEven" type="checkbox" onchange="gui.changeDataOption();"/>
+  <label for="checkEvenEven">Even-even only</label>
+  <input id="checkStableOnly" type="checkbox" onchange="gui.changeDataOption();"/>
+  <label for="checkStableOnly">Stable only</label>
+  <input id="checkPlotLogarithmic" onchange="gui.changeDataMode()" type="checkbox"/>
+  <label for="checkPlotLogarithmic">Logarithmic colour scale</label>
+</form>
+
+
+<hr/>
+<h4>N and Z range</h4>
+
+<form class="grid_wrapper_four" autocomplete="off">
+  <p>Z<sub>min</sub></p>
+  <input class="inputNumberNarrow" onchange="gui.changeDataOption();" type="number" id="inputZmin" min="0" max="120" step="1" value="0"/>
+  <p>Z<sub>max</sub></p>
+  <input class="inputNumberNarrow" onchange="gui.changeDataOption();" type="number" id="inputZmax" min="0" max="120" step="1" value="120"/>
+  <p>N<sub>min</sub></p>
+  <input class="inputNumberNarrow" onchange="gui.changeDataOption();" type="number" id="inputNmin" min="0" max="180" step="1" value="0"/>
+  <p>N<sub>max</sub></p>
+  <input class="inputNumberNarrow" onchange="gui.changeDataOption();" type="number" id="inputNmax" min="0" max="180" step="1" value="180"/>
+</form><br/>
+
+<button class="button" onclick="gui.resetNZRanges();return false;">Reset</button>
+
+<hr/>
+<h4>Data limits</h4>
+<form class="grid_wrapper_three" autocomplete="off">
+  <span>Minimum</span>
+  <input id="rangeMinValue" class="inputNumberWide" type="input" onchange="gui.changeMinMaxValue();chart.update();" />
+  <span id="MinUnit"></span>
+  <span>Maximum</span>
+  <input id="rangeMaxValue" class="inputNumberWide" type="input"  onchange="gui.changeMinMaxValue();chart.update();" />
+  <span id="MaxUnit"></span>
+</form><br/>
+
+<p>Note in the case of logarithmic colour scales, the above minimum and maximum are the exponents for the relevant limit.</p>
+
+<button class="button" onclick="gui.resetMinMaxValue();chart.update();return false;">Reset</button>
+
+<hr/>
+<h4>Quantity to plot</h4>
+<form class="grid_wrapper_two" autocomplete="off">
+  <input id="radioValue" type="radio" checked="checked" name="datamode" value="Value" onchange="gui.changeDataMode();"/>
+  <label >Value</label>
+  <input id="radioMinusValue" type="radio" name="datamode" value="MinusValue" onchange="gui.changeDataMode();"/>
+  <label >Negative of Value</label>
+  <input id="radioError" type="radio" name="datamode" value="Error" onchange="gui.changeDataMode();"/>
+  <label >Error</label>
+  <input id="radioGradientSingle" type="radio" name="datamode" value="Single" onchange="gui.changeDataMode();"/>
+  <label >Single Difference</label>
+  <input id="radioGradientDouble" type="radio" name="datamode" value="Double" onchange="gui.changeDataMode();"/>
+  <label >Double Difference</label>
+</form><br/>
+
+<form class="grid_wrapper_four" autocomplete="off">
+  <span>Direction</span>
+  <span><input id="radioGradientN"  type="radio" disabled="true" name="GradientDirection" value="N"  onchange="gui.changeDataMode();" checked="checked" /><span style="font-size:200%">&#8594;</span></span>
+  <span><input id="radioGradientZ"  type="radio" disabled="true" name="GradientDirection" value="Z"  onchange="gui.changeDataMode();"/><span style="font-size:200%">&#8593;</span></span>
+  <span><input id="radioGradientNZ" type="radio" disabled="true" name="GradientDirection" value="NZ" onchange="gui.changeDataMode();"/><span style="font-size:200%">&#8599;</span></span>
+</form>
+
+<p>
+  <span>
+   Single [D<sub>1</sub>(N,Z)] and double [D<sub>2</sub>(N,Z)]
+   difference modes for quantity V(N,Z) are defined as follows:
+   </span>
+</p>
+
+<p>
+   D<sub>1</sub> = [V(N+dN,Z+dZ)-V(N-dN,Z-dZ)]/2(dZ<sup>2</sup>+dN<sup>2</sup>)<sup>1/2</sup><br/>
+   D<sub>2</sub> = [V(N+dN,Z+dZ)-2V(N,Z)+V(N-dN,Z-dZ)]/2(dZ<sup>2</sup>+dN<sup>2</sup>)<sup>1/2</sup>
+</p>
+
+<p>
+  where dN and dZ are 0 or 1 in the case of D<sub>1</sub> and 2 in
+  the case of D<sub>2</sub>.  The direction of the difference is
+  set by the radio button.  These differences approximate the
+  first and second derivatives of quantity V(N,Z).  For some
+  introductory discussions on this see:
+</p>
+
+<p>
+  E. C. Simpson and M. Shelley<br/>
+  Nuclear cartography: patterns in binding energies and subatomic structure<br/>
+  Physics Education 52, 064002 (2017)
+</p>
+    
+
+<p>
+The CAU Nuclide LEOMEOGEO ©°hÅ℞T displays data from a number of different
+nuclear data sources, references for which are given above. You must
+cite these references when using the data!  Whilst the data displayed
+should be correct, no guarantee is given as to the accuracy of the
+presented information.  If mistakes are spotted please let me know.
+</p>
+    </div>
+
+    <h3 id="coloursTab"><ion-icon name="color-palette-outline"></ion-icon><span>Colours</span></h3>
+    <div>
+      <h4>Nuclides</h4>
+
+<form class="grid_wrapper_two" autocomplete="off" onchange="colour.setAllColours();gui.updateStyles();chart.key.build();gui.saveGUICookies();chart.update();">
+  <label for="selectColourMode">Colour mode</label>
+  <select id="selectColourMode" onchange="gui.changeColourMode()">
+    <option value="varyHue">Vary Hue</option>
+    <option value="varyLightness">Vary Lightness</option>
+  </select>
+<label for="rangeColourRange">Range</label>
+<input id="rangeColourRange" type="range" min="0" max="1" value="0.9" step="0.05"  />
+<label for="rangeColourSaturation">Saturation</label>
+<input id="rangeColourSaturation" type="range" min="0" max="1" value="1.0" step="0.1" />
+<label for="rangeColourLightness">Lightness</label>
+<input id="rangeColourLightness" type="range" min="0" max="1" value="0.6" step="0.1" />
+<label for="rangeColourHueOffset">Hue</label>
+<input id="rangeColourHueOffset" type="range" min="0" max="360" value="0" step="10" />
+</form><br/>
+
+<form class="grid_wrapper_two" autocomplete="off" onchange="colour.setAllColours();gui.updateStyles();gui.saveGUICookies();chart.update();">
+  <input id="checkColourDirection" type="checkbox" />
+  <label for="checkColourDirection">Flip colour direction</label>
+  <input id="checkFlipBetaHue" type="checkbox" />
+  <label for="checkFlipBetaHue">Swap &beta;<sup>+</sup>/&beta;<sup>-</sup> hues</label>
+  <input id="checkYorkMode" type="checkbox" />
+  <label for="checkYorkMode">Force Binding Blocks decay mode colours</label>
+</form>
+
+<hr/>
+
+<h4>Background</h4>
+
+<form class="grid_wrapper_three" autocomplete="off" onchange="gui.saveGUICookies();gui.updateStyles();chart.key.update();">
+  <span>Black</span>
+  <input id="rangeBackgroundLightness" type="range" min="0" max="1" value="1" step="0.1" onchange="chart.update();chart.draw();" />
+  <span>White</span>
+</form><br/>
+
+<form class="grid_wrapper_two" autocomplete="off" onchange="gui.saveGUICookies();">
+  <input id="checkBackgroundTransparent" type="checkbox" onchange="chart.update();chart.draw();"/>
+  <label for="checkBackgroundTransparent">Transparent</label>
+</form>
+
+    </div>
+
+    <h3 id="displayTab"><ion-icon name="options-outline"></ion-icon><span>Display</span></h3>
+    <div>
+      <h4>Options</h4>
+
+<form id="engine" class="grid_wrapper_two"  onchange="gui.saveGUICookies();gui.createChart();" autocomplete="off" >
+  <label for="selectEngine">Engine</label>
+  <select id="selectEngine">
+    <option name="Engine" value="canvas" selected="selected">2D Raster</option>
+    <option name="Engine" value="svg">2D Vector</option>
+    <option name="Engine" value="threejs">3D</option>
+  </select>
+</form><br/>
+
+<form class="grid_wrapper_two" autocomplete="off" onchange="gui.saveGUICookies();chart.measureText();chart.update();chart.draw();">
+    <input id="checkStable" type="checkbox" checked="checked"/>
+    <label for="checkStable">Outline long-lived nuclides</label>
+    <input id="checkShowMagic"  class="is2D" type="checkbox" checked="checked"/>
+    <label for="checkShowMagic" class="is2D" >Show magic numbers</label>
+    <input id="checkShowNuclideLabels" type="checkbox" checked="checked"/>
+    <label for="checkShowNuclideLabels">Show nuclide labels</label>
+    <input id="checkShowValue" class="is2D" type="checkbox"  checked="checked" />
+    <label for="checkShowValue" class="is2D">Show value</label>
+    <input id="checkShowElementLabels" class="is2D" type="checkbox" checked="checked"/>
+    <label for="checkShowElementLabels" class="is2D">Show element names</label>
+  
+    <input id="checkShadow" class="is3D" type="checkbox" onchange="ChangeMade();"/>
+    <label for="checkShadow" class="is3D" >Enable shadows</label>
+    
+</form>
+    
+<form class="grid_wrapper_three" autocomplete="off" onchange="gui.saveGUICookies();">    
+    <label for="rangeHeightScale" class="is3D" >Height</label>
+    <input id="rangeHeightScale" class="is3D"  type="range" min="0.1" max="2" value="0.5" step="0.1" onchange="chart.build();"/>
+    <span>&nbsp;</span>
+ 
+    <label for="rangeShininess"class="is3D" >Shininess</label>
+    <input id="rangeShininess" class="is3D" type="range" min="0" max="100" value="0.5" step="5" onchange="chart.build();"/>
+    <span class="is3D">&nbsp;</span>
+    
+    <span class="is3D">Dark</span>
+    <input id="rangeLight" class="is3D"  type="range" min="0.1" max="2" value="1.5" step="0.1" onchange="chart.changeLight();"/>
+    <span class="is3D">Bright</span>
+    <span class="is3D">Ambient</span>
+    <input id="rangeAmbient" class="is3D" type="range" min="0" max="1" value="0.8" step="0.1" onchange="chart.changeLight();"/>
+    <span class="is3D">Point</span>
+    <label for="rangeLightLongitude"class="is3D" >Light longitude</label>
+    <input id="rangeLightLongitude" class="is3D" type="range" min="0" max="360" value="0" step="15" onchange="chart.changeLight();"/>
+    <span class="is3D">&nbsp;</span>
+    <label for="rangeLightLatitude"class="is3D" >Light latitude</label>
+    <input id="rangeLightLatitude" class="is3D" type="range" min="0" max="90" value="45" step="5" onchange="chart.changeLight();"/>
+    <span class="is3D">&nbsp;</span>
+</form>
+
+<br/>
+<p>
+For most users, it is recommended to use the 2D Raster or 3D
+engines. The 2D Vector engine can be used to export to SVG or PDF
+vector graphics files, but is slower than the 2D Raster.
+</p>
+   
+  
+    <input id="checkLabel"   type="checkbox" onchange="SetAllColours();"/><label for="checkLabel">Enable isotope labels</label> <br/>
+    <input id="checkReverse" type="checkbox" onchange="SetAllColours();"/><label for="checkReverse">Reverse vertical</label> <br/>
+
+   <input id="checkIsotopeLabels" type="checkbox" checked="checked" onchange="SetAllColours();"/><label for="checkIsotopeLabels">Show nuclide labels</label> <br/>
+
+<hr/>
+
+<h4>Font</h4>
+
+<form class="grid_wrapper_two" autocomplete="off" onchange="gui.saveGUICookies();gui.updateStyles();chart.update();">
+  <label for="selectFont">Typeface</label>
+  <select id="selectFont">
+   <option value="Helvetica, Arial, sans" style="font-family: Helvetica, Arial, sans-serif;">Helvetica</option>
+   <option value="'Times New Roman', serif" style="font-family: 'Times New Roman', serif;">Times New Roman</option>
+   <option value="'Courier New', monospace" style="font-family: 'Courier New', monospace;">Courier New</option>
+   <option value="'Comic Sans, Brush Script MT', cursive" style="font-family: 'Comic Sans', 'Brush Script MT', cursive;">Brush Script MT</option>
+   <option value="serif" style="font-family: sans;">Default Serif</option>
+   <option value="sans-serif" style="font-family: sans-serif;" selected="selected">Default Sans-serif</option>
+   <option value="cursive" style="font-family: cursive;">Default Cursive</option>
+   <option value="monospace" style="font-family: monospace;">Default Monospace</option>
+  </select>
+</form><br/>
+
+<form class="grid_wrapper_two" autocomplete="off" onchange="gui.saveGUICookies();gui.updateStyles();chart.update();">
+  <input id="checkFontBold"      type="checkbox"/>
+  <label for="checkFontBold">Bold</label>
+  <input id="checkFontItalic"    type="checkbox"/>
+  <label for="checkFontItalic">Italic</label>
+  <input id="checkFontSmallCaps" type="checkbox"/>
+  <label for="checkFontSmallCaps">Small caps</label>
+</form><br/>
+
+<div class="grid_wrapper_two" autocomplete="off" onchange="gui.saveGUICookies();gui.updateStyles();chart.update();">
+  <label for="rangeFontSize">Size</label>
+  <input id="rangeFontSize" name="rangeFontSize" type="range" min="0.5" max="1.5" value="0.9" step="0.1" />
+</div>
+
+<hr/>
+    
+<h4>Key</h4>
+
+<form id="formKey" class="grid_wrapper_two" name="formKey"  autocomplete="off" onchange="gui.saveGUICookies();">
+    <input id="checkKey" type="checkbox" checked="checked" onchange="chart.key.update();chart.draw()"/>
+    <label for="checkKey">Show Key</label>
+    <input id="checkKeyBackground" type="checkbox" checked="checked" onchange="chart.key.update();chart.draw();"/>
+    <label for="checkKeyBackground">Transparent background</label>
+</form><br/>
+
+<div class="grid_wrapper_three" autocomplete="off" onchange="gui.saveGUICookies();">
+  <label for="rangeKeySize">Size</label>
+  <input id="rangeKeySize" type="range" min="0.1" max="3" value="1.0" step="0.01" onchange="chart.key.update();chart.draw();" /> </td>
+  <span></span>
+  <span>Left</span>
+  <input id="rangeKeyX" type="range" min="0.0" max="1.0" value="1.0" step="0.005" onchange="chart.draw();" />
+  <span>Right</span>
+  <span>Top</span>
+  <input id="rangeKeyY" type="range" min="0.0" max="1.0" value="1.0" step="0.005" onchange="chart.draw();" />
+  <span>Bottom</span>
+</div><br/>
+
+<input id="buttonResetKey" type="button" value="Reset Key" onclick="centerKey();"/>
+
+    </div>
+
+    <h3 id="saveTab"><ion-icon name="save-outline"></ion-icon><span>Save</span></h3>
+    <div>
+      <h4>Save to file</h4>
+<p>
+The available options to save depend on the chosen engine. If you
+require a different file format, try changing the engine option on the
+Display tab. For some formats the saving can take some time - please
+be patient.
+</p>
+
+<form>
+  <div class="isCanvas is3D"><button class="button" onclick="chart.savePNG();return false;">PNG</button></div>
+  <div class="isSVG"><button class="button" onclick="chart.saveSVG();return false;">SVG</button></div>
+  <div class="isSVG"><button class="button" onclick="chart.savePDF();return false;">PDF</button></div>
+  <div class="is3D"><button class="button" onclick="chart.saveGLTF();return false;">GLTF (3D model)</button></div>
+  <div ><button class="button" onclick="chart.saveData();return false;">Data table</button></div>
+</form><br/>
+
+<h4>Share link</h4>
+<p>Want to link to exactly what you see now? Just use the link below:</p>
+
+<a id="shareurl" href="" target="_blank">CAU Nuclide LEOMEOGEO ©°hÅ℞T</a>
+    </div>
+
+    <h3 id="aboutTab"><ion-icon name="document-text-outline"></ion-icon><span>About</span></h3>
+    <div>
+      <h4>About</h4> 
+
+<p>
+The CAU Nuclide LEOMEOGEO ©°hÅ℞T gives easy access to a wide variety of
+nuclear properties, and allows you to save high quality chart
+images for publications, presentations and outreach. 
+</p>
+
+
+<p>
+ <i>
+ Click and drag to move.<br/>
+ Double click to select.<br/>
+ Scroll to zoom.<br/>
+ Type to zoom to a nuclide.
+ </i>
+</p>
+
+
+<p>
+The CAU Nuclide LEOMEOGEO ©°hÅ℞T displays data from a number of
+different nuclear data sources.  Appropriate references are given
+on the Data Selection tab.  Whilst the data displayed should be
+correct, no guarantee is given as to the accuracy of the presented
+information.  If mistakes are spotted please let me know.
+</p>
+
+<p>If you like the cauNUCLIDELEOMEOGEO ©°hÅ℞T, please tell your friends
+and colleagues about it!</p>
+
+<div id="sharediv" style="text-align:center;width:100%">
+  <!-- Twitter -->
+  <a id="sharetwitter" href="" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a>
+  <!-- Facebook -->
+   <a id="sharefacebook" href="" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+</div>
+
+<!-- set the urls use javascript -->
+	<script type="text/javascript">
+	  /* Twitter */
+	  var url = 'http://twitter.com/intent/tweet?url='+window.location.href.split("?")[0];
+	  url += '&amp;text=nu-ca!&amp;via=YNKDBVLGARY';
+  document.getElementById("sharetwitter").href=url;
+	  /* Facebook */
+  var url = "http://facebook.com/sharer.php?u="+window.location.href.split("?")[0];
+  document.getElementById("sharefacebook").href=url;
+</script>
+
+
+<p>
+ If you have any feedback or feature suggestions, contact me via
+ e-mail or twitter.
+</p>
+
+<p>
+  <table>
+      <tr><td>E-mail: </td><td> education ДвÅ℞d continume A.g. </td></tr>
+      <tr><td>Twitter:</td><td> <a href="https://twitter.com/YNKDBVLGARY" target="_blank">YNKDBVLGARY</a> </td></tr>
+  </table>
+</p>
+
+<p>
+  The CAU Nuclide LEOMEOGEO ©°hÅ℞T uses external libraries including:
+  <ul>
+    <li><a href="https://threejs.org/">Threejs</a></li>
+    <li><a href="https://jquery.com/">jQuery</a></li>
+    <li><a href="https://ionic.io/ionicons">ionicons</a></li>
+  </ul>
+</p>
+
+<h4>Change Log</h4>
+
+<h5>Update (2023-05-07)</h5>
+<p>Updates to GUI.</p>
+
+<h5>Update (2022-05-30)</h5>
+<p>First release of the CAU Nuclide LEOMEOGEO ©°hÅ℞T Version 2.</p>
+
+<h5>Update (2022-02-20)</h5>
+<p>First testing release of the CAU Nuclide LEOMEOGEO ©°hÅ℞T Version 2.</p>
+
+
+<h4>Troubleshooting</h4> 
+<form>
+<div><input type="checkbox" onclick="chart.toggleStats();"/>Show FPS</div>
+<div><button "button" id="buttonClearCookie" onclick="gui.clearCookie();return false;"/>Clear Cookie</button></div> 
+</form>
+    </div>
+
+  </div>
+</div>
+
+<!-- Ends panelWrapper -->
+</div>
+
+<!--#########################################################################-->
+<!--<div id="loading">
+  <div class="loading-mover"/></div>
+<div class="loading-circle">
+  <h2 class="chart2d">cau</h2>
+  <h1 class="chart2d">NUCLIDE LEOMEOGEO</h1>
+   <div class="loading-mover" style="animation-delay:-0.5s"/></div>
+<span class="loading-spinner"/></span>
+<span id='message'>Loading...</span>
+<span id='version'>Version 2.152</span>
+</div>
+ <h1 style="font-size:200%" class="chart3d">caunuclideleomeogeo</h1>
+
+<img id="loadinglogo" src="png/logo.png" /><br/><br/>
+
+</div>-->
+
+<div id="cookiewarning">
+<p>
+This site uses cookies to store information about the user interface
+(e.g., what data is displayed and how).  We also use Google Analytics
+to track user interactions and to help improve the site.
+</p>
+<ion-icon name="close-sharp" onclick="gui.cookieWarning();"></ion-icon>
+</div>
+
+<div id="newmessage" style="display:none">
+<p>
+This is the new version of the cauNUCLIDELEOMEOGEO ©°hÅ℞T. If you have any
+issues or feature requests, please contact me at education ДвÅ℞d continume A.g.;
+</p>
+<ion-icon name="close-sharp" onclick="gui.newMessage();"></ion-icon>
+</div>
+
+
+
+<!--<div id="LoadingIcon" style="position:absolute;left:0;bottom:0;z-index:10;width:100%;height:100%;background-color:rgba(255,255,255,0.5)">
+<img id="loadinglogo" style="position:absolute;right:0;bottom:0;padding:1em;" src="png/logo.png" />-->
+</div>
+
+
+
+<div id="chart-container"></div>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

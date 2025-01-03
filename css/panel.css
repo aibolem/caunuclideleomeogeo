@@ -1,0 +1,248 @@
+.panel {
+    box-sizing: border-box;
+    position: relative;
+    top: 0em;
+    min-height: 100%; 
+    background-color: rgba(255,255,255,0.9);
+    border-right: solid 1px rgb(200,200,200);
+    left: 0;
+    display: none;
+    z-index: 9;
+}
+
+.panelHeader {
+    box-sizing: border-box;
+    top: 0px;
+    width: 100%;
+    text-align: left;
+    margin:0em;
+}
+
+.panelHeader h1 {
+    line-height: 1;
+}
+
+
+.panel p {
+    text-align: justify;
+}
+
+.panelContent {
+    padding: 6em 2em 2em 2em;
+}
+
+#controls {
+    position: absolute;
+    top: 0px;
+    margin:0px;
+    right:  0px;
+    height: 37px;
+    background-color: white;
+    border-bottom-right-radius: 0px;
+}
+
+#controls img {
+    height: 30px;
+    cursor: pointer;
+}
+
+#panelNuclide {
+    direction: ltr;
+    display: none;
+    box-sizing: border-box;
+    top: 0em;
+    min-height: 100%; 
+    background-color: rgba(255,255,255,1.0);
+    border-left: solid 1px rgb(200,200,200);
+    right: 0em;
+    /*width: 100%;*/
+}
+
+#toggleNuclide {
+    z-index:10;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 4em;
+    width: 4em;
+    user-select: none;
+}
+
+#toggleNuclide img {
+    height: 4em;
+    width: 4em;
+}
+
+#toggleNuclide:hover {
+    cursor: pointer;
+    background-color: rgb(200,200,200);
+}
+
+
+.strong { font-weight: 800; }
+
+.panelControls {
+    position: absolute;
+    top: 0px;
+    display: flex;
+}
+
+.panelTab {
+    margin-right: 0.25em;
+    background-color: rgba(255,255,255,0.7);
+    user-select: none;
+}
+
+div.panelTab:hover {
+    cursor: pointer;
+    background-color: rgb(200,200,200);
+}
+
+.textColourPoint {
+    width: 5em;
+}
+
+#optionsbuttons {
+    z-index: 11;
+}
+
+
+#optionsButton {
+    position: absolute;
+    top:2px;
+    padding: 2px;
+    left: 0px;
+    height: 30px;
+    width: 30px;
+    border-right: solid 1px rgb(200,200,200);
+    border-top: solid 1px rgb(200,200,200);
+    border-bottom: solid 1px rgb(200,200,200);
+    user-select: none;
+    background-color: white;
+}
+
+#optionsButton:hover {
+    cursor: pointer;
+    background-color: rgb(200,200,200);
+}
+
+#infoNuclide {
+    padding: 0.5em 2em 1em 2em;
+}
+
+#nuclideBox {
+    background-color: red;
+    padding: 1em 0.2em 0.2em 0.5em;
+}
+
+@keyframes combo {
+      0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#twitter-widget-0 {
+      border: 0px !important;
+}
+
+hr {
+    border: 0px solid;
+    height: 1px;
+    color: rgb(200,200,200);
+    background-color: rgb(200,200,200);
+    border-color: rgb(200,200,200);
+}
+
+#rangeMinValue {
+    width: 8em;
+}
+
+
+#rangeMaxValue {
+    width: 8em;
+}
+
+
+.closeButton {
+    position: absolute;
+    top: 0;
+    right:0;
+    z-index: 10000;
+}
+
+#panelWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    height: 100%;
+    display: none;
+    overflow-y: scroll;
+}
+
+#panelNuclideWrapper {
+    direction: rtl;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 9;
+    height: 100%;
+    display: none;
+    overflow-y: scroll;
+}
+
+#zoombuttons {
+    display: flex;
+    z-index: 8;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+}
+
+#optionbuttons {
+    display: flex;
+    z-index: 10;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+#SearchBox {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 100000;
+    display: none;
+    background-color: white;
+    padding: 0.5em;
+}
+
+select, button, input {
+    font: "Open Sans", sans-serif;
+    font-size: 90%;
+}
+    
+
+
+/* Cool tooltips */
+/*
+[tooltip]:before {            
+    position : absolute;
+    right: 0;
+    content : attr(tooltip);
+    opacity : 0;
+    background-color: rgba(255,255,255,0.5);
+}
+
+[tooltip]:hover:before {        
+    opacity : 1;
+}
+*/
+
+
+.NumberInputNarrow {
+    width: 4em;
+}
+
+/*
+input:disabled+label { color: #ccc; }
+*/
