@@ -1,0 +1,4485 @@
+<html>
+
+<head>
+    <link rel="shortcut icon" href="https://barionleg.github.io/ABC_ub_particles/images/taviconit.png" type="image/x-icon" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    <!-- fontawsome-->
+    <link href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" rel="stylesheet" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+
+    <!-- plotly-->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" />
+    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" />
+
+    <script src="../js/common.js"></script>
+    <script type="text/javascript" language="javascript" src="../js/vchart5.js"></script>
+
+    <!-- CSS -->
+    <link type="text/css" rel="stylesheet" href="../css/query5.css">
+    <link type="text/css" rel="stylesheet" href="../css/lchtml5.css">
+    <link type="text/css" rel="stylesheet" href="../css/managemessages5.css">
+</head>
+
+
+<style>
+    :root {
+        --main-dark-color: #666;
+        --nuc-dark-color: #ccf;
+        --nuc-light-color: #eef;
+        --lev-dark-color: gold;
+        --lev-light-color: rgba(255, 215, 0, 0.4);
+        --gam-dark-color: rgba(145, 167, 96, 0.7);
+        --gam-light-color: rgba(145, 167, 96, 0.3);
+        --divisor-color: #E1E1E1;
+
+        --dr-dark-color: rgba(50, 159, 110, 0.5);
+        --dr-light-color: rgba(50, 159, 110, 0.2);
+    }
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+        color: var(--main-dark-color);
+    }
+
+    /*span {
+        display: inline-block;
+    }*/
+
+    .main-lbl {
+
+        font-weight: 600;
+        margin-left: 3px;
+        margin-bottom: 10px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        padding-left: 2px;
+        font-size: 13pt;
+        width: 822px
+    }
+
+    .nuc-lbl-field {
+
+        background: var(--nuc-light-color);
+        border: 0px solid #aaa;
+        font-weight: 600;
+
+        padding: 2px;
+        /*clear: both;*/
+        text-align: center;
+    }
+
+    .nuc-lbl-field-ln {
+        background: white;
+        border: 0px solid #aaa;
+        font-weight: 400;
+        padding: 2px;
+        text-align: center;
+    }
+
+    .lev-lbl-field {
+
+        background: var(--lev-light-color);
+        font-weight: 600;
+        padding: 2px;
+
+        text-align: center;
+    }
+
+    .lev-lbl-field-ln {
+        background: white;
+        font-weight: 400;
+        padding: 2px;
+        text-align: center;
+    }
+
+    .gam-lbl-field {
+
+        background: var(--gam-light-color);
+        font-weight: 600;
+        padding: 2px;
+
+        text-align: center;
+    }
+
+    .gam-lbl-field-ln {
+        background: white;
+        font-weight: 400;
+        padding: 2px;
+        text-align: center;
+    }
+
+    .dr-lbl-field {
+
+        background: var(--dr-light-color);
+        font-weight: 600;
+        padding: 2px;
+
+        text-align: center;
+    }
+
+    .dr-lbl-field-ln {
+        background: white;
+        font-weight: 600;
+        padding: 4px;
+        text-align: center;
+    }
+
+    .more_field {
+        float: left;
+        margin-left: 4px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font-size: 10pt;
+        font-weight: bold;
+    }
+
+
+    .option-off {
+        background-color: lightgray;
+    }
+
+    .option-on {
+        background-color: limegreen;
+    }
+
+    .buttons {
+        margin-left: 8px;
+        width: 50px;
+        height: 50px;
+        color: #798087;
+        font-size: 14pt;
+        font-weight: bold;
+        border: 2px solid #798087;
+        border-radius: 4px;
+        padding: 2px;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    input {
+
+        font-size: 11pt;
+    }
+
+    input[type="text"] {
+        width: 100px;
+        margin-top: 1px;
+        border: 1px solid #aaa;
+
+    }
+
+    /* https://moderncss.dev/pure-css-custom-checkbox-style/*/
+
+    input[type="checkbox"] {
+        /* Add if not using autoprefixer */
+        -webkit-appearance: none;
+        /* Remove most all native input styles */
+        appearance: none;
+        /* For iOS < 15 */
+        background-color: var(--form-background);
+        /* Not removed via appearance */
+        margin: 0;
+
+        font: inherit;
+        color: green;
+        width: 1.15em;
+        height: 1.15em;
+        border: 0.10em solid gray;
+        border-radius: 0.15em;
+        transform: translateY(-0.075em);
+
+        display: grid;
+        place-content: center;
+    }
+
+    input[type="checkbox"]::before {
+        content: "";
+        width: 0.65em;
+        height: 0.65em;
+        clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        transform: scale(0);
+        transform-origin: bottom left;
+        transition: 120ms transform ease-in-out;
+        box-shadow: inset 1em 1em green;
+        /* Windows high Contrast Mode */
+        background-color: CanvasText;
+    }
+
+    input[type="checkbox"]:checked::before {
+        transform: scale(1);
+
+    }
+
+    input[type="checkbox"]:checked {
+        border: 2px solid red;
+    }
+
+    input[type=checkbox][disabled] {
+        border: 0.10em solid gray;
+        opacity: 0.5;
+
+    }
+
+    input[type="checkbox"]:focus {
+        outline: max(2px, 0.15em) solid currentColor;
+        outline-offset: max(2px, 0.15em);
+    }
+
+    input[type="checkbox"]:disabled {
+        --form-control-color: var(--form-control-disabled);
+
+        color: var(--form-control-disabled);
+        cursor: not-allowed;
+    }
+
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        padding: 2px;
+        font-size: 12px;
+    }
+
+    #div_nuc_hidden {
+        text-align: center;
+    }
+</style>
+
+<script>
+    /* to hide the option pickers if click is outside. See Optionpick class*/
+    var PANEL_DISPLAYED = null
+    document.addEventListener("click", docClick);
+
+    function docClick() {
+        if (!PANEL_DISPLAYED) return
+        if (PANEL_DISPLAYED.div.style.display == 'block') {
+            PANEL_DISPLAYED.div.style.display = 'none'
+            PANEL_DISPLAYED = null
+        }
+    }
+
+    var FIELD_MARGIN_RIGHT = "20px",
+        tipChkEnd = '<br><br>Tick the checkbox to activate',
+        NUCLIDE_H = " <b>Valid input</b>: 12-C, 12C, C12, C-11 (case insensitive)<br><b>Metastable</b> states are automatically listed in the \"Levels\" output tab",
+        ELEMENT_H = '<b>Element symbol</b>',
+        Z_H = '<b>Atomic number, proton number</b><br>0 &le; Z &le; 118',
+        N_H = '<b>Neutron number</b><br>  0 &le; N &le; 178',
+        A_H = '<b>Mass number</b><br>  1 &le; A &le; 294',
+        ZRANGE_H = '<b>Z range</b><br> 0 &le; Z &le; 118',
+        NRANGE_H = '<b>N range</b><br>0 &le; N &le; 178',
+        ARANGE_H = '<b>A range</b><br> 1 &le; A &le; 294',
+        EVEN_H = '<b>Even</b><br> Z, N , A'
+    ODD_H = '<b>Even</b><br> Z, N , A'
+    DECAY_H = '<b>Decay modes and Branching</b> <br>Tick the checkbox to show the decay mode panel.<br><br>Multiple mode selections are possible. <br><br>If a branching ratio range is specified,  it is active only on the first chosen mode.<br><br>Uncheck <b>Only G.S. and Metastable</b> to include decays form all excited levels',
+        QB_H = '<b>Energy available for &beta; decay</b> of the ground state (keV)' + tipChkEnd,
+        QEC_H = '<b>Energy available in electron capture decay</b> of the ground state (keV)' + tipChkEnd,
+        QA_H = '<b>Energy available for &alpha; decay</b> of the ground state (keV)' + tipChkEnd,
+        QBN_H = '<b>Energy available for &beta; decay</b> of the ground state followed by neutron emission(keV)' + tipChkEnd,
+        SN_H = '<b>Neutron separation energy</b> (keV)' + tipChkEnd,
+        SP_H = '<b>Proton separation energy</b> (keV)' + tipChkEnd,
+        R_H = '<b>Root mean square charge radius</b> (fm). <br> For the neutron, it is the mean square value' + tipChkEnd,
+        AME_H = 'Choose between:<br><ul><li><b>Atomic mass</b> </li> <li><b>Binding energy per nucleon</b> </li>  <li><b>Mass excess</b>: difference between mass and mass number in atomic mass units</li></ul>' + tipChkEnd,
+        ENERGY_H = '<b>Energy</b> in keV' + tipChkEnd,
+        HL_H = '<b>Half-life</b><br>Click on the units labels to change them<br>Tick <i>Stable</i> to restrict to these nuclides' + tipChkEnd,
+        JP_H = '<b>Angular moment and parity</b><br><br><b>Weak</b> includes values based on weak arguments<br> <b>Order</b> selects the n-th level from the ground state having the given J&pi;',
+        MAGNM_H = '<b>Magetic dipole</b><br><br> For the few cases where this is an higher order moment , the order is displayed in brackets' + tipChkEnd,
+        ELM_H = '<b>Electric quadrupole</b><br><br> For the few cases where this is an higher order moment, the order is displayed in brackets' + tipChkEnd,
+        FINLEV_H = '<b>Energy of the &gamma; end-level</b><br><br>See example #3 for how to impose conditions on the start- and end- levels of a transition' + tipChkEnd,
+        CONV_H = '<b>Conversion Electron Coefficients</b><br><br>Use the drop-down list to select the shell' + tipChkEnd,
+        POL_H = 'Use the drop-down list to select the multipolarity<br> <b>weak</b> includes values based on weak arguments<br><b>mixed</b> for mixed transitions.<br>Use <b>Mixing ratio</b> fields to select a ratio' + tipChkEnd,
+        MIX_H = '<b>Mixing ratio</b><br><br> For mixed multipolarities A+B, it gives the probability of each according to <br>A = 1/(1+δ2) and <br>B = δ2/(1+δ2)' + tipChkEnd,
+        INTENSITY_H = '<b>Intensity %</b><br><br> per 100 decays of the parent' + tipChkEnd,
+        HINDRANCE_H = '<b>Hindrance factor</b><br><br>Ratio of the measured to calculated rate, equal to the ratio of the calculated to measured half-lives.' + tipChkEnd,
+        MAXEN_H = '<b>Maximum energy</b> of the electron, for β-, or positron, for β+' + tipChkEnd,
+        LOGFT_H = '' + tipChkEnd
+
+
+    /*
+                                         " element symbol", "atomic number, also proton number<br> from 0 to 118",
+                                         "neutron number<br>from 0 to 184","mass number<br> from 1 to 294",
+                                         "","",
+                                           " atomic number range " + Util.tipChkEnd, ""," neutron number range " + Util.tipChkEnd,"",
+                                           " mass number range */
+
+    /*
+    SYMBOL=NA
+    @@@ZETA=60
+    @@@ZRANGE=2@;@4
+    @@@Z_MOD2=0 @@@N_MOD2=1@@@A_MOD2=1
+    @@@DBCOL=LEVELS.ENERGY_NUM@;@NOT_NULL
+    @@@GSMETA=Y@@@DECAY=2
+    @@@DBCOL=L_DECAYS.PERC_NUM@;@MIN=1@;@MAX=30
+    @@@
+    @@@JP=3@;@4@;@0@;@1 // val,order,parity(0=+ 1=-),weak (1=y,0=no)
+    @@@ISOSPIN=1
+    @@@DBCOL=L_MAGNETIC_MOM.VAL_NUM@;@MIN=0@;@MAX=NONE
+    @@@DBCOL=DECAY_RADIATIONS_MERGE.ENERGY_NUM@;@NOT_NULL
+    @@@DEC_RAD=TYPE_A@;@G
+    @@@DEC_RAD=TYPE_B@;@X
+    @@@DEC_RAD=TYPE_C@;@KA1
+    @@@ORDER=0@;@11@;@16@;@20@@@
+
+
+//gamma transition
+@@@DBCOL=GAMMAS.FINAL_L_ENERGY_NUM@;@NOT_NULL
+@@@END_LEVEL_JP=2@;@3@;@3
+@@@MULTIPOL=E0@;@1@;@0
+@@@DBCOL=G_ELECTRIC_TRANS_W.VAL_NUM@;@MIN=2@;@MAX=NONE
+@@@
+@@@DBCOL=GAMMAS.CONVERSION_COEFF@;@MIN=1@;@MAX=NONE
+@@@DBCOL=GAMMAS.MIXING_NUM@;@MIN=3@;@MAX=NONE
+
+
+    */
+
+    // category : dbcol, gsmeta, decay, hl
+
+    var sep = "@;@",
+        sep2 = "@@@",
+        sep3 = "@#@";
+
+
+    function fadeOut(elId) {
+        var el = document.getElementById(elId);
+        var height = parseInt(el.style.height.replace("px", ""));
+        var deltay = 3;
+        var opacity_step = 1 / (height / deltay);
+        var opacity = 1;
+        var myendheight = 0
+
+
+        inter = setInterval(function() {
+            height = parseInt(el.style.height.replace("px", ""));
+
+            if (height > myendheight) {
+                height -= deltay;
+                el.style.height = height + "px";
+                opacity -= opacity_step;
+                el.style.opacity = opacity;
+
+            } else {
+                clearInterval(inter);
+                el.style.height = "";
+                el.style.display = "none";
+            }
+        }, 1);
+    }
+
+    function fadeInOut(elId) {
+        var el = document.getElementById(elId);
+
+        if (el.style.display == "block") fadeOut(elId);
+        else fadeIn(elId);
+    }
+
+
+    function fadeIn(elId) {
+
+
+        var el = document.getElementById(elId);
+
+        el.style.display = "block";
+        el.style.height = "0px";
+        // hide overflow
+        el.style.overflow = "hidden";
+
+        var height = parseInt(el.style.height.replace("px", ""));
+        var deltay = 3;
+        var myendheight = el.scrollHeight
+        var opacity_step = 1 / (myendheight / deltay);
+        var opacity = 0;
+        var myendheight = el.scrollHeight; //endheight
+        inter = setInterval(function() {
+
+            height = parseInt(el.style.height.replace("px", ""));
+
+            if (myendheight >= height) {
+                height += deltay;
+                el.style.height = height + "px";
+                opacity += opacity_step;
+                el.style.opacity = opacity;
+                el.style.display = "block";
+
+            } else {
+                clearInterval(inter);
+            }
+        }, 1);
+    }
+
+    function attach_help(elem, text) {
+        elem.onmouseover = (function(text) {
+            return function(event) {
+                document.getElementById('help_div').style.display = 'block'
+                document.getElementById('help_div').innerHTML = text
+            }
+        })(text)
+        elem.onmouseout = (function(text) {
+            return function(event) {
+                document.getElementById('help_div').style.display = 'none'
+                document.getElementById('help_div').innerHTML = ''
+            }
+        })(text)
+    }
+
+    class Param {
+
+        constructor(type) {
+            this.type = type;
+            this.isactive = false;
+        }
+
+        querystr() {
+            return this.type;
+        }
+    }
+
+    class Dbcol extends Param {
+        constructor(tbl_col) {
+            super("DBCOL");
+            this.tabl_col = tbl_col;
+            this.notnull = false;
+            this.min;
+            this.max;
+        }
+
+        querystr() {
+            if (this.tabl_col.length == 0) return "";
+            return super.querystr() + "=" + this.tabl_col + sep;
+        }
+    }
+
+    class Dbcol_aliased extends Dbcol {
+        constructor(tbl_col) {
+            super(tbl_col)
+            this.type = "DBCOL_ALIASED";
+        }
+        querystr() {
+            if (this.tabl_col.length == 0) return "";
+            return this.tabl_col + '=';
+        }
+
+    }
+    /****************/
+    class View {
+
+        constructor(section, id) {
+            /* is the main grouping :nuc, lev, gam, */
+            this.section = section;
+            this.id = id
+            this.main_div = document.createElement("div");
+            this.main_div.id = "main_" + id;
+            this.className = section;
+        }
+
+        setParameter(param) {
+            this.parameter = param
+        }
+        /*
+         dom_type: div, span, ...  
+         class_prefix: an additional class to add. The class default is section_dom_type, e.g. nuc_div 
+         id: dom_type_id : div_magneticmom
+         */
+        dom_chunk(dom_type, class_prefix) {
+            var elem = document.createElement(dom_type);
+            elem.id = dom_type + "_" + this.id;
+            elem.className = (class_prefix && class_prefix.length > 0 ? class_prefix + " " : "") + this.section + "_" + dom_type;
+            return elem;
+        }
+
+        is_active() {
+            return true;
+        }
+
+        description() {
+            return ''
+        }
+
+
+        reset() {}
+
+        request() {
+            return this.id + ' not written'
+        }
+
+        reverse(request) {
+
+        }
+
+
+        input() {
+
+            var input = this.dom_chunk("input");
+            input.onchange = (function(inp) {
+                return function() {
+                    if (inp.value) {
+                        inp.style.border = '2px solid red'
+                    } else {
+                        inp.style.border = '1px solid lightgrey'
+                    }
+                }
+            })(input)
+
+            input.reset = (function(inp) {
+                return function() {
+                    inp.style.border = '1px solid lightgrey'
+                }
+            })(input)
+
+
+            return input
+        }
+
+    }
+
+    class TextBoxView extends View {
+        constructor(section, title_text, help_text, lbl_on_top, id, json) {
+            super(section, id);
+            this.title_text = title_text;
+            this.help_text = help_text;
+            this.lbl_on_top = lbl_on_top;
+            this.input = null;
+            this.json = json;
+            this.label = null
+
+        }
+
+        dom() {
+            var out = this.main_div;
+            var width = (this.json && this.json['width']) ? this.json['width'] : '50px';
+
+            if (this.title_text) {
+                this.label = super.dom_chunk("div");
+                this.label.innerHTML = this.title_text + (this.lbl_on_top ? "<br>" : "");
+                this.label.className = this.section + "-lbl-field";
+                if (this.lbl_on_top) this.label.style.width = width;
+                if (!this.lbl_on_top) this.label.style.float = 'left';
+                if (!this.lbl_on_top) this.label.style.marginRight = '4px';
+                attach_help(this.label, this.help_text);
+                out.appendChild(this.label);
+            }
+
+            this.input = super.input();
+            this.input.type = "text";
+            this.input.style.width = width;
+            this.input.style.float = "left"
+            //this.input.style.border = "1px solid black";
+            this.input.disabled = false;
+
+            out.style.marginLeft = "3px";
+            out.style.marginRight = "8px";
+
+            //if (this.title_text.length != 0) lbl.appendChild(this.input)
+            //else 
+            out.appendChild(this.input);
+
+            return out;
+        }
+
+        description() {
+            if (this.input.value)
+                return ' <b>' + this.title_text + '</b> = ' + this.input.value
+            else
+                return ''
+        }
+
+        value() {
+            var val = this.input.value;
+            if (!val) val = "";
+            return val;
+        }
+        reverse(value) {
+
+            if (value == 'NONE') value = ''
+            this.input.disabled = this.parameter instanceof Dbcol_aliased ? false : true;
+
+            this.input.value = value
+            this.input.onchange()
+        }
+        reset() {
+            this.input.value = ''
+            this.activate(this.parameter instanceof Dbcol_aliased ? true : false)
+            this.input.reset()
+        }
+
+        request() {
+            return this.value();
+        }
+        activate(yesno) {
+            this.input.disabled = !yesno;
+        }
+    }
+
+    class RangeView extends View {
+
+        constructor(section, title_text, id, help_txt) {
+            super(section, id);
+            this.title_text = title_text;
+            this.input_low = null;
+            this.input_up = null;
+            this.help_txt = help_txt;
+        }
+
+        input() {
+
+            var inp = super.input();
+            inp.type = "text";
+            inp.style.width = "40px";
+
+            return inp;
+
+        }
+
+        dom() {
+
+            var out = this.main_div
+
+            var lbl = super.dom_chunk("div");
+            lbl.className = this.section + "-lbl-field"
+            lbl.innerHTML = this.title_text;
+            out.appendChild(lbl);
+
+            attach_help(lbl, this.help_txt)
+
+            this.input_low = this.input();
+            this.input_up = this.input();
+
+            out.style.float = 'left';
+            out.style.marginLeft = "3px";
+            out.style.marginRight = FIELD_MARGIN_RIGHT;
+
+
+            out.appendChild(this.input_low);
+            out.appendChild(this.input_up);
+
+            return out;
+        }
+        //@@@DBCOL=L_MAGNETIC_MOM.VAL_NUM@;@MIN=0@;@MAX=NONE
+
+        description() {
+            var l_val = this.input_low.value;
+            var u_val = this.input_up.value;
+
+            if (l_val.length == 0 && u_val.length == 0) return "";
+
+            var title = this.title_text.substring(0, 1)
+
+            if (l_val.length == 0) return ' &nbsp;&nbsp;<b>' + title + "</b> &le;" + u_val
+            if (u_val.length == 0) return ' &nbsp;&nbsp;<b>' + title + "</b> &ge;" + l_val
+
+            return '&nbsp;&nbsp;<b>' + title + '</b> between ' + l_val + ' and ' + u_val
+
+        }
+        value() {
+            var l_val = this.input_low.value;
+            var u_val = this.input_up.value;
+
+            if (l_val.length == 0 && u_val.length == 0) return "";
+
+            return (l_val.length == 0 ? "0" : l_val) +
+                sep + (u_val.length == 0 ? "300" : u_val);
+
+        }
+        reverse(min, max) {
+            this.input_low.value = min != 'NONE' ? min : ''
+            this.input_up.value = max != 'NONE' ? max : ''
+            this.input_low.onchange()
+            this.input_up.onchange()
+
+        }
+        reset() {
+            this.input_low.value = ''
+            this.input_up.value = ''
+            this.input_low.reset()
+            this.input_up.reset()
+
+        }
+
+        request() {
+            return this.value();
+        }
+
+        activate(yesno) {
+            this.input_low.disabled = !yesno;
+            this.input_up.disabled = !yesno;
+        }
+    }
+
+    class ZNArange extends View {
+
+        constructor(section, id) {
+            super(section, id);
+            this.z = new RangeView(section, "Z range", "zrange", ZRANGE_H);
+            this.n = new RangeView(section, "N range", "nrange", NRANGE_H);
+            this.a = new RangeView(section, "A range", "arange", ARANGE_H);
+        }
+        dom() {
+            this.main_div.append(this.z.dom());
+            this.main_div.append(this.n.dom());
+            this.main_div.append(this.a.dom());
+            return this.main_div;
+        }
+        //ZRANGE=1@;@2
+        request() {
+            var z = this.z.request(),
+                n = this.n.request(),
+                a = this.a.request();
+            return (z.length > 0 ? 'ZRANGE=' + z + sep2 : z) +
+                (n.length > 0 ? 'NRANGE=' + n + sep2 : n) +
+                (a.length > 0 ? 'ARANGE=' + a + sep2 : a)
+
+
+        }
+
+        description() {
+            var z = this.z.description(),
+                n = this.n.description(),
+                a = this.a.description();
+            return z + n + a
+        }
+
+        reverse(tk) {
+            var col = tk.split('=')[0].substring(0, 1)
+            var values = tk.split('=')[1].split(sep)
+
+            var min = values[0]
+            var max = values[1]
+
+            this[col.toLowerCase()].reverse(min, max)
+
+        }
+        reset() {
+            this.z.reset()
+            this.n.reset()
+            this.a.reset()
+        }
+
+    }
+
+    class LowerUpperView extends View {
+
+        constructor(section, title_text, lbl_text, id, help_text) {
+            super(section, id);
+            this.title_text = title_text;
+            this.lbl_text = lbl_text;
+            this.div_tit = super.dom_chunk("div");
+            this.lower = new TextBoxView(section, "", "", false, id + "_low")
+            this.upper = new TextBoxView(section, "", "", false, id + "_up")
+            this.check = super.dom_chunk("input");
+            this.check.id = this.check.id + "_chk"
+            this.check.type = "checkbox";
+            this.check.style.width = "10 px";
+            this.label = super.dom_chunk("div");
+            this.help_text = help_text
+
+        }
+
+        dom() {
+
+            var out = this.main_div;
+            out.style.width = "290px";
+            out.style.height = "30px";
+            out.style.marginRight = "15px";
+
+            var div_chk = super.dom_chunk("div");
+            div_chk.id = div_chk.id + "_chk";
+            div_chk.style.float = "left";
+
+            div_chk.appendChild(this.check);
+            div_chk.style.marginRight = "3px";
+            div_chk.style.marginTop = "3px";
+            div_chk.appendChild(this.check);
+
+            out.appendChild(div_chk);
+
+
+            if (this.lbl_text) {
+
+                var lbl = super.dom_chunk("span");
+                lbl.innerHTML = this.title_text;
+                this.div_tit.appendChild(lbl);
+                this.div_tit.id = this.div_tit.id + "_title";
+                this.div_tit.style.float = "left"
+                this.div_tit.className = this.section + "-lbl-field"
+                out.appendChild(this.div_tit);
+            }
+            if (this.help_text) {
+                attach_help(this.div_tit, this.help_text)
+            }
+
+            var low = this.lower.dom();
+            low.style.marginRight = "0px";
+            low.style.float = "left";
+            out.appendChild(low);
+
+
+            this.label.style.float = "left";
+
+            this.label.innerHTML = this.lbl_text;
+            this.label.id = this.label.id + "_lbl";
+            this.label.className = this.section + "-lbl-field-ln"
+            this.label.style.paddingLeft = "4px";
+            this.label.style.marginRight = "4px";
+
+            out.appendChild(this.label);
+
+            var up = this.upper.dom();
+            up.style.marginRight = "0px";
+            up.style.float = "left";
+            out.appendChild(up);
+
+            this.check.onclick = (function(view) {
+                return function() {
+                    view.activate(view.check.checked)
+                }
+            })(this);
+
+            this.activate(false);
+
+            return out;
+        }
+
+        is_active() {
+            return this.check.checked;
+        }
+
+        request() {
+            if (!this.is_active()) return ''
+
+            var low = this.lower.value();
+            var up = this.upper.value();
+
+            var val = "";
+            if (low.length == '0' && up.length == '0') {
+                val = "NOT_NULL"
+            } else {
+
+                val = "MIN=" + (low.length > 0 ? low : "NONE") + sep;
+                val += "MAX=" + (up.length > 0 ? up : "NONE");
+            }
+            return val + sep2;
+            // @@@DBCOL=L_MAGNETIC_MOM.VAL_NUM@;@MIN=0@;@MAX=NONE
+
+        }
+
+        description() {
+            if (!this.is_active()) return ''
+            var low = this.lower.value(),
+                up = this.upper.value(),
+                title = '<b>' + this.title_text.replaceAll('&nbsp;', '') + '</b>';
+
+            if (low.length == 0 && up.length == 0) {
+                return title + " not null ";
+            }
+
+            return (low.length > 0 ? low : "0") + " &le; " +
+                title +
+                (up.length > 0 ? " &le; " + up : "");
+
+        }
+
+        activate(yesno) {
+            this.check.checked = yesno
+            this.lower.activate(yesno)
+            this.upper.activate(yesno)
+
+
+        }
+
+        //MIN=1 @;@ MAX=2
+        reverse(token) {
+            this.lower.reverse(token[0].split('=')[1])
+            this.upper.reverse(token[1].split('=')[1])
+            this.activate(true)
+        }
+        reset() {
+            this.lower.reset()
+            this.upper.reset()
+            this.activate(false)
+        }
+    }
+</script>
+
+<style>
+    .show_decay {
+
+        animation-name: show_decay;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes show_decay {
+        from {
+            height: 30px;
+        }
+
+        to {
+            height: 200px;
+        }
+    }
+
+    .hide_decay {
+
+        animation-name: show_decay;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+        animation-direction: reverse;
+    }
+</style>
+<script>
+    class Decays extends LowerUpperView {
+        //GSMETA=Y@@@DECAY=2@;@6@;@25@@@DBCOL=L_DECAYS.PERC_NUM@;@MIN=1@;@MAX=2
+        constructor(section, title_text, lbl_text, id) {
+            super(section, title_text, lbl_text, id, DECAY_H)
+            this.ch_gsmeta = document.createElement('input');
+            this.cells = []
+            this.dec_modes = null
+
+        }
+
+        create_cell(lbl, back_color) {
+            var i = this.cells.length
+            if (lbl == '2') this.cells.push(new OptionCell(lbl, this, i));
+            else this.cells.push(new OptionCell(lbl, this, i));
+
+            this.cells[i].div.id = this.id + '_cell_' + i;
+            this.cells[i].div.style.margin = "2px"
+            this.cells[i].div.style.marginTop = "4px"
+            this.cells[i].div.style.paddingLeft = "2px"
+            this.cells[i].div.style.paddingRight = "5px"
+            this.cells[i].div.style.background = back_color
+            return this.cells[i]
+
+        }
+
+        hide_show_decay(remove, add) {
+            this.main_div.classList.remove(remove); // reset animation
+            void this.main_div.offsetWidth; // trigger reflow
+            this.main_div.classList.add(add); // start animation
+        }
+
+        reset() {
+            if (this.check.checked) {
+                this.hide_show_decay('hide_decay', 'show_decay')
+
+            } else {
+                this.hide_show_decay('show_decay', 'hode_decay')
+            }
+
+            super.reset()
+            this.ch_gsmeta.checked = true
+            for (var j = 0; j < this.cells.length; j++) {
+                this.cells[j].set_active(false)
+            }
+
+        }
+        //GSMETA=Y@@@DECAY=2@;@6@;@25@@@DBCOL=L_DECAYS.PERC_NUM@;@MIN=1@;@MAX=2
+        reverse(request) {
+
+            if (request.indexOf('GSMETA') != -1) this.ch_gsmeta.checked = false
+            var tk = request.split(sep2),
+                check = false
+            for (var i = 0; i < tk.length; i++) {
+                if (tk[i].indexOf('L_DECAYS') != -1) {
+                    var tt = tk[i].split(sep)
+                    super.reverse([tt[1], tt[2]])
+                    check = true
+
+                } else if (tk[i].indexOf('DECAY=')) {
+                    var tt = tk[1].replace('DECAY=', '').split(sep)
+                    for (var j = 0; j < tt.length; j++) {
+                        this.cells[tt[j]].set_active(true)
+                    }
+                    check = true
+                }
+            }
+
+            if (this.check.checked != check) {
+                this.check.checked = check
+                this.hide_show_decay('hide_decay', 'show_decay')
+            }
+
+
+        }
+
+        description() {
+            if (!this.is_active()) return ''
+            var tlt = this.title_text
+            this.title_text = ' % '
+            var ret = super.description()
+
+            this.title_text = tlt
+            ret = '<b> Decay </b>' + ret
+            if (!this.ch_gsmeta.disabled) {
+                ret += ', Only G.S. and Metastable '
+            }
+
+            var decs = []
+            for (var i = 0; i < this.cells.length; i++) {
+                if (this.cells[i].active) {
+                    decs.push(this.cells[i].div.innerHTML)
+                }
+            }
+
+            if (decs.length > 0) {
+                ret += ', ' + decs.join(', ')
+            }
+
+            return ret
+
+        }
+
+        request() {
+
+            // 	// these are the codes in the db table
+            var dbcodes = ["2", "6", "17", "20", "29", "42", "22", "55",
+                "15", "25", "19", "12",
+                "7", "30", "1", "10", "24", "46", "16",
+                "0", "3", "8", "4", "5", "21",
+                "57", "23", "47", "38", "27", "36", "52", "33"
+            ]
+
+            if (!this.is_active()) return ''
+
+            var actives = [],
+                ret, br, meta
+            for (var i = 0; i < this.cells.length; i++) {
+
+                if (this.cells[i].active) {
+
+                    actives.push(dbcodes[i])
+                }
+            }
+            if (actives.length > 0) {
+                ret = "DECAY=" + actives.join(sep)
+            }
+
+            br = super.request()
+            if (br.length > 0) {
+                br = "DBCOL=L_DECAYS.PERC_NUM" + sep + br
+            }
+
+            if (this.ch_gsmeta.checked) {
+                meta = 'GSMETA=Y'
+            }
+            ret = [ret, br, meta].join(sep2)
+            // the join might place a sep2 at the beginning, and one at the end
+            if (ret.startsWith(sep2)) {
+                ret = ret.replace(sep2, '')
+            }
+
+            if (ret.endsWith(sep2)) {
+                ret = ret.substring(0, ret.length - 3)
+            }
+            return ret
+        }
+
+        show_hide() {
+
+            if (this.check.checked) {
+                this.hide_show_decay('hide_decay', 'show_decay')
+                this.ch_gsmeta.disabled = false
+
+            } else {
+                this.hide_show_decay('show_decay', 'hide_decay')
+                this.ch_gsmeta.disabled = true
+            }
+            return
+
+        }
+
+        postCellClick() {}
+
+        dom() {
+            super.dom();
+            this.main_div.style.width = '520px'
+            this.main_div.style.height = '30px'
+            this.main_div.style.overflow = 'hidden'
+            this.main_div.style.zIndex = 200
+
+
+            var ch_gsmeta = document.createElement('div');
+            ch_gsmeta.style.marginLeft = '10px'
+            ch_gsmeta.style.marginTop = '4px'
+            ch_gsmeta.style.float = 'left'
+            this.ch_gsmeta.checked = true
+            this.ch_gsmeta.disabled = true
+            this.ch_gsmeta.type = 'checkbox';
+            ch_gsmeta.appendChild(this.ch_gsmeta);
+            this.main_div.appendChild(ch_gsmeta);
+
+            var ch_lbl = document.createElement('div');
+            ch_lbl.innerHTML = ' Only G.S. and Metastable ';
+            ch_lbl.style.marginTop = '4px'
+            ch_lbl.style.paddingLeft = '4px'
+            ch_lbl.style.float = 'left'
+
+
+            this.main_div.appendChild(ch_lbl);
+            this.main_div.appendChild(document.createElement("br"));
+
+            var dec_modes = document.createElement('div');
+            dec_modes.style.clear = 'both'
+            dec_modes.style.display = 'block'
+            dec_modes.id = "div_dec_modes"
+            dec_modes.style.marginLeft = '5px'
+            dec_modes.style.marginTop = '10px'
+
+            dec_modes.style.padding = '10px'
+            dec_modes.style.backgroundColor = 'white'
+
+            // dec_modes.style.border = '2px solid gold'
+            dec_modes.style.position = 'relative'
+            dec_modes.style.zIndex = "1000"
+
+
+            /*beta -*/
+            this.fill_decmodes("n,2n,2,3n,4n,&alpha;,p".split(','), "&beta;- ", "#eee", dec_modes)
+
+            /*beta +*/
+            this.fill_decmodes("2p,&alpha;,p".split(','), "&beta;+ ", "#e9e2e9", dec_modes)
+
+            /* ec */
+            this.fill_decmodes("2,&beta;+,p,2p,3p,&alpha;".split(','), "ec ", "#eee", dec_modes)
+
+            /* alpha, IT, SF */
+            this.fill_decmodes(["<b>&alpha;</b>", "<b>IT</b>", "<b>SF</b>", "<b>p</b>", "<b>n</b>", "2p"], null, "#e9e2e9", dec_modes)
+
+            /* various 1*/
+            var elm = [
+                "<sup>12</sup>C",
+                "<sup>14</sup>C",
+                "<sup>20</sup>Ne",
+                "<sup>24</sup>Ne",
+                "<sup>28</sup>Mg",
+                "<sup>34</sup>Si", "Mg", "Ne"
+            ];
+            this.fill_decmodes(elm, null, "#eee", dec_modes)
+            // /* various 2*/
+            // elm = ["Mg", "Ne"]
+            //this.fill_decmodes(elm, null, "#e9e2e9", dec_modes)
+
+            this.main_div.appendChild(dec_modes)
+            this.dec_modes = dec_modes
+
+            this.check.addEventListener("click",
+                (function(view) {
+                    return function() {
+                        view.show_hide()
+                        return;
+                    }
+                })(this)
+            );
+            return this.main_div
+
+        }
+
+        fill_decmodes(lbls, prefix, back_color, dec_modes) {
+            if (prefix) {
+                dec_modes.appendChild(this.create_cell(prefix, back_color).div)
+                this.cells[this.cells.length - 1].div.style.fontWeight = 'bold'
+            } else {
+                prefix = ''
+            }
+            for (var i = 0; i < lbls.length; i++) {
+                if (lbls[i] == '2') lbls[i] = lbls[i] + prefix;
+                else lbls[i] = prefix + lbls[i]
+                dec_modes.appendChild(this.create_cell(lbls[i], back_color).div)
+
+            }
+            var divider = document.createElement("div")
+            divider.style = "clear:both;height:1px"
+            dec_modes.appendChild(divider)
+
+        }
+
+        set_active(idx) {
+
+            for (var i = 0; i < this.cells.length; i++) {
+                this.cells[i].set_style()
+            }
+        }
+    }
+
+    class HalfLife extends LowerUpperView {
+
+        constructor(section, title_text, lbl_text, id) {
+            super(section, title_text, lbl_text, id, HL_H)
+            this.units = "eV,keV,MeV,as,fs,ps,ns,&mu;s,ms,s,min,h,d,y".split(",")
+            this.units_code = ["EV", "KEV", "MEV", "AS", "FS", "PS", "NS", "US", "MS", "S", "M", "H", "D", "Y"];
+            this.low_unit = new OptionPick("low_hl_unit", this.units, 5, 40);
+            this.up_unit = new OptionPick("up_hl_unit", this.units, 4, 40);
+            this.ch_stable = document.createElement('input');
+        }
+
+        description() {
+            if (this.ch_stable.checked) return '<b>HL</b> stable'
+            var ret = ''
+
+            var low = this.lower.value();
+            low = low && low.length > 0 ? this.low_unit.get_active() : ''
+
+            var up = this.upper.value();
+            up = up && up.length > 0 ? this.up_unit.get_active() : ''
+
+            ret = low + ' ' + super.description() + ' ' + up
+            return ret
+
+        }
+
+        request() {
+            var ret = ''
+
+            if (this.ch_stable.checked) return 'hl=stable'
+
+            ret = super.request().toLowerCase()
+            console.log('gg', ret)
+            if (ret.indexOf('min=none') > 0) {
+                //ret = ret.replace('min=none', 'none')
+                ret = ret.replace('min=', this.low_unit.get_active() + sep)
+            } else {
+                ret = ret.replace('min=', this.low_unit.get_active() + sep)
+            }
+            if (ret.indexOf('max=none') > 0) {
+                //ret = ret.replace('max=none', 'none')
+                ret = ret.replace('max=', this.up_unit.get_active() + sep)
+            } else {
+                ret = ret.replace('max=', this.up_unit.get_active() + sep)
+            }
+
+
+            return 'hl=' + ret.toUpperCase()
+        }
+
+        reverse(str) { //hl=FS@;@3.68E-8@;@Y@;@7.7E24 or hl=stable
+            this.reset()
+            var tks = str.split('=')[1].toLowerCase().split(sep)
+            if (tks[0] == 'stable') {
+                this.ch_stable.checked = true
+                return
+            }
+            for (var i = 0; i < this.units_code.length; i++) {
+                if (this.units_code[i] == tks[0]) {
+                    this.low_unit.pre_set_active(i)
+                }
+                if (this.units_code[i] == tks[2]) {
+                    this.up_unit.pre_set_active(i)
+                }
+            }
+
+            this.lower.reverse(tks[1])
+            this.upper.reverse(tks[3])
+            this.activate(true)
+
+
+
+        }
+
+        reset() {
+            super.reset()
+            this.ch_stable.checked = false
+            this.low_unit.pre_set_active(8)
+            this.up_unit.pre_set_active(13)
+        }
+
+        dom() {
+            super.dom();
+            this.main_div.style.width = '370px'
+            //this.main_div.style.border = '1px solid black'
+            this.low_unit.button.style.marginTop = '1px'
+            this.up_unit.button.style.marginTop = '1px'
+            for (var i = 0; i < this.main_div.children.length; i++) {
+
+                if (this.main_div.children[i].id.indexOf('_lbl') != -1) {
+                    this.main_div.insertBefore(this.low_unit.button, this.main_div.children[i]);
+                    this.main_div.appendChild((this.low_unit.div));
+                }
+            }
+            this.main_div.appendChild((this.up_unit.button));
+            this.main_div.appendChild((this.up_unit.div));
+
+            var st_div = document.createElement('div');
+            st_div.style.marginLeft = '10px'
+            st_div.style.marginTop = '4px'
+            st_div.style.float = 'left'
+            this.ch_stable.type = 'checkbox';
+            st_div.appendChild(this.ch_stable);
+            this.main_div.appendChild(st_div);
+
+            var st_lbl = document.createElement('div');
+            st_lbl.innerHTML = ' Stable';
+            st_lbl.style.marginTop = '4px'
+            st_lbl.style.paddingLeft = '4px'
+            st_lbl.style.float = 'left'
+            this.main_div.appendChild(st_lbl);
+            this.low_unit.pre_set_active(8)
+            this.up_unit.pre_set_active(13)
+
+            this.check.onclick = (function(view) {
+                return function() {
+                    view.activate(view.check.checked)
+                }
+            })(this);
+
+            return this.main_div
+
+        }
+        activate(yesno) {
+            super.activate(yesno)
+            this.ch_stable.disabled = !yesno
+            this.up_unit.button.style.pointerEvents = yesno ? 'auto' : 'none'
+            this.low_unit.button.style.pointerEvents = yesno ? 'auto' : 'none'
+
+        }
+    }
+
+    class EvenOdd extends View {
+
+        constructor(section, id) {
+            super(section, id);
+            this.ze = super.dom_chunk("input");
+            this.ne = super.dom_chunk("input");
+            this.ae = super.dom_chunk("input");
+
+            this.zo = super.dom_chunk("input");
+            this.no = super.dom_chunk("input");
+            this.ao = super.dom_chunk("input");
+
+            this.cxs = [this.ze, this.ne, this.ae, this.zo, this.no, this.ao];
+
+        }
+
+        //@@@Z_MOD2=0 @@@N_MOD2=1@@@A_MOD2=1
+        description() {
+            var ret = ''
+            if (this.ze.checked) {
+                ret += ' <b>Z</b> even '
+            }
+            if (this.ne.checked) {
+                ret += ' <b>N</b> even '
+            }
+            if (this.ae.checked) {
+                ret += ' <b>A</b> even '
+            }
+            if (this.zo.checked) {
+                ret += ' <b>Z</b> odd '
+            }
+            if (this.no.checked) {
+                ret += ' <b>N</b> odd '
+            }
+            if (this.ao.checked) {
+                ret += ' <b>A</b> odd '
+            }
+
+            return ret
+
+        }
+        //@@@Z_MOD2=0 @@@N_MOD2=1@@@A_MOD2=1
+        request() {
+            var ret = []
+            if (this.ze.checked) {
+                ret.push('Z_MOD2=0')
+            }
+            if (this.ne.checked) {
+                ret.push('N_MOD2=0')
+            }
+            if (this.ae.checked) {
+                ret.push('A_MOD2=0')
+            }
+            if (this.zo.checked) {
+                ret.push('Z_MOD2=1')
+            }
+            if (this.no.checked) {
+                ret.push('N_MOD2=1')
+            }
+            if (this.ao.checked) {
+                ret.push('A_MOD2=1')
+            }
+
+            return ret.join(sep2)
+
+        }
+
+        dom() {
+
+            var out = document.createElement("div") //this.main_div;
+            out.style.float = 'left';
+            // out.style.border = '1px solid black'
+            out.style.height = '50px'
+            out.style.width = '205px'
+
+            var lbleven = super.dom_chunk("div");
+            lbleven.className = this.section + "-lbl-field"
+            lbleven.innerHTML = " Z N A ";
+            lbleven.style.float = 'left';
+            lbleven.style.width = '125px'
+            attach_help(lbleven, EVEN_H);
+            out.appendChild(lbleven)
+
+            var lblodd = super.dom_chunk("div");
+            lblodd.className = this.section + "-lbl-field"
+            lblodd.innerHTML = " Z N A ";
+            lblodd.style.float = 'left';
+            lblodd.style.width = '70px'
+            lblodd.style.clear = 'right';
+            lblodd.style.marginBottom = '4px';
+            attach_help(lblodd, ODD_H);
+            out.appendChild(lblodd)
+
+            out.appendChild(document.createElement("br"));
+
+            var divcx = super.dom_chunk("div");
+
+            var lbl_ev = document.createElement("div");
+            lbl_ev.innerHTML = "even";
+            lbl_ev.style.float = 'left';
+
+            var lbl_od = document.createElement("div");
+            lbl_od.innerHTML = "odd";
+            lbl_od.style.float = 'left';
+
+            var cxs = this.cxs
+
+            for (var i = 0; i < cxs.length; i++) {
+                cxs[i].type = "checkbox";
+                cxs[i].style.width = "15px";
+                cxs[i].style.float = 'left';
+                if (i == 0) {
+                    cxs[i].style.marginLeft = '4px';
+                    divcx.appendChild(lbl_ev);
+
+                }
+                if (i == 3) {
+                    lbl_od.style.marginLeft = '20px';
+                    lbl_od.style.marginRight = '4px';
+                    divcx.appendChild(lbl_od);
+                }
+                divcx.appendChild(cxs[i]);
+            }
+            out.appendChild(divcx)
+            return out;
+
+        }
+        reverse(tk) {
+
+            var zna = tk.split('=')[0].substring(0, 1)
+            var val = tk.split('=')[1]
+
+            if (zna == 'Z') {
+                this.ze.checked = (val == '0')
+                this.zo.checked = (val == '1')
+            }
+            if (zna == 'N') {
+                this.ne.checked = (val == '0')
+                this.no.checked = (val == '1')
+            }
+            if (zna == 'A') {
+                this.ae.checked = (val == '0')
+                this.ao.checked = (val == '1')
+            }
+
+        }
+
+        reset() {
+            for (var i = 0; i < this.cxs.length; i++) {
+                this.cxs[i].checked = false
+            }
+        }
+    }
+
+    ALL_VIEW_PARAMS = {}
+
+    /****************/
+    class Viewparam {
+        constructor(param, view) {
+
+            this.view = view;
+            this.param = param;
+            // this was added later, found it better to have param as a field of View
+            this.view.setParameter(this.param)
+
+            if (param instanceof Dbcol) {
+                ALL_VIEW_PARAMS[param.tabl_col] = this
+            }
+
+        }
+
+        description() {
+            return this.view.description()
+        }
+
+
+        dom(parent) {
+            var ret = this.view.dom()
+            if (parent)
+                parent.appendChild(ret);
+            return ret
+        }
+
+
+        request() {
+            if (!this.view.is_active()) return "";
+            var req = this.view.request();
+
+            if (req.length == 0) return "";
+
+            if (this.view instanceof Ame) {
+                return this.view.request()
+            }
+            if (this.view instanceof ZNArange) {
+                return this.view.request()
+            }
+
+            return this.param.querystr() + req;
+        }
+
+        reverse(token) {
+            this.view.reverse(token)
+        }
+
+        reset() {
+            this.view.reset()
+        }
+    }
+
+    /* Nuclide visible fields */
+    var vpNuc = [];
+    var config = {
+        "nuc": [{
+                "dbcol": "NUCID",
+                "title": "Nuclide",
+                "help": NUCLIDE_H,
+                "id": "nucid",
+                "json": {
+                    'width': '60px'
+                }
+            },
+            {
+                "dbcol": "SYMBOL",
+                "title": "Element",
+                "help": ELEMENT_H,
+                "id": "element",
+                "json": {
+                    'width': '65px'
+                }
+            },
+            {
+                "dbcol": "Z",
+                "title": "Z",
+                "help": Z_H,
+                "id": "z",
+                "json": {
+                    'width': '30px'
+                }
+            },
+            {
+                "dbcol": "N",
+                "title": "N",
+                "help": N_H,
+                "id": "n",
+                "json": {
+                    'width': '30px'
+                }
+            },
+            {
+                "dbcol": "A",
+                "help": A_H,
+                "title": "A",
+                "id": "a",
+                "json": {
+                    'width': '30px'
+                }
+            }
+        ]
+    }
+    var nuc_fld = config.nuc;
+    for (var i = 0; i < nuc_fld.length; i++) {
+        var view = null;
+
+        view = new Viewparam(
+            new Dbcol_aliased(nuc_fld[i].dbcol),
+            new TextBoxView("nuc", nuc_fld[i].title, nuc_fld[i].help, true, nuc_fld[i].id, nuc_fld[i].json)
+        );
+
+        vpNuc.push(view);
+    }
+
+    vpNuc.push(new Viewparam(
+        new Dbcol("ZNARANGE"),
+        new ZNArange("nuc", "ranges")));
+
+    /* Nuclide hidden fields */
+    /*<select class="gwt-ListBox"><option value="Atomic mass AM">Atomic mass AM</option><option value="Binding per nucleon B/A">Binding per nucleon B/A</option><option value="Excess mass EM">Excess mass EM</option></select>*/
+
+    class Ame extends View {
+
+        constructor(section) {
+            super(section, 'ame')
+            this.ame = new LowerUpperView("nuc", 'ame', '&le; &mu; AMU &le; ', 'ame')
+            this.sel = document.createElement('select')
+            this.mass = document.createElement('option')
+            this.bind = document.createElement('option')
+            this.excess = document.createElement('option')
+            this.mycols = ['MASS_SEP_QVAL.ATOMIC_MASS_NUM', 'MASS_SEP_QVAL.BINDING_NUM', 'MASS_SEP_QVAL.MASS_EXCESS_NUM']
+        }
+
+        dom() {
+
+            this.mass.value = "Atomic mass AM"
+            this.mass.innerHTML = this.mass.value
+
+            this.bind.value = "Binding per nucleon B/A"
+            this.bind.innerHTML = this.bind.value
+
+            this.excess.value = "Excess mass EM"
+            this.excess.innerHTML = this.excess.value
+            var amedom = this.ame.dom()
+            amedom.style.width = '390px'
+            this.main_div.appendChild(amedom)
+            this.sel.appendChild(this.mass)
+            this.sel.appendChild(this.bind)
+            this.sel.appendChild(this.excess)
+            this.sel.style.backgroundColor = 'var(---nuc-light-color)'
+            attach_help(this.sel, AME_H)
+
+            var mdiv = document.createElement('div')
+            mdiv.appendChild(this.sel)
+
+            this.ame.div_tit.removeChild(this.ame.div_tit.lastChild)
+            this.ame.div_tit.appendChild(mdiv)
+
+            return this.main_div
+
+        }
+
+        description() {
+
+            if (!this.ame.is_active()) return ''
+
+            return this.ame.description()
+        }
+
+        request() {
+
+            if (!this.ame.is_active()) return ''
+
+            return 'DBCOL=' + this.mycols[this.sel.selectedIndex] + sep + this.ame.request()
+        }
+
+        reverse(token) {
+
+            var col = token.split(sep)[0].split('=')[1]
+            for (var i = 0; i < this.mycols.length; i++) {
+                if (this.mycols[i] == col) {
+                    this.sel.options.selectedIndex = i
+                }
+            }
+            this.ame.reverse(token.split(sep).slice(1))
+
+        }
+
+        reset() {
+            this.ame.reset();
+            this.sel.options.selectedIndex = 0
+        }
+
+
+    }
+
+    var vpNucHidden = []
+    config = {
+        "nuc": [{
+                "dbcol": "MASS_SEP_QVAL.BETA_DECAY_EN_NUM",
+                "title": "Q(&beta;)&nbsp;&nbsp;&nbsp;&nbsp;",
+                "help": QB_H,
+                "label": " &le; keV &le; ",
+                "id": "qbm"
+            },
+            {
+                "dbcol": "MASS_SEP_QVAL.QEC_NUM",
+                "title": "Q(EC)",
+                "help": QEC_H,
+                "label": " &le; keV &le; ",
+                "id": "qec"
+            },
+            {
+                "dbcol": "MASS_SEP_QVAL.QA_NUM",
+                "title": "Q(&alpha;)",
+                "help": QA_H,
+                "label": " &le; keV &le; ",
+                "id": "qa"
+            },
+            {
+                "dbcol": "MASS_SEP_QVAL.QBMN",
+                "title": "Q(&beta;-n)",
+                "help": QBN_H,
+                "label": " &le; keV &le; ",
+                "id": "qbmn"
+            },
+            {
+                "dbcol": "MASS_SEP_QVAL.SN_NUM",
+                "title": "S(n) &nbsp;&nbsp;",
+                "help": SN_H,
+                "label": " &le; keV &le; ",
+                "id": "sn"
+            },
+            {
+                "dbcol": "MASS_SEP_QVAL.SP_NUM",
+                "title": "S(p)",
+                "help": SP_H,
+                "label": " &le; keV &le; ",
+                "id": "sp"
+            },
+            {
+                "dbcol": "NUC_CHARGE_RADII.RADII_VAL",
+                "title": "R",
+                "help": R_H,
+                "label": " fm ",
+                "id": "radi"
+            }
+        ]
+    }
+    nuc_fld = config.nuc;
+    for (var i = 0; i < nuc_fld.length; i++) {
+        var view = new Viewparam(
+            new Dbcol(nuc_fld[i].dbcol),
+            new LowerUpperView("nuc", nuc_fld[i].title, nuc_fld[i].label, nuc_fld[i].id, nuc_fld[i].help)
+        );
+        view.nuc_hidden = true
+        vpNucHidden.push(view);
+    }
+
+    var ame = new Viewparam(
+        new Dbcol('ame'),
+        new Ame()
+    );
+
+    for (col in ame.view.mycols) {
+        ALL_VIEW_PARAMS[ame.view.mycols[col]] = ame
+    }
+
+    ame.nuc_hidden = true
+    vpNucHidden.push(ame);
+
+    /* LEVEL s */
+    var vpLev = []
+    config = {
+        "nuc": [{
+            "dbcol": "LEVELS.ENERGY_NUM",
+            "title": "Energy",
+            "help": ENERGY_H,
+            "label": " &le; keV &le; ",
+            "id": "lev_energy"
+        }, ]
+    }
+    var fld = config.nuc;
+    for (var i = 0; i < fld.length; i++) {
+        var view = new Viewparam(
+            new Dbcol(fld[i].dbcol),
+            new LowerUpperView("lev", fld[i].title, fld[i].label, fld[i].id, fld[i].help)
+        );
+        vpLev.push(view);
+    }
+
+    function reset() {
+
+        var chks = ['chk_nuc_hidden', 'chk_lev_hidden', 'chk_gamma_transitions', 'chk_decay_radiations']
+
+        if (document.getElementById('chk_nuc_hidden').checked) {
+            document.getElementById('chk_nuc_hidden').click()
+        }
+
+        if (document.getElementById('chk_lev_hidden').checked) {
+            document.getElementById('chk_lev_hidden').click()
+        }
+
+        if (document.getElementById('chk_gam_hidden').checked) {
+            document.getElementById('chk_gam_hidden').click()
+        }
+
+        document.getElementById('plot_container_div').style.display = 'none'
+        document.getElementById('plot_div').innerHTML = ''
+
+        activate_gamma_transitions(false)
+        activate_decay_radiations(false)
+
+        document.getElementById('chk_gamma_transitions').disabled = false
+        document.getElementById('chk_decay_radiations').disabled = false
+
+        document.getElementById('chk_gamma_transitions').style.pointerEvents = 'auto'
+        document.getElementById('chk_decay_radiations').style.pointerEvents = 'auto'
+
+        var keys = Object.keys(ALL_VIEW_PARAMS)
+        for (let index = 0; index < keys.length; index++) {
+            ALL_VIEW_PARAMS[keys[index]].reset();
+        }
+
+        evenodd.reset()
+        decay.reset()
+        vpRad.reset()
+        multip.reset()
+        conv_coeff.reset()
+        orderby_set(["0", "1"])
+
+        xy_plot_set(0, 0)
+
+        document.getElementById("query_desc").innerHTML = ''
+
+        FILTERED_NUCIDS = null
+
+    }
+
+
+    function reverse(request) {
+
+        //       console.log('all vp', request, ALL_VIEW_PARAMS, vpNuc[0], ALL_VIEW_PARAMS['NUCLIDES.NUCID'] == vpNuc[0])
+        reset()
+
+        var vps = [vpNuc, vpNucHidden, vpLev, vpLevHidden, vpGam, vpGamHidden, vpRad]
+        var tokens = request.split(sep2)
+        var tk_decay = ''
+
+        for (let index = 0; index < tokens.length; index++) {
+            const tk = tokens[index];
+            const prefix = tk.split(sep)[0].split('=')[0];
+
+            if (tk.startsWith('DBCOL')) {
+
+                var col = tk.split(sep)[0].split('=')[1]
+                var value = tk.split(sep).slice(1)
+
+                if (ALL_VIEW_PARAMS[col]) {
+
+                    if (ALL_VIEW_PARAMS[col].nuc_hidden) {
+                        activate_nuc_hidden()
+                    }
+                    if (ALL_VIEW_PARAMS[col].lev_hidden) {
+                        activate_lev_hidden()
+                    }
+                    if (ALL_VIEW_PARAMS[col].gam_hidden || ALL_VIEW_PARAMS[col].is_gamma || ALL_VIEW_PARAMS[col].view instanceof Multipol) {
+                        activate_gamma_transitions(true)
+
+                        if (ALL_VIEW_PARAMS[col].gam_hidden || ALL_VIEW_PARAMS[col].view instanceof Multipol) {
+                            activate_gam_hidden()
+                        }
+
+                    }
+
+                    if (col.startsWith('DECAY_RADIATIONS_MERGE')) {
+                        activate_decay_radiations(true)
+                    }
+
+
+                    if (ALL_VIEW_PARAMS[col].view instanceof Ame) {
+                        ALL_VIEW_PARAMS[col].reverse(tk)
+
+                    } else if (ALL_VIEW_PARAMS[col].view instanceof Decays) {
+                        tk_decay += (tk_decay.length == 0 ? tk : sep2 + tk)
+
+                    } else if (ALL_VIEW_PARAMS[col].view instanceof Multipol) {
+                        //ALL_VIEW_PARAMS[col].view.bw.reverse(value)
+
+                    } else {
+                        ALL_VIEW_PARAMS[col].reverse(value)
+                    }
+                }
+
+
+            } else if (tk.indexOf('MOD2') != -1) {
+                evenodd.reverse(tk)
+
+
+            } else if (tk.indexOf('RANGE') != -1) {
+
+                ALL_VIEW_PARAMS["ZNARANGE"].reverse(tk)
+
+
+            } else if (tk.toLowerCase().startsWith('hl')) {
+                ALL_VIEW_PARAMS['HALF_LIFE'].reverse(tk)
+
+            } else if (tk.toLowerCase().startsWith('isospin')) {
+                ALL_VIEW_PARAMS['LEVELS.ISOSPIN'].reverse(tk.split('=')[1])
+
+                //GSMETA=Y@@@DECAY=2@;@6@;@25@@@DBCOL=L_DECAYS.PERC_NUM@;@MIN=1@;@MAX=2
+            } else if (tk.indexOf('GSMETA') != -1 || tk.indexOf('DECAY') != -1) {
+                tk_decay += (tk_decay.length == 0 ? tk : sep2 + tk)
+
+            } else if (tk.startsWith('JP')) {
+                ALL_VIEW_PARAMS['JP'].reverse(tk)
+
+            } else if (tk.startsWith('SHELL')) {
+                conv_coeff.reverse_cc(tk)
+
+            } else if (tk.startsWith('END_LEVEL_JP')) {
+                ALL_VIEW_PARAMS['END_LEVEL_JP'].reverse(tk)
+                activate_gamma_transitions(true)
+
+            } else if (tk.startsWith('DEC_RAD')) {
+                activate_decay_radiations(true)
+                vpRad.reverse(tk)
+
+            } else if (tk.startsWith('MULTIPOL')) {
+
+                multip.reverse(tk)
+
+            } else if (tk.startsWith('ORDER')) {
+                orderby_set(tk.split('=')[1].split(sep))
+
+            } else if (tk.startsWith('AXES')) {
+                xy_plot_set(tk.split('=')[1].split(sep)[0], tk.split('=')[1].split(sep)[1])
+
+            } else if (ALL_VIEW_PARAMS[prefix]) {
+                ALL_VIEW_PARAMS[prefix].reverse(tk.split(sep)[0].split('=')[1])
+            }
+
+            //DEC_RAD=type_a@;@A@@@DEC_RAD=intensity_order@;@2
+
+
+        }
+
+        if (tk_decay.length > 0) {
+            decay.reverse(tk_decay)
+        }
+
+    }
+
+
+    function activate_decay_radiations(status) {
+        if (document.getElementById('chk_decay_radiations').checked == !status)
+            document.getElementById('chk_decay_radiations').click()
+    }
+
+    function activate_gamma_transitions(status) {
+        if (document.getElementById('chk_gamma_transitions').checked == !status)
+            document.getElementById('chk_gamma_transitions').click()
+    }
+
+    function activate_lev_hidden() {
+        if (document.getElementById('div_lev_hidden').style.display == 'none') {
+            document.getElementById('chk_lev_hidden').checked = true
+            fadeInOut('div_lev_hidden');
+        }
+    }
+
+    function activate_nuc_hidden() {
+        if (document.getElementById('div_nuc_hidden').style.display == 'none') {
+            document.getElementById('chk_nuc_hidden').checked = true
+            fadeInOut('div_nuc_hidden');
+        }
+    }
+
+    function activate_gam_hidden() {
+        if (document.getElementById('div_gam_hidden').style.display == 'none') {
+            document.getElementById('chk_gam_hidden').checked = true
+            fadeInOut('div_gam_hidden');
+        }
+    }
+
+    function request_plot() {
+        if (!xy_plot_active()) {
+            alert('Please choose an X- and Y- axis')
+            return
+        }
+        var req = request() + xy_plot_request()
+        xy_plot_call(req)
+        add_previous(req)
+        request_lc()
+    }
+
+    function request_displaytabs() {
+        var req = request()
+        add_previous(req)
+        displaytabs(req)
+        request_lc()
+        description()
+    }
+
+    FILTERED_NUCIDS = ''
+
+    function request_lc() {
+
+        var req = request()
+
+        var xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                if (xmlhttp.responseText.length == 0) return;
+
+                try {
+
+                    FILTERED_NUCIDS = (xmlhttp.responseText);
+                    if (parent.mylivechart) {
+                        parent.mylivechart.filterNucs(FILTERED_NUCIDS);
+                        parent.document.getElementById("simple").closer();
+                    }
+
+                    return
+                } catch (error) {
+                    console.log("error ajaxload_json " + error + " response: " + xmlhttp.responseText);
+                    return;
+                }
+            } else if (xmlhttp.readyState == 4 && xmlhttp.status != 300) {
+                console_message_error("HTTP Status :" + xmlhttp.status + "<br> ready state :" + xmlhttp.readyState, serverpage);
+            }
+        };
+        serverpage = (iaea.nds.comm.lcservlet + "?QRY=nucid_list&FILTER=" + req)
+        xmlhttp.open("GET", serverpage, true);
+        xmlhttp.send();
+    }
+
+
+    function request() {
+
+        var vps = [vpNuc, vpNucHidden, vpLev, vpLevHidden],
+            dm;
+
+        if (document.getElementById('chk_gamma_transitions').checked) {
+            vps.push(vpGam)
+            vps.push(vpGamHidden)
+        }
+
+        var req = "",
+            dm = '';
+        for (var i = 0; i < vps.length; i++) {
+            for (var j = 0; j < vps[i].length; j++) {
+                dm = vps[i][j].request()
+                req += dm.length > 0 ? dm + sep2 : ''
+            }
+        }
+
+        if (document.getElementById('chk_decay_radiations').checked) {
+            dm = vpRad.request()
+            req += dm.length > 0 ? dm + sep2 : ''
+        }
+
+        dm = evenodd.request()
+        req += dm.length > 0 ? dm + sep2 : ''
+
+        if (!xy_plot_active())
+            req += request_orderby()
+
+        req = req.replace('DBCOL=HALF_LIFE' + sep, '')
+        console.log('req', req);
+
+        return req
+
+    }
+
+
+    function description() {
+
+        var vps = [vpNuc, vpNucHidden, vpLev, vpLevHidden],
+            text = '',
+            token = '';
+        if (document.getElementById('chk_gamma_transitions').checked) {
+            vps.push(vpGam)
+            vps.push(vpGamHidden)
+        }
+
+        for (var i = 0; i < vps.length; i++) {
+            for (var j = 0; j < vps[i].length; j++) {
+                token = vps[i][j].description()
+                if (!token || token.length < 4) continue
+                text += ' ' + token + "&nbsp;&nbsp;&nbsp;"
+            }
+        }
+
+        if (document.getElementById('chk_decay_radiations').checked) {
+            dm = vpRad.description()
+            text += dm.length > 0 ? dm : ''
+        }
+        if (!xy_plot_active())
+            text += describe_orderby()
+        else text += xy_plot_describe()
+
+
+        /*        var keys = Object.keys(ALL_VIEW_PARAMS), text = '', token = '';
+        
+                for (var i = 0; i < keys.length; i++) {
+                    token = ALL_VIEW_PARAMS[keys[i]].description()
+                    if (!token || token.length < 4) continue
+                    text += ' ' + token + "&nbsp;&nbsp;&nbsp;"
+                }
+        */
+        text += evenodd.description()
+
+        document.getElementById("query_desc").innerHTML = "<b><span style='color:red'>Query </span></b> " + text
+    }
+</script>
+
+
+<body style="margin-left:10px">
+
+    <div class="main-lbl" style="background-color: var(--nuc-dark-color);">NUCLIDE Ground State </div>
+
+    <script>
+        for (var i = 0; i < vpNuc.length; i++) {
+            vpNuc[i].view.main_div.style.float = "left";
+            vpNuc[i].dom(document.body);
+        }
+
+        var evenodd = new EvenOdd('nuc', 'evenodd')
+        document.body.appendChild(evenodd.dom())
+    </script>
+
+    <br><br>
+
+    <div style="clear:left;float:left;margin-top:10px;margin-left: 4px;"><input type="checkbox" id="chk_nuc_hidden" onclick="fadeInOut('div_nuc_hidden');"></div>
+    <div class="more_field" id="more_qvals"> Q-values &bull; Separation
+        Energies &bull; Atomic Masses &bull; Radius</div>
+    <div id='div_nuc_hidden' style="clear:left;display:none"> </div>
+
+    <script>
+        var cont = document.getElementById('div_nuc_hidden')
+        for (var i = 0; i < vpNucHidden.length; i++) {
+            if (i != 0 && i % 3 == 0) {
+                cont.appendChild(document.createElement("br"));
+                cont.appendChild(document.createElement("br"));
+            }
+            vpNucHidden[i].view.main_div.style.float = "left";
+
+            vpNucHidden[i].dom(cont);
+            vpNucHidden[i].view.main_div.style.marginRight = '0px'
+        }
+    </script>
+    <br id="br_1">
+    <br id="br_2">
+    <div class="main-lbl" style="background-color:var(--lev-dark-color);margin-top: 15px;">LEVELS </div>
+    <script>
+        for (var i = 0; i < vpLev.length; i++) {
+            vpLev[i].view.main_div.style.float = "left";
+            vpLev[i].dom(document.body);
+        }
+
+        class OptionCell {
+            //https://stackoverflow.com/questions/8903313/using-regular-expression-in-css
+            constructor(value, pick, myidx) {
+                this.div = document.createElement("div");
+                this.div.style.float = "left";
+                this.div.innerHTML = value;
+                //this.div.className = "option-off";
+                this.active = false;
+                this.pick = pick;
+                this.myidx = myidx;
+                this.color_active = 'white'
+
+                this.div.style.cursor = 'pointer'
+
+                this.div.onclick = (function(cell) {
+                    return function(event) {
+                        cell.active = !cell.active
+                        cell.pick.set_active(cell.myidx)
+                        cell.pick.postCellClick(cell.myidx)
+                    }
+                })(this)
+
+                this.div.onmouseover = (function(cell) {
+                    return function(event) {
+                        if (!cell.active) {
+                            cell.div.style.background = 'lightgreen';
+                            cell.div.style.fontWeight = 'bold';
+                        }
+                    }
+
+                })(this)
+
+                this.div.onmouseout = (function(cell) {
+                    return function(event) {
+                        if (!cell.active) {
+                            cell.div.style.background = 'lightgray';
+                            cell.div.style.fontWeight = 'normal';
+                        }
+                    }
+
+                })(this)
+
+            }
+
+            set_style() {
+
+                if (this.active) {
+
+                    this.div.style.backgroundColor = 'green';
+                    this.div.style.color = this.color_active;
+
+                } else {
+                    this.div.style.background = 'lightgray';
+                    this.div.style.color = '#111';
+
+                }
+            }
+
+            set_active(active) {
+                this.active = active;
+                this.set_style()
+
+            }
+
+        }
+
+        class OptionPick {
+            constructor(id, list, ncols, cell_width, lbl_text) {
+                this.id = id;
+                this.list = list;
+                this.ncols = ncols;
+                this.cells = [];
+                this.active_cell_idx = 0;
+                this.cell_width = cell_width
+
+                if (lbl_text) {
+                    this.add_label(lbl_text)
+                }
+
+                this.div = this.dom()
+                this.button = this.btn();
+
+            }
+
+            reset() {
+                this.pre_set_active(0)
+            }
+            // must be call before dom()
+            add_label(lbl_txt, section) {
+                this.label = document.createElement("div");
+                this.label.innerHTML = lbl_txt;
+                this.label.style.float = 'left';
+                this.label.style.marginRight = '5px'
+            }
+
+            // tobe overwritten e.g. decay rad
+            postCellClick(idx) {
+
+            }
+
+            pre_set_active_from_text(text) {
+                for (var i = 0; i < this.list.length; i++) {
+                    if (this.list[i] == text) {
+                        this.pre_set_active(i)
+                    }
+                }
+
+            }
+
+            pre_set_active(idx) {
+
+                this.button.innerHTML = this.cells[idx].div.innerHTML;
+                this.active_cell_idx = idx;
+                for (var i = 0; i < this.cells.length; i++) {
+                    this.cells[i].set_active((i == idx))
+                }
+            }
+            // this also shows/hides
+            set_active(idx) {
+                this.pre_set_active(idx)
+                fadeInOut(this.div.id);
+            }
+
+            get_active() {
+                return this.list[this.active_cell_idx]
+            }
+
+            display(show) {
+                var d = show ? 'block' : 'none'
+                this.button.style.display = d
+                this.label.style.display = d
+
+            }
+
+
+
+            dom() {
+                var maindiv = document.createElement("div");
+
+                // maindiv.style.border = "1px solid black"
+                maindiv.style.padding = '4px'
+                maindiv.style.background = "lightgray"
+                maindiv.style.float = "left"
+                maindiv.style.clear = "both"
+                maindiv.style.display = "none"
+                maindiv.id = this.id + "_option";
+                maindiv.style.zIndex = 1000
+                for (var i = 0; i < this.list.length; i++) {
+                    this.cells.push(new OptionCell(this.list[i], this, i));
+                }
+                for (var i = 0; i < this.list.length; i++) {
+                    if (i != 0 && i % this.ncols == 0) {
+                        maindiv.appendChild(document.createElement("br"))
+                    }
+                    this.cells[i].div.id = this.id + '_cell_' + i;
+                    this.cells[i].div.style.width = this.cell_width + "px"
+                    this.cells[i].div.style.paddingLeft = "5px"
+                    maindiv.appendChild(this.cells[i].div)
+
+                }
+
+                return maindiv
+            }
+
+            btn() {
+                var tstbtn = document.createElement("div");
+                tstbtn.id = this.id + "_option_button";
+                tstbtn.innerHTML = this.list[0];
+                tstbtn.style.float = "left";
+                tstbtn.style.width = this.cell_width + "px";
+                tstbtn.style.border = "1px solid gray"
+                tstbtn.style.paddingLeft = "4px"
+                tstbtn.style.background = "lightgray"
+
+                tstbtn.onmouseover = function(event) {
+                    tstbtn.style.cursor = "pointer"
+                }
+
+                tstbtn.onclick = (function(div, option) {
+                    return function(event) {
+
+                        var br = div.getBoundingClientRect();
+                        option.div.style.position = "absolute";
+                        option.div.style.top = (br.top + window.scrollY) + "px"
+                        option.div.style.left = (br.left + window.scrollX) + "px"
+                        div.postClick()
+                        fadeInOut(option.div.id)
+
+                        //if (option.div.style.display == 'block') {
+                        PANEL_DISPLAYED = option
+
+                        // Don't propogate the event to the document
+                        if (event.stopPropagation) {
+                            event.stopPropagation(); // W3C model
+                        } else {
+                            event.cancelBubble = true; // IE model
+                        }
+
+                    }
+                })(tstbtn, this)
+                // to be overwritten in case of need
+                tstbtn.postClick = function() {} //(function () { return function () { } })()
+
+                return tstbtn;
+            }
+        }
+
+
+        var hl = new HalfLife("lev", "HL", "&le;", "levl-hl")
+        var hlview = new Viewparam(
+            new Dbcol("HALF_LIFE"),
+            hl
+        );
+        hlview.view.main_div.style.float = "left";
+        hlview.dom(document.body);
+        vpLev.push(hlview)
+
+
+        class SingleBoxView extends View {
+
+            constructor(section, title_text, id, json) {
+                super(section, id);
+                this.title_text = title_text;
+                this.lower = new TextBoxView(section, "", "", false, id, json)
+                this.check = super.dom_chunk("input");
+                this.check.id = this.check.id + "_chk"
+                this.check.type = "checkbox";
+                this.check.style.width = "10 px";
+
+                this.div_tit = null
+
+            }
+
+            dom() {
+
+                var out = this.main_div;
+                out.style.width = "280px";
+                out.style.height = "30px";
+                out.style.marginRight = "15px";
+
+                var div_chk = super.dom_chunk("div");
+                div_chk.id = div_chk.id + "_chk";
+                div_chk.style.float = "left";
+
+                div_chk.appendChild(this.check);
+                div_chk.style.marginRight = "3px";
+                div_chk.style.marginTop = "3px";
+                div_chk.appendChild(this.check);
+
+                out.appendChild(div_chk);
+
+
+                if (this.title_text) {
+                    this.div_tit = super.dom_chunk("div");
+                    var lbl = super.dom_chunk("span");
+                    lbl.innerHTML = this.title_text;
+                    this.div_tit.appendChild(lbl);
+                    this.div_tit.id = this.div_tit.id + "_title";
+                    this.div_tit.style.float = "left"
+                    this.div_tit.className = this.section + "-lbl-field"
+                    out.appendChild(this.div_tit);
+                }
+
+                var low = this.lower.dom();
+                low.style.marginRight = "0px";
+                low.style.float = "left";
+                out.appendChild(low);
+
+                this.check.onclick = (function(view) {
+                    return function() {
+                        view.activate(view.check.checked)
+                    }
+                })(this);
+
+                this.activate(false);
+
+                return out;
+            }
+
+            is_active() {
+                return this.check.checked;
+            }
+
+            reset() {
+                this.check.checked = false;
+                this.lower.reverse('NONE')
+                this.lower.activate(false)
+                this.lower.reset()
+            }
+
+            reverse(val) {
+                this.lower.activate(true)
+                this.check.checked = true;
+                this.lower.reverse(val)
+
+            }
+
+            request() {
+                var low = this.lower.value();
+
+                if (low.length == 0) {
+                    return "NOT_NULL"
+                }
+                return low;
+                // @@@DBCOL=L_MAGNETIC_MOM.VAL_NUM@;@MIN=0@;@MAX=NONE
+
+            }
+
+            description() {
+                if (!this.is_active()) return ''
+                var low = this.lower.value(),
+                    tlt = '<b>' + this.title_text + '</b>'
+
+                if (low.length == 0) {
+                    return tlt + " not null ";
+                }
+                return tlt + ' = ' + low;
+            }
+
+            activate(yesno) {
+                this.lower.activate(yesno);
+            }
+        }
+
+
+        var isospin = new Viewparam(
+            new Dbcol("LEVELS.ISOSPIN"),
+            new SingleBoxView("lev", "Isospin", "isospin", {
+                'width': '30px'
+            })
+        );
+        isospin.view.main_div.style.float = "left";
+        isospin.view.main_div.style.marginLeft = "12px";
+
+        isospin.dom(document.body);
+        isospin.view.main_div.style.width = "130px";
+
+        vpLev.push(isospin)
+
+        document.body.appendChild(document.createElement('br'))
+        document.body.appendChild(document.createElement('br'))
+
+
+        var decay = new Decays("lev", "Decays", "&le; % &le;", "levl-dec")
+        var decayview = new Viewparam(
+            new Dbcol("L_DECAYS.PERC_NUM"),
+            decay
+        );
+        decayview.view.main_div.style.float = "left";
+        decayview.dom(document.body);
+
+        vpLev.push(decay)
+
+
+
+
+        class Jp extends View {
+
+            constructor(section) {
+                super(section, 'jp')
+                this.j = new SingleBoxView(section, "J", "j", {
+                    'width': '30px'
+                });
+                this.ch_weak = document.createElement('input');
+                //section, title_text, help_text, lbl_on_top, id, json
+                this.order = new TextBoxView(section, "order", JP_H, false, 'jp_ord', {
+                    'width': '20px'
+                });
+                this.parity = new OptionPick(section, "any,+,-".split(","), 5, 40); //parity
+                this.column = section == 'lev' ? 'JP' : 'END_LEVEL_JP'
+
+            }
+
+            reverse(request) {
+
+                var tks = request.split(sep)
+                var tks_2 = tks[0].split("=")
+                this.j.reverse(tks_2.length == 1 ? '' : tks_2[1])
+                this.order.input.value = tks[1] == '-1' ? '' : tks[1]
+
+                this.parity.pre_set_active(parseInt(tks[2]) + 1)
+
+                this.ch_weak.checked = (tks[3] == '1')
+
+            }
+
+            reset() {
+                this.ch_weak.checked = false
+                this.j.reset()
+                this.order.reset()
+                this.parity.reset()
+            }
+
+            description() {
+                //JP=1@;@2@;@0@;@1 --> JP=jp@;@order (-1=not given)@;@parity(-1=any, 0=+ 1=- 3=? )@;@weak(0=excluded,1=included)
+                if (!this.j.is_active()) return ''
+                var ret = this.j.description()
+                var order = !this.order.input.value ? '' : ' order ' + this.order.input.value
+                ret += order
+                var par = this.parity.get_active()
+                par = par - 1
+                ret += ' <b>&pi;</b> ' + par + (this.ch_weak.checked ? ' weak attribution ' : '')
+                return ret
+
+            }
+            request() {
+                //JP=1@;@2@;@0@;@1 --> JP=jp@;@order (-1=not given)@;@parity(0=any, 1=+ 2=- 3=? )@;@weak(0=excluded,1=included)
+                if (!this.j.is_active()) return ''
+                var ret = this.column + '=' + this.j.request() + sep
+                var order = !this.order.input.value ? '-1' : this.order.input.value
+                ret = ret + order + sep
+                var par = this.parity.active_cell_idx
+                par = par - 1
+                ret = ret + par + sep + (this.ch_weak.checked ? '1' : '0')
+                return ret
+
+            }
+
+            dom() {
+                var jj = this.j.dom()
+                jj.style.width = '75px'
+                jj.style.float = 'left'
+                jj.style.marginRight = '2px'
+                attach_help(jj, JP_H)
+
+                this.main_div.appendChild(jj);
+
+                var ord = this.order.dom()
+                ord.style.float = 'left'
+                ord.style.width = '80px'
+                ord.style.marginRight = '2px'
+
+                this.order.input.style.width = '20px'
+                this.order.label.style.fontWeight = 'normal'
+                this.order.label.style.fontSize = '10pt';
+                this.main_div.appendChild(ord);
+
+                this.main_div.style.width = '335px';
+                this.ch_weak.type = "checkbox";
+
+                var lblparity = super.dom_chunk("div");
+                lblparity.className = this.section + "-lbl-field"
+                lblparity.innerHTML = " &pi; ";
+                lblparity.style.float = 'left';
+                lblparity.style.width = '15px'
+                lblparity.style.marginRight = '5px'
+                attach_help(lblparity, JP_H);
+                this.main_div.appendChild(lblparity)
+
+                this.main_div.appendChild((this.parity.button));
+                this.main_div.appendChild((this.parity.div));
+
+                var lblweak = super.dom_chunk("div");
+                lblweak.className = this.section + "-lbl-field"
+                lblweak.innerHTML = " weak ";
+                lblweak.style.float = 'left';
+                lblweak.style.fontWeight = 'normal';
+                lblweak.style.fontSize = '10pt';
+
+                lblweak.style.marginLeft = '4px'
+                lblweak.style.width = '40px'
+                attach_help(lblweak, JP_H);
+                this.main_div.appendChild(lblweak)
+
+                this.main_div.appendChild(this.ch_weak);
+
+                return this.main_div
+
+            }
+
+        }
+
+        var jp = new Jp('lev');
+        var jpview = new Viewparam(
+            new Dbcol("JP"),
+            jp
+        );
+        jpview.view.main_div.style.float = "left";
+        jpview.dom(document.body);
+
+        vpLev.push(jp)
+
+
+
+        /* Level hidden fields */
+
+        var vpLevHidden = []
+        config = {
+            "lev": [{
+                    "dbcol": "L_MAGNETIC_MOM.VAL_NUM",
+                    "title": "Magn. dipole &mu;",
+                    "help": MAGNM_H,
+                    "label": " &le; &mu;<sub>N</sub> &le; ",
+                    "id": "md"
+                },
+                {
+                    "dbcol": "L_ELECTRIC_MOM.VAL_NUM",
+                    "title": " Electr. quad. Q",
+                    "help": ELM_H,
+                    "label": " &le; barn &le; ",
+                    "id": "qec"
+                }
+            ]
+        }
+        var lev_fld = config.lev;
+        for (var i = 0; i < lev_fld.length; i++) {
+            var view = new Viewparam(
+                new Dbcol(lev_fld[i].dbcol),
+                new LowerUpperView("lev", lev_fld[i].title, lev_fld[i].label, lev_fld[i].id, lev_fld[i].help)
+            );
+            view.lev_hidden = true
+            vpLevHidden.push(view);
+        }
+    </script>
+
+    <div style="clear:left;float:left;margin-top:10px;"><input type="checkbox" id="chk_lev_hidden" onclick="fadeInOut('div_lev_hidden');">
+    </div>
+    <div class="more_field" id="more_field_lev"> Nuclear moments</div>
+    <div id='div_lev_hidden' style="clear:left;display:none"> </div>
+
+    <script>
+        var cont = document.getElementById('div_lev_hidden')
+        for (var i = 0; i < vpLevHidden.length; i++) {
+
+            vpLevHidden[i].dom(cont);
+            vpLevHidden[i].view.main_div.style.width = "415px";
+            vpLevHidden[i].view.main_div.style.float = "left";
+        }
+
+        function manage_gm_dec_tabs(chk_id) {
+
+            var chked = document.getElementById(chk_id).checked
+            var div_id = chk_id == 'chk_gamma_transitions' ? 'gamma_transitions' : 'decay_radiations'
+            var other_id = chk_id != 'chk_gamma_transitions' ? 'gamma_transitions' : 'decay_radiations'
+
+            var other_chk_id = chk_id != 'chk_gamma_transitions' ? 'chk_gamma_transitions' : 'chk_decay_radiations'
+
+            var div = document.getElementById(div_id)
+            var other = document.getElementById(other_id)
+            if (chked) {
+                div.style.opacity = 1
+                div.style.pointerEvents = 'none'
+                other.style.opacity = 0.4
+                div.style.pointerEvents = 'auto'
+                document.getElementById(chk_id).style.pointerEvents = 'none'
+                document.getElementById(other_chk_id).style.pointerEvents = 'auto'
+                document.getElementById(other_chk_id).checked = false
+            } else {
+                div.style.opacity = 0.4
+                div.style.pointerEvents = 'auto'
+            }
+            return true
+        }
+    </script>
+
+    <div class="main-lbl" style="width:400px;float:left;clear:left;margin-right:20px">
+        <div style="background-color:rgba(145,167,96,0.7);float:left; margin-right: 10px;padding-top:5px; margin-bottom: 15px;height:30px;width:100%">
+            <input id='chk_gamma_transitions' type=checkbox style="margin-left:2px;margin-top:4px;background-color: white;float:left" onclick="manage_gm_dec_tabs('chk_gamma_transitions');return true"> &nbsp; GAMMA
+            transitions
+        </div>
+        <div id="gamma_transitions" style="float:left;pointer-events: none;opacity:0.4">
+            <div id="gamma_transitions_main" style="background-color:white"></div>
+            <div style="clear:left;float:left;margin-top:10px;margin-left: 0px;"><input type="checkbox" id="chk_gam_hidden" onclick="fadeInOut('div_gam_hidden');"></div>
+            <div class="more_field"> Conversion coeff. &bull; Multipolarity &bull; Mixing ratio</div>
+            <div id='div_gam_hidden' style="clear:left;display:none;width:450px"> </div>
+        </div>
+    </div>
+
+    <!-- GAMMA transitions -->
+    <script>
+        var vpGam = [],
+            gmtrans_div = document.getElementById('gamma_transitions_main');
+        config = {
+            "nuc": [{
+                    "dbcol": "GAMMAS.ENERGY_NUM",
+                    "title": "Energy &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ",
+                    "help": ENERGY_H,
+                    "label": " &le; keV &le; ",
+                    "id": "gam_energy"
+                },
+                {
+                    "dbcol": "GAMMAS.FINAL_L_ENERGY_NUM",
+                    "title": "End level en.",
+                    "help": FINLEV_H,
+                    "label": " &le; keV &le; ",
+                    "id": "gam_end_lev_energy"
+                }
+            ]
+        }
+        var fld = config.nuc;
+        for (var i = 0; i < fld.length; i++) {
+            var view = new Viewparam(
+                new Dbcol(fld[i].dbcol),
+                new LowerUpperView("gam", fld[i].title, fld[i].label, fld[i].id, fld[i].help)
+            );
+            view.is_gamma = true
+            vpGam.push(view);
+        }
+
+        for (var i = 0; i < vpGam.length; i++) {
+            vpGam[i].view.main_div.style.float = "left";
+            vpGam[i].view.main_div.style.clear = "both";
+
+            vpGam[i].dom(gmtrans_div);
+            vpGam[i].view.main_div.style.width = "350px";
+        }
+
+        var jpgm = new Jp('gam');
+        var jpgmview = new Viewparam(
+            new Dbcol("END_LEVEL_JP"),
+            jpgm
+        );
+        jpgmview.is_gamma = true
+        jpgmview.dom(gmtrans_div);
+        jpgmview.view.main_div.style.clear = "both";
+
+        vpGam.push(jpgm)
+    </script>
+
+    <!--  /* GAMMA transitions hidden */ -->
+    <script>
+        class ConvCoeff extends View {
+            //String[] db =   new String[]{"TOTAL", "KC",  "LC ", "MC",  "NC",  "NC+",  "OC",  "IPC",  "PC",  "MC+",  "QC"};
+
+            //{"Total", " K ", " L ", " M ", " N ", " N+ ", " O ", " IP ", " P ", " M+ ", " Q "},
+            constructor(section) {
+                super(section, 'conv_coeff')
+                this.values = new Viewparam(new Dbcol('G_THEOR_CONV_COEFF.VAL_NUM'),
+                    new LowerUpperView("gam", "Conv. coeff. ", "&le; &alpha; &le;", "gam_conv_coeff", CONV_H)
+                )
+                this.shell = new OptionPick("gam_cc_shell", ["Total", "K", "L", "M", "N", "N+", "O", "IP", "P", "M+", "Q"], 5, 60);
+            }
+            reset() {
+                this.values.view.reset()
+                this.shell.pre_set_active(0)
+            }
+
+            reverse(request) {
+                this.values.view.reverse(request)
+            }
+            reverse_cc(request) {
+                var tk = request.split(sep)
+
+                this.shell.pre_set_active_from_text(tk[1].trim().replace('C', ''))
+            }
+
+            dom(parent) {
+                var val = this.values.dom()
+                this.main_div.appendChild(val)
+                this.main_div.appendChild(this.shell.button)
+                this.main_div.appendChild(this.shell.div)
+                parent.appendChild(this.main_div)
+                val.style.float = "left";
+                this.main_div.style.width = "570px";
+                this.shell.button.style.float = 'left'
+                this.values.view.main_div.style.width = '300px'
+                return this.main_div
+            }
+
+            description() {
+                //G_THEOR_CONV_COEFF.VAL_NUM@;@MIN=1@;@MAX=2@@@SHELL@;@KC
+                if (!this.values.view.is_active()) return ''
+                var shell = this.shell.get_active()
+
+
+
+                var ret = this.values.description() + ' ' + this.shell.get_active()
+
+                return ret
+            }
+            request() {
+                //G_THEOR_CONV_COEFF.VAL_NUM@;@MIN=1@;@MAX=2@@@SHELL@;@KC
+                if (!this.values.view.is_active()) return ''
+                var shell = this.shell.get_active()
+                if (shell == 'N+') shell = 'NC+'
+                else if (shell == 'M+') shell = 'MC+'
+                else shell = shell + 'C'
+
+
+                var ret = this.values.request() + sep2 + this.shell.get_active().trim
+
+                return ret
+            }
+
+        }
+        var vpGamHidden = []
+        config = {
+            "nuc": [
+                // { "dbcol": "GAMMA.ENERGY", "title": "Conv. coeff. ", "label": " &le; &alpha; &le; ", "id": "gam_energy" },
+                {
+                    "dbcol": "GAMMAS.MIXING_NUM",
+                    "title": "Mixing ratio",
+                    "help": MIX_H,
+                    "label": " &le; &delta; &le;",
+                    "id": "gam_end_lev_energy"
+                }
+            ]
+        }
+        var fld = config.nuc;
+        for (var i = 0; i < fld.length; i++) {
+            var view = new Viewparam(
+                new Dbcol(fld[i].dbcol),
+                new LowerUpperView("gam", fld[i].title, fld[i].label, fld[i].id, fld[i].help)
+            );
+            view.gam_hidden = true
+            vpGamHidden.push(view);
+        }
+
+        var cont = document.getElementById('div_gam_hidden')
+        var conv_coeff = new ConvCoeff('gam')
+        ALL_VIEW_PARAMS['G_THEOR_CONV_COEFF.VAL_NUM'] = conv_coeff
+        conv_coeff.is_gamma = true
+        conv_coeff.gam_hidden = true
+        conv_coeff.dom(cont)
+        vpGamHidden.push(conv_coeff);
+
+        class Multipol extends View {
+
+            constructor(section) {
+                super(section, 'multipol')
+
+                this.mainchk = document.createElement('input');
+                this.polarity = new OptionPick("polarity", "E0,E1,E2,E4,E5,E6,M1,M2,M3,M4,M5,D,Q".split(","), 5, 40);
+                this.ch_weak = document.createElement('input');
+
+                this.mix = new OptionPick("mix", "no mix,any, mixed".split(","), 5, 70);
+                this.bw = new Viewparam(new Dbcol("G_ELECTRIC_TRANS_W.VAL_NUM"),
+                    new LowerUpperView("gam", "", "&le; B &le;", "gam_weis")) //Reduced Electric and Magnetic Transition Probabilities in Weisskopf Units
+            }
+
+            description() {
+                if (!this.mainchk.checked) return ''
+                var txt = this.bw.view.title_text
+                this.bw.view.title_text = " B "
+                var ret = ' <b>Polarity</b> ' + ' ' + this.polarity.get_active() + ' ' + this.mix.get_active() + ' ' + this.bw.view.description()
+                this.bw.view.title_text = txt
+                return ret
+            }
+
+            reset() {
+                if (this.mainchk.checked) this.mainchk.click()
+                this.bw.reset()
+                this.polarity.pre_set_active(0)
+                this.mix.pre_set_active(0)
+
+            }
+
+            reverse(request) {
+                //"MULTIPOL=E0@;@0@;@0"
+                this.mainchk.click()
+                var tks = request.split(sep)
+
+                this.polarity.pre_set_active_from_text(tks[0].split('=')[1])
+
+                this.mix.pre_set_active(tks[2])
+
+                //var tk_b = tks[1].replace('DBCOL=G_ELECTRIC_TRANS_W.VAL_NUM@;@', '')
+                //this.bw.view.reverse()
+
+
+            }
+
+            request() {
+                //@@MULTIPOL=E0@;@1@;@0@@@DBCOL=G_ELECTRIC_TRANS_W.VAL_NUM@;@MIN=2@;@MAX=NONE
+                //MULTIPOL=E0@;@0@;@0@@@DBCOL=G_ELECTRIC_TRANS_W.VAL_NUM@;@MIN=1@;@MAX=3
+                if (!this.mainchk.checked) return ''
+
+                /* '0' because weak is now always implied*/
+                var bw = this.bw.request()
+                bw = (bw.indexOf('NULL') != -1) ? '' : sep2 + this.bw.request()
+                var ret = 'MULTIPOL=' + this.polarity.get_active() + sep + '0' + sep + this.mix.active_cell_idx + bw + sep2
+                return ret
+            }
+
+            dom() {
+
+                this.main_div.style.width = '650px';
+                this.mainchk.type = "checkbox";
+                this.mainchk.style.float = "left";
+                this.main_div.appendChild(this.mainchk);
+
+                this.mainchk.onclick = (function(view) {
+                    return function() {
+                        view.bw.view.activate(view.mainchk.checked)
+                    }
+                })(this);
+
+                var lblpol = super.dom_chunk("div");
+                lblpol.className = this.section + "-lbl-field"
+                lblpol.innerHTML = "Polarity";
+                lblpol.style.float = 'left';
+                lblpol.style.width = '65px'
+                lblpol.style.marginRight = '5px'
+                attach_help(lblpol, POL_H);
+                this.main_div.appendChild(lblpol)
+
+                this.main_div.appendChild((this.polarity.button));
+                this.main_div.appendChild((this.polarity.div));
+                this.polarity.button.style.float = 'left'
+
+                var pl = this.bw.dom()
+                pl.style.marginRight = '1px'
+                this.bw.view.check.style.display = 'none'
+
+                this.main_div.appendChild(pl);
+                pl.style.float = 'left'
+                pl.style.width = '180px'
+
+
+                this.ch_weak.type = "checkbox";
+
+                var lblmix = super.dom_chunk("div");
+                lblmix.className = this.section + "-lbl-field-ln"
+                lblmix.innerHTML = "mix";
+                lblmix.style.float = 'left';
+                lblmix.style.width = '40px'
+                lblmix.style.marginRight = '5px'
+                lblmix.style.marginLeft = '10px'
+                attach_help(lblmix, "test");
+                //    this.main_div.appendChild(lblmix)
+
+                this.main_div.appendChild((this.mix.button));
+                this.main_div.appendChild((this.mix.div));
+                this.mix.button.style.foat = 'left'
+
+                var lblweak = super.dom_chunk("div");
+                lblweak.className = this.section + "-lbl-field-ln"
+                lblweak.innerHTML = " weak ";
+                lblweak.style.float = 'left';
+                lblweak.style.fontWeight = 'normal';
+                lblweak.style.fontSize = '8pt';
+                lblweak.style.width = '40px'
+                attach_help(lblweak, "test");
+                // this.main_div.appendChild(lblweak)
+
+                // this.main_div.appendChild(this.ch_weak);
+                return this.main_div
+
+            }
+
+        }
+
+        var multip = new Multipol('gam');
+        var multipolview = new Viewparam(
+            new Dbcol(""), //G_ELECTRIC_TRANS_W.VAL_NUM
+            multip
+        );
+
+        multipolview.dom(cont);
+        multipolview.view.main_div.style.float = "left";
+        vpGamHidden.push(multipolview)
+
+        vpGamHidden[0].dom(cont)
+        vpGamHidden[0].view.main_div.style.float = "left";
+        vpGamHidden[0].view.main_div.style.width = "320px";
+    </script>
+    <!-- button onclick="
+    //lcFilteredNucidsStub('@;@214U@;@215U@;@216U@;@217U@;@218U@;@219U@;@221U@;@222U@;@223U@;@224U@;@225U@;@226U@;@227U@;@228U@;@229U@;@230U@;@231U@;@232U@;@233U@;@234U@;@235U@;@236U@;@237U@;@238U@;@239U@;@240U@;@241U@;@242U@;@243U@;@244U@;@245U@;@246U@;@247U@;@248U@;@249U@;@250U@;@253U@;@254U@;@255U')
+    //request()         
+        // reverse('DBCOL=NUCLIDES.NUCID@;@12we@@@DBCOL=NUCLIDES.SYMBOL@;@u@@@DBCOL=NUCLIDES.Z@;@1@@@DBCOL=NUCLIDES.N@;@2@@@DBCOL=(NUCLIDES.Z+NUCLIDES.N)@;@3@@@DBCOL=Z@;@MIN=4@;@MAX=5@@@DBCOL=N@;@MIN=6@;@MAX=NONE@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@');
+       // reverse('GSMETA=Y@@@DECAY=2@;@6@;@5@@@DBCOL=L_DECAYS.PERC_NUM@;@MIN=1@;@MAX=2')
+      // reverse('DBCOL=GAMMAS.ENERGY_NUM@;@MIN=1@;@MAX=NONE@@@DBCOL=GAMMAS.FINAL_L_ENERGY_NUM@;@MIN=3@;@MAX=NONE@@@MULTIPOL=E0@;@0@;@0@@@DBCOL=GAMMAS.CONVERSION_COEFF@;@MIN=1@;@MAX=NONE@@@DBCOL=GAMMAS.MIXING_NUM@;@MIN=1@;@MAX=NONE@@@ORDER=0@;@1@@@')
+        reverse('SYMBOL=h@@@hl=FS@;@3.68E-8@;@Y@;@7.7E24')
+// reverse('JP=1@;@2@;@0@;@1@@@END_LEVEL_JP=4@;@5@;@0') //JP=1@;@2@;@0@;@1
+//reverse('DBCOL=DECAY_RADIATIONS_MERGE.ENERGY_NUM@;@MIN=1@;@MAX=NONE@@@DBCOL=DECAY_RADIATIONS_MERGE.INTENSITY_NUM@;@MIN=2@;@MAX=3@@@DEC_RAD=type_a@;@A@@@DEC_RAD=intensity_order@;@2@@@DBCOL=DECAY_RADIATIONS_MERGE.HINDRANCE_NUM@;@MIN=4@;@MAX=5'
+//reverse('SYMBOL=H@@@DEC_RAD=type_a@;@E@@@DEC_RAD=type_b@;@AU@@@DEC_RAD=type_c@;@K@@@AXES=10@;@4@@@')
+">
+        search</button -->
+
+    <div class="main-lbl" id='dec_rad_div' style="width:400px;float:left">
+        <div id="div_decrad_lbl" style="background-color:var(--dr-dark-color);float:left; margin-right: 10px;margin-bottom: 15px;width:100%;height:30px;padding-top:5px">
+            <input id='chk_decay_radiations' type=checkbox style="margin-left:8px;margin-top:4px;background-color: white;float:left;" onclick='manage_gm_dec_tabs("chk_decay_radiations")'><span id="dec_rad_lbl"> &nbsp; DECAY
+                RADIATION </span><span style="font-size:10pt" id="daughter_lbl">emitted by the daughter
+            </span>
+        </div>
+        <div id="decay_radiations" style="background-color:white;pointer-events: none;opacity:0.4"></div>
+    </div>
+
+    <script>
+        class DecradView extends View {
+            constructor(section, id) {
+                super(section, id);
+                this.any = super.dom_chunk("input");
+                this.alpha = super.dom_chunk("input");
+                this.betam = super.dom_chunk("input");
+
+                this.betap = super.dom_chunk("input");
+                this.gamma = super.dom_chunk("input");
+                this.el = super.dom_chunk("input");
+                this.dn = super.dom_chunk("input");
+                this.dp = super.dom_chunk("input");
+                this.da = super.dom_chunk("input");
+
+                this.particles = ['A', 'B-', 'BP', 'G', 'E', 'N', 'P', 'DA']
+                this.particle_lbls = 'any,&alpha;,&beta;-,&beta;+,&gamma;,e,n, &nbsp; p, &alpha;'.split(',')
+                this.checks = [this.any,
+                    this.alpha,
+                    this.betam,
+                    this.betap,
+                    this.gamma,
+                    this.el,
+                    this.dn,
+                    this.dp,
+                    this.da
+                ];
+
+                this.idx_particle_sel = 0
+
+                this.energy = new Viewparam(new Dbcol("DECAY_RADIATIONS_MERGE.ENERGY_NUM"),
+                    new LowerUpperView("dr", "Energy &nbsp;&nbsp;", "&le;keV&le;", "dr_energy", ENERGY_H))
+                this.intensity = new Viewparam(new Dbcol("DECAY_RADIATIONS_MERGE.INTENSITY_NUM"),
+                    new LowerUpperView("dr", "Intensity", "&le; &nbsp;%&nbsp; &le;", "dr_intensity", INTENSITY_H))
+                this.most_intens = new SingleBoxView("dr", "show only", "maxlines", {
+                    'width': '20px'
+                })
+                this.hindrance = new Viewparam(new Dbcol("DECAY_RADIATIONS_MERGE.HINDRANCE_NUM"),
+                    new LowerUpperView("dr", "Hindrance", "&le; HF &le;", "dr_hindrance", HINDRANCE_H))
+                this.max_energy = new Viewparam(new Dbcol("DECAY_RADIATIONS_MERGE.ENDPOINT_NUM"),
+                    new LowerUpperView("dr", "Max energy", "&le; keV &le;", "dr_max_energy", MAXEN_H))
+                this.logft = new Viewparam(new Dbcol("DECAY_RADIATIONS_MERGE.LOG_FT_NUM"),
+                    new LowerUpperView("dr", "", "&le; log FT  &le;", "dr_logft", LOGFT_H))
+
+                this.process_gm = new OptionPick("process_gm", "any,&gamma;-ray,Ann.,X-ray".split(","), 5, 60, "process");
+                this.shell_x = new OptionPick("shell_x", "any,K,K&alpha;1,K&alpha;2,K&beta;1,K&beta;2,K&beta;3,L".split(","), 5, 40, "shell");
+                this.shell_x_code = "K,KA1,KA2,KB1,KB2,KB3,L".split(",")
+
+                this.process_el = new OptionPick("process_el", "any,Auger,Conv.el.".split(","), 5, 66, "process");
+                this.shell_ce = new OptionPick("shell_ce", "any,K,L,M,N,M+,N+".split(","), 5, 40, "shell");
+                this.shell_ce_code = "K,L,M,N,M+,N+".split(",");
+                this.shell_au = new OptionPick("shell_au", "any,K,L".split(","), 5, 40, "shell");
+                this.shell_au_code = ['K', 'L']
+
+                this.shells = [this.shell_au, this.shell_ce, this.shell_x]
+                this.processes = [this.process_el, this.process_gm]
+
+                this.type_b = ''
+            }
+            //DBCOL=DECAY_RADIATIONS_MERGE.ENERGY_NUM@;@MIN=1@;@MAX=NONE@@@DBCOL=DECAY_RADIATIONS_MERGE.INTENSITY_NUM@;@MIN=2@;@MAX=3@@@DEC_RAD=type_a@;@A@@@DEC_RAD=intensity_order@;@2@@@DBCOL=DECAY_RADIATIONS_MERGE.HINDRANCE_NUM@;@MIN=4@;@MAX=5'
+
+            reset() {
+                var dm = [this.energy, this.intensity, this.most_intens, this.hindrance, this.max_energy, this.logft, this.process_gm, this.shell_x, this.process_el, this.shell_ce, this.shell_au]
+                for (let i = 0; i < dm.length; i++) {
+                    dm[i].reset()
+                }
+                this.type_b = ''
+            }
+            /* the order in the arrival needs to be type_a, type_b, type_c*/
+            reverse(tk) {
+
+                if (!tk || tk.length == 0) return
+
+                var dm = tk.split('=')[1].split(sep)
+                if (dm[0] == 'type_a') {
+                    this.checks[0].checked = true;
+                    for (let i = 0; i < this.particles.length; i++) {
+                        if (dm[1] == this.particles[i]) {
+                            this.idx_particle_sel = i
+                            this.checks[i + 1].checked = true;
+                            this.checks[i + 1].click()
+                        }
+                    }
+                }
+                if (dm[0] == 'type_b') {
+                    this.type_b = dm[1]
+
+                    if (dm[1] == 'AN') {
+                        this.process_gm.pre_set_active(2)
+                    }
+                    if (dm[1] == 'X') {
+                        this.process_gm.pre_set_active(3)
+                    }
+
+                    if (dm[1] == 'AU') {
+                        this.process_el.pre_set_active(1)
+                        this.process_el.postCellClick(1)
+                    }
+                    if (dm[1] == 'CE') {
+                        this.process_el.pre_set_active(2)
+                        this.process_el.pre_set_active(2)
+                        this.process_el.postCellClick(2)
+                    }
+
+                }
+
+                if (dm[0] == 'type_c') { // gamma rays have type_a = G and type_c = ' '
+                    if (dm[1] == ' ') {
+                        this.process_gm.pre_set_active(1)
+                    }
+
+                    if (this.type_b == 'X') {
+                        for (var i = 0; i < this.shell_x_code.length; i++) {
+                            if (dm[1] == this.shell_x_code[i]) {
+                                this.shell_x.pre_set_active(i)
+                            }
+                        }
+                    }
+
+                    if (this.type_b == 'AU') {
+                        for (var i = 0; i < this.shell_au_code.length; i++) {
+                            if (dm[1] == this.shell_au_code[i]) {
+                                this.shell_au.pre_set_active(i + 1)
+                            }
+                        }
+                    }
+
+                    if (this.type_b == 'CE') {
+                        for (var i = 0; i < this.shell_ce_code.length; i++) {
+                            if (dm[1] == this.shell_ce_code[i]) {
+                                this.shell_ce.pre_set_active(i + 1)
+                            }
+                        }
+                    }
+                }
+
+                if (dm[0] == 'intensity_order') {
+                    this.most_intens.reverse(dm[1])
+
+                }
+
+
+                console.log('rad rev', tk)
+            }
+            //DBCOL=DECAY_RADIATIONS_MERGE.ENERGY_NUM@;@MIN=3@;@MAX=4@@@DBCOL=DECAY_RADIATIONS_MERGE.INTENSITY_NUM@;@MIN=5@;@MAX=6
+            request() {
+
+                var ret = '';
+
+                ret = this.energy.request() + this.intensity.request() +
+                    (this.idx_particle_sel == 1 ? this.hindrance.request() : '') +
+                    (this.idx_particle_sel > 1 && this.idx_particle_sel < 4 ? this.logft.request() + this.max_energy.request() : '')
+
+
+                // an emission has been selected
+                if (this.idx_particle_sel > 0) {
+                    ret += 'DEC_RAD=type_a' + sep + this.particles[this.idx_particle_sel - 1]
+                }
+
+                // gammas
+                if (this.idx_particle_sel == 4) {
+                    if (this.process_gm.active_cell_idx == 1) { // gamma transition with photon -> type_c (shell) null
+                        ret += sep2 + 'DEC_RAD=type_c' + sep
+                    } else if (this.process_gm.active_cell_idx == 2) { //  annihilation
+                        ret += sep2 + 'DEC_RAD=type_b' + sep + 'AN'
+                    } else if (this.process_gm.active_cell_idx == 3) { // X-ray
+                        ret += sep2 + 'DEC_RAD=type_b' + sep + 'X'
+                        if (this.shell_x.active_cell_idx > 0) { // shell
+                            ret += sep2 + 'DEC_RAD=type_c' + sep + this.shell_x_code[(this.shell_x.active_cell_idx - 1)]
+                        }
+                    }
+                }
+
+                // electrons
+                if (this.idx_particle_sel == 5) {
+                    if (this.process_el.active_cell_idx == 1) { // auger
+                        ret += sep2 + 'DEC_RAD=type_b' + sep + 'AU'
+                        if (this.shell_au.active_cell_idx > 0) { // shell
+                            ret += sep2 + 'DEC_RAD=type_c' + sep + this.shell_au_code[(this.shell_au.active_cell_idx - 1)]
+                        }
+                    } else if (this.process_el.active_cell_idx == 2) { //  conversion
+                        ret += sep2 + 'DEC_RAD=type_b' + sep + 'CE'
+                        if (this.shell_ce.active_cell_idx > 0) { // shell
+                            ret += sep2 + 'DEC_RAD=type_c' + sep + this.shell_ce_code[(this.shell_ce.active_cell_idx - 1)]
+                        }
+                    }
+
+                }
+
+                if (this.most_intens.is_active()) {
+                    ret += sep2 + 'DEC_RAD=intensity_order' + sep + this.most_intens.request()
+                }
+
+                if (ret.startsWith(sep2)) {
+                    ret = ret.replace(sep2, '')
+                }
+
+                return ret
+            }
+
+            description() {
+                var ret = '';
+
+                ret = this.energy.description() + this.intensity.description() +
+                    (this.idx_particle_sel == 1 ? this.hindrance.description() : '') +
+                    (this.idx_particle_sel > 1 && this.idx_particle_sel < 4 ? this.logft.description() + this.max_energy.description() : '')
+
+                // an emission has been selected
+                if (this.idx_particle_sel > 0) {
+                    ret += '<b> emission </b>' + (this.idx_particle_sel == 4 ? ' photons' : this.particle_lbls[this.idx_particle_sel])
+                }
+
+                // gammas
+                if (this.idx_particle_sel == 4) {
+                    if (this.process_gm.active_cell_idx == 1) { // gamma transition with photon -> type_c (shell) null
+                        ret += ' &gamma;-rays'
+                    } else if (this.process_gm.active_cell_idx == 2) { //  annihilation
+                        ret += ',  annihilation '
+                    } else if (this.process_gm.active_cell_idx == 3) { // X-ray
+                        ret += ',  X-rays '
+                        if (this.shell_x.active_cell_idx > 0) { // shell
+                            ret += ', shell ' + this.shell_x_code[(this.shell_x.active_cell_idx - 1)]
+                        }
+                    }
+                }
+
+                // electrons
+                if (this.idx_particle_sel == 5) {
+                    if (this.process_el.active_cell_idx == 1) { // auger
+                        ret += ' Auger '
+                        if (this.shell_au.active_cell_idx > 0) { // shell
+                            ret += this.shell_au_code[(this.shell_au.active_cell_idx - 1)]
+                        }
+                    } else if (this.process_el.active_cell_idx == 2) { //  conversion
+                        ret += ' Conversion electron '
+                        if (this.shell_ce.active_cell_idx > 0) { // shell
+                            ret += ', shell ' + this.shell_ce_code[(this.shell_ce.active_cell_idx - 1)]
+                        }
+                    }
+
+                }
+
+                if (this.most_intens.is_active()) {
+                    ret += ' first ' + this.most_intens.request() + ' most intense '
+                }
+
+                return ret
+
+            }
+
+            rad_type_sel(i) {
+                console.log(i)
+            }
+
+
+            dom() {
+
+                var out = document.createElement("div") //this.main_div;
+                out.id = 'div_decay_radiations'
+                out.style.float = 'left';
+                out.style.height = '150px'
+                out.style.width = '400px'
+                out.style.marginBottom = '5px'
+                //out.style.border = '1px solid black'
+
+                // checks with rad type
+                var divcx = super.dom_chunk("div");
+                divcx.id = 'dec_rad_type_a'
+                divcx.style.height = '30px'
+                // checks with delayed 
+                var divcx_b = super.dom_chunk("div");
+                divcx_b.id = 'dec_rad_type_b'
+                divcx_b.style.height = '30px'
+
+                // label for delayed
+                var lbl_del = document.createElement("div");
+                lbl_del.id = 'lbl_del'
+                lbl_del.innerHTML = "delayed";
+                lbl_del.style.float = 'left';
+                lbl_del.style.clear = 'both';
+                lbl_del.style.marginRight = '6px';
+                lbl_del.style.marginTop = '6px';
+                lbl_del.style.marginLeft = '30px';
+
+                // checks
+                var cxs = this.checks;
+
+                // checks with particles
+                var lbls = this.particle_lbls //'any,&alpha;,&beta;-,&beta;+,&gamma;,e,n, &nbsp; p, &alpha;'.split(',')
+                for (var i = 0; i < lbls.length; i++) {
+                    cxs[i].type = "radio";
+                    cxs[i].name = "drtype";
+                    cxs[i].style.width = "10 px";
+                    cxs[i].style.marginLeft = "3px";
+                    cxs[i].style.marginRight = "14px";
+                    cxs[i].style.marginTop = '10px';
+                    cxs[i].style.float = 'left';
+                    cxs[i].onclick = (function(idx, drv) {
+                        function show_hide(checked, div) {
+                            div.style.display = checked ? 'block' : 'none'
+                        }
+                        return function() {
+                            drv.idx_particle_sel = idx
+                            show_hide(drv.alpha.checked, drv.hindrance.view.main_div)
+
+                            show_hide(drv.betam.checked || drv.betap.checked, drv.max_energy.view.main_div)
+                            show_hide(drv.betam.checked || drv.betap.checked, drv.logft.view.main_div)
+
+                            var hide = false;
+                            if (drv.gamma.checked) {
+                                drv.process_gm.display(true)
+                                drv.process_gm.pre_set_active(0)
+                                drv.shell_x.pre_set_active(0)
+
+                                drv.process_el.display(false)
+                                drv.shell_ce.display(false)
+                                drv.shell_au.display(false)
+                                drv.main_div.style.height = '180px'
+                            } else if (drv.el.checked) {
+                                drv.process_gm.display(false)
+                                drv.process_el.display(true)
+                                drv.process_el.pre_set_active(0)
+                                drv.shell_ce.pre_set_active(0)
+                                drv.shell_au.pre_set_active(0)
+                                drv.shell_x.display(false)
+                                drv.main_div.style.height = '180px'
+                            } else if (drv.alpha.checked) {
+                                drv.main_div.style.height = '180px'
+                                hide = true;
+                            } else if (drv.betam.checked || drv.betap.checked) {
+                                drv.main_div.style.height = '215px'
+                                hide = true;
+                            } else {
+                                drv.main_div.style.height = '150px'
+                                hide = true;
+                            }
+
+                            if (hide) {
+                                drv.process_gm.display(false)
+                                drv.process_el.display(false)
+                                drv.shell_x.display(false)
+                                drv.shell_ce.display(false)
+                                drv.shell_au.display(false)
+                            }
+                        }
+                    })(i, this)
+
+                    var dm = document.createElement("div");
+                    dm.innerHTML = lbls[i]
+                    dm.style.float = 'left';
+                    dm.style.marginTop = '6px';
+                    if (i <= 5) {
+                        divcx.appendChild(dm)
+                        divcx.appendChild(cxs[i]);
+
+                    } else {
+                        divcx_b.appendChild(dm)
+                        divcx_b.appendChild(cxs[i]);
+                    }
+                }
+
+                cxs[0].checked = true
+                out.appendChild(divcx)
+                out.appendChild(lbl_del)
+                out.appendChild(divcx_b)
+
+                var en = this.energy.dom()
+                var int = this.intensity.dom()
+                en.style.float = 'left'
+                int.style.float = 'left'
+
+                out.appendChild(en);
+
+                out.appendChild(int);
+                var mi = this.most_intens.dom();
+                this.most_intens.main_div.style.float = 'left'
+                this.most_intens.main_div.style.width = '350px'
+                this.most_intens.main_div.style.fontSize = '12px'
+                this.most_intens.lower.input.value = '2'
+                this.most_intens.lower.input.style.marginTop = '5px'
+                this.most_intens.lower.input.style.textAlign = 'center'
+                this.most_intens.div_tit.style.marginTop = '5px'
+                this.most_intens.check.style.marginTop = '5px'
+                out.appendChild(this.most_intens.main_div);
+
+                var dm2 = document.createElement("div");
+                dm2.innerHTML = 'most intense lines';
+                dm2.className = 'dr-lbl-field-ln'
+                dm2.style.marginTop = '5px';
+                dm2.style.float = 'left';
+                mi.appendChild(dm2);
+
+                // set up the processes
+                for (var i = 0; i < this.processes.length; i++) {
+                    this.processes[i].display(false)
+                    out.appendChild(this.processes[i].label)
+                    out.appendChild(this.processes[i].div)
+                    out.appendChild(this.processes[i].button)
+                }
+
+                // gamma process chosen: if X-ray display the shells
+                this.process_gm.postCellClick = (function(dr) {
+                    return function(idx) {
+                        dr.shell_x.display(idx != 3 ? false : true)
+                        dr.shell_ce.display(false)
+                    }
+                })(this)
+
+                // e process chosen: display the right shells
+                this.process_el.postCellClick = (function(dr) {
+                    return function(idx) {
+                        dr.shell_x.display(false)
+                        if (idx == 0) return
+                        dr.shell_ce.display(idx == 1 ? false : true)
+                        dr.shell_au.display(idx == 2 ? false : true)
+                    }
+                })(this)
+
+                // the shells
+                for (var i = 0; i < this.shells.length; i++) {
+                    this.shells[i].display(false)
+                    this.shells[i].label.style.marginLeft = '12px'
+                    out.appendChild(this.shells[i].label)
+                    out.appendChild(this.shells[i].div)
+                    out.appendChild(this.shells[i].button)
+                }
+
+                var maxen = this.max_energy.dom()
+                var lgft = this.logft.dom()
+                var hind = this.hindrance.dom()
+                lgft.style.width = "300px"
+                maxen.style.marginTop = "5px"
+                maxen.style.width = "350px"
+                hind.style.width = "300px"
+                lgft.style.float = 'left'
+                this.logft.view.label.className = 'dr-lbl-field'
+                maxen.style.float = 'left'
+                hind.style.float = 'left'
+                out.appendChild(maxen);
+                out.appendChild(lgft);
+                out.appendChild(hind);
+
+                this.any.click()
+                this.main_div = out
+
+                return out;
+
+            }
+
+        }
+
+        var radtype = new DecradView('nuc', 'decay_rad')
+        var vpRad = new Viewparam(new Dbcol(""), radtype)
+        vpRad.dom(document.getElementById('decay_radiations'))
+    </script>
+    <div class="main-lbl" style="clear:both;float:left;background-color:var(--divisor-color)">
+        Order
+        by: <span id='orderby_lbl'></span></div>
+    <div id="orderby" style="clear: both;float:left; width: 822px;"></div>
+    <script>
+        function request_orderby() {
+            var ret = ''
+            for (var i = 0; i < lbls.length; i++) {
+                if (chk_ob[i].checked) {
+                    if (ret.length == 0) {
+                        ret = 'ORDER=' + i
+                    } else {
+                        ret += sep + +i
+                    }
+                }
+            }
+            return ret
+        }
+
+        function describe_orderby() {
+            var ret = ''
+            for (var i = 0; i < lbls.length; i++) {
+                if (chk_ob[i].checked) {
+                    if (ret.length == 0) {
+                        ret = ' <b>order by</b> ' + lbls[i]
+                    } else {
+                        ret += ',' + lbls[i]
+                    }
+                }
+            }
+            return ret
+        }
+
+        function chk_orderby() {
+            var html = ''
+            for (var i = 0; i < lbls.length; i++) {
+                if (chk_ob[i].checked) html += '&nbsp;' + lbls[i]
+            }
+            document.getElementById('orderby_lbl').innerHTML = html
+        }
+
+        function orderby_set(list) {
+            for (var i = 0; i < chk_ob.length; i++) {
+                chk_ob[i].checked = list.includes("" + i)
+            }
+        }
+
+        var order = document.getElementById('orderby'),
+            lbls = ["Z", "A", "N", " Q(&beta;) ", " Q(&alpha;) ", " Q(EC) ", " Q(&beta; n) ", "Sn", "Sp", "R", " AM ",
+                "E", "T<sub>1/2</sub>", "BR", "&mu;", "Q", "E<small>rad</small>", "I<small>rad</small>", "Log ft", "HF",
+                "E&gamma;", "&alpha;", "B(E)", "B(M)", "&delta;"
+            ],
+            dv = null;
+        chk = null, lb = null;
+        chk_ob = []
+
+        for (var i = 0; i < lbls.length; i++) {
+            dv = document.createElement('div')
+            dv.style.float = 'left'
+
+            chk = document.createElement('input')
+            chk_ob.push(chk)
+            chk.type = 'checkbox'
+            chk.style.marginRight = "0px";
+            chk.onclick = chk_orderby
+            lb = document.createElement('div')
+            lb.style.marginRight = '3px'
+            lb.style.width = '38px'
+            lb.innerHTML = lbls[i]
+            lb.style.float = 'left'
+            lb.style.paddingLeft = '1px'
+            lb.style.paddingRight = '0px'
+            lb.style.color = '#000'
+            if (i < 2) {
+                chk.checked = true
+            }
+            if (i > 0 && i % 13 == 0) {
+                dv.style.clear = 'left'
+            }
+            if (i < 11) {
+                lb.style.backgroundColor = 'var(--nuc-light-color)'
+            } else if (i < 16) {
+                lb.style.backgroundColor = 'var(--lev-light-color)'
+            } else if (i < 20) {
+                lb.style.backgroundColor = 'var(--dr-light-color)'
+            } else {
+                lb.style.backgroundColor = 'var(--gam-light-color)'
+            }
+            lb.style.fontSize = '9pt'
+
+            dv.appendChild(chk)
+            dv.style.marginBottom = '3px'
+
+            order.appendChild(dv)
+            order.appendChild(lb)
+        }
+
+        chk_orderby()
+    </script>
+
+
+    <div class="main-lbl" style="clear:left;float:left;background-color:var(--divisor-color);margin-top: 6px;width:166px">
+        Plotting <span id='orderby_lbl'></span>
+    </div>
+    <div class="main-lbl" style="cursor: pointer; float:left;background-color:var(--divisor-color);margin-top: 6px;width:60px;" onclick="x_plot.button.click()">X Axis
+    </div>
+    <script>
+        /* SERVLET_PLOT = "lcplot"    "../"+SERVLET_PLOT+"?QRY=" + s   QRY: "SYMBOL=u@@@ORDER=0@;@1@@@" */
+        var lbls_xy = ['. . .', "Z", "A", "N", " Q(\u03B2) ", " Q(\u03B1) ", " Q(EC) ", " Q(\u03B2- n) ", "Sn", "Sp", "R", " AM ",
+                "E", "T<sub>1/2</sub>", "BR", "&mu;", "Q", "E<small>rad</small>", "I<small>rad</small>", "Log ft", "HF",
+                "E\u03B3", "\u03B1", "B(E)", "B(M)", "\u03B4"
+            ],
+            x_plot = new OptionPick("xplot", lbls_xy, 5, 70, "xplot");
+        x_plot.button.style.marginTop = '6px'
+        x_plot.button.style.marginLeft = '2px'
+        x_plot.button.style.height = '37px'
+        x_plot.button.style.fontSize = '13pt'
+        x_plot.button.style.fontWeight = 'normal'
+        x_plot.button.style.border = '2px solid lightgray'
+        x_plot.button.style.borderRadius = '3px'
+        x_plot.button.style.backgroundColor = 'white'
+        x_plot.button.style.textAlign = 'center';
+        x_plot.button.style.verticalAlign = 'middle';
+
+        x_plot.postCellClick = function() {
+            xy_button_color(x_plot)
+        }
+        x_plot.button.postClick = function() {
+            xy_plot_color(x_plot)
+        }
+
+        function xy_button_color(xy_plot) {
+            if (xy_plot.active_cell_idx == 0) {
+                xy_plot.button.style.border = '2px solid lightgrey'
+            } else {
+                xy_plot.button.style.border = '2px solid red'
+            }
+        }
+
+        function xy_plot_color(xy_plot) {
+
+            for (var i = 0; i < xy_plot.cells.length; i++) {
+
+                if (i < 11) {
+                    xy_plot.cells[i].div.style.backgroundColor = 'var(--nuc-light-color)'
+                } else if (i < 16) {
+                    xy_plot.cells[i].div.style.backgroundColor = 'var(--lev-light-color)'
+                } else if (i < 20) {
+                    xy_plot.cells[i].div.style.backgroundColor = 'var(--dr-light-color)'
+                } else {
+                    xy_plot.cells[i].div.style.backgroundColor = 'var(--gam-light-color)'
+                }
+
+                if (xy_plot.cells[i].active) {
+                    xy_plot.cells[i].div.style.backgroundColor = 'green'
+                }
+
+                xy_plot.cells[i].div.onmouseover = (function(cell) {
+                    return function(event) {
+                        cell.div.style.fontWeight = 'bold';
+                    }
+
+                })(xy_plot.cells[i])
+
+                //(function (cell) { return function (event) { cell.style.fontWeight = 'bold' } })(xy_plot.cells[i])
+                xy_plot.cells[i].div.onmouseout = (function(cell) {
+                    return function(event) {
+                        cell.div.style.fontWeight = 'normal';
+                    }
+
+                })(xy_plot.cells[i])
+            }
+
+        }
+
+        function xy_plot_set(x_idx, y_idx) {
+            x_plot.pre_set_active(parseInt(x_idx))
+            y_plot.pre_set_active(parseInt(y_idx))
+            x_plot.postCellClick()
+            y_plot.postCellClick()
+        }
+
+        function xy_plot_active() {
+            return (x_plot.active_cell_idx * y_plot.active_cell_idx) > 0
+        }
+
+        function xy_plot_request() {
+            var x = x_plot.active_cell_idx,
+                y = y_plot.active_cell_idx;
+
+            if (x * y != 0) {
+                return "AXES=" + (x - 1) + sep + (y - 1)
+            }
+
+            return ""
+        }
+
+        function xy_plot_describe() {
+            var x = lbls_xy[x_plot.active_cell_idx],
+                y = lbls_xy[y_plot.active_cell_idx];
+
+            if (x * y != 0)
+                return " Plot <b>X</b> " + x + ' <b>Y</b>  ' + y
+
+            return ""
+        }
+
+        function xy_plot_call(req) {
+            var SERVLET_PLOT = "lcplot"
+            // console.log("../" + SERVLET_PLOT + "?JSON=Y&QRY=" + req)
+            serverpage = ("../" + SERVLET_PLOT + "?JSON=Y&QRY=" + req).replace('AXES', 'ORDER')
+
+            // serverpage = "../lcplot?JSON=Y&QRY=SYMBOL=u@@@ORDER=1@;@2"
+            ajaxload_json(serverpage)
+        }
+
+        /* parses into json a string from the server*/
+        function looseJsonParse(obj) {
+
+            return Function('"use strict";return (' + obj + ')')();
+        }
+
+
+
+        function ajaxload_json(serverpage) {
+            var xmlhttp = new XMLHttpRequest();
+
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    if (xmlhttp.responseText.length == 0) return;
+
+                    try {
+                        plotter(looseJsonParse(xmlhttp.responseText));
+                        return
+                    } catch (error) {
+                        console.log("error ajaxload_json " + error + " response: " + xmlhttp.responseText);
+                        return;
+                    }
+                } else if (xmlhttp.readyState == 4 && xmlhttp.status != 300) {
+                    console_message_error("HTTP Status :" + xmlhttp.status + "<br> ready state :" + xmlhttp.readyState, serverpage);
+                }
+            };
+            xmlhttp.open("GET", serverpage, true);
+            xmlhttp.send();
+        }
+
+
+        document.body.appendChild((x_plot.button));
+        document.body.appendChild((x_plot.div));
+    </script>
+    <div class="main-lbl" style="cursor: pointer;   float:left;background-color:var(--divisor-color);margin-top: 6px;width:60px;" onclick="y_plot.button.click()">Y Axis
+
+    </div>
+
+    <script>
+        var y_plot = new OptionPick("yplot", lbls_xy, 5, 70, "yplot");
+        y_plot.button.style.marginTop = '6px'
+        y_plot.button.style.marginLeft = '2px'
+
+        y_plot.button.style.height = '37px'
+        y_plot.button.style.fontSize = '13pt'
+        y_plot.button.style.fontWeight = 'normal'
+        y_plot.button.style.border = '2px solid lightgray'
+        y_plot.button.style.borderRadius = '3px'
+
+        y_plot.button.style.backgroundColor = 'white'
+        y_plot.button.style.textAlign = 'center';
+        y_plot.button.style.verticalAlign = 'middle';
+
+        y_plot.button.postClick = function() {
+            xy_plot_color(y_plot)
+        }
+        y_plot.postCellClick = function() {
+            xy_button_color(y_plot)
+        }
+
+        document.body.appendChild((y_plot.button));
+        document.body.appendChild((y_plot.div));
+    </script>
+
+    <style>
+        .logo {
+            width: 200px;
+            min-height: 160px;
+
+            font-family: "Verdana";
+            font-size: 10pt;
+            padding: 5px;
+
+            position: absolute;
+            top: 80px;
+            left: 850px;
+            overflow-wrap: break-word;
+        }
+
+        .flag {
+
+            background-image: url('../images/iaea_nds_logo_flag.jpg');
+
+            color: white;
+            font-weight: bold;
+            font-family: "Verdana";
+            font-size: 11pt;
+            padding: 5px;
+
+            width: 190px;
+            height: 60px;
+
+            position: absolute;
+            top: 0px;
+            left: 850px;
+            overflow-wrap: break-word;
+            text-align: center;
+
+            cursor: pointer;
+        }
+
+        .example_item {
+            font-weight: normal;
+            cursor: pointer;
+            background-color: lightgrey;
+            padding-left: 4px;
+            border-bottom: 1px solid white;
+        }
+    </style>
+
+
+
+    <div class="flag" onclick="window.open('https://nds.iaea.org')">
+        IAEA <br>Nuclear Data Section
+    </div>
+    <div class="logo" style="  padding:5px;text-align: center;background-image: url('iaea3.gif');background-repeat: no-repeat;line-height:2ch ;">
+        <b>Relational ENSDF</b>
+        <br>
+        <span id="ensdf_date"></span> snapshot <br>
+        of the ENSDF database
+        <br>maintained by the
+        <br><b>International Nuclear
+            <br>Structure
+            and Decay <br>Data Network</b>
+        under the<br> auspices of the IAEA
+        <script>
+            document.getElementById('ensdf_date').innerHTML = iaea.nds.comm.current_ensdf_snapshot_long;
+        </script>
+    </div>
+
+    <div id="help_div" class="logo" style="display:none;background-color:white;z-index: 150;padding-bottom:15px; ">
+
+    </div>
+
+
+    <div id="example_div" style="position: absolute; top: 240px; left: 850px;  background-color:white; ">
+        <b>Examples</b>
+    </div>
+    <div id="example_more" style="cursor:pointer;width:200px;background-color: #eee;position:absolute; top: 360px; left: 850px;  padding:4px;">
+        <a href="QUERY_ENSDF_EXAMPLES.pdf">More examples ...</a>
+    </div>
+    <div id="example_desc" style="display:none;width:200px;background-color: #eee;position:absolute;padding:4px;z-index: 100;">
+    </div>
+
+    <div id="previous_div" style="position: absolute; top: 420px; left: 850px;  background-color:white; ">
+        <b>Previous queries</b>
+        <button class=buttons style=" width: 20px; height: 20px;border: none;" id=clear_histo onclick="clear_histo();" title="reset histo">
+            <span style="cursor:pointer;font-size:15px;"><i style="cursor:pointer;" class=" far fa-trash-alt"></i></span></button>
+    </div>
+
+
+
+    <script>
+        function clear_histo() {
+            var hi = document.getElementsByClassName('histo_items');
+            while (hi.length > 0) {
+                hi[0].remove()
+            }
+
+        }
+
+        var he = "<br><br> <b>Click</b> and check the filled fields. <br>Then click <b>Plot</b>.",
+
+            req = ["DBCOL=LEVELS.ENERGY_NUM@;@MIN=0@;@MAX=0@@@AXES=2@;@13@@@",
+                "SYMBOL=Pb@@@AXES=2@;@8@@@",
+                "Z_MOD2=0@@@N_MOD2=0@@@JP=2@;@2@;@0@;@0@@@END_LEVEL_JP=2@;@1@;@0@@@MULTIPOL=E2@;@0@;@2@@@DBCOL=GAMMAS.MIXING_NUM@;@MIN=0@;@MAX=100@@@AXES=2@;@25@@@",
+                "ZRANGE=1@;@100@@@GSMETA=Y@@@DECAY=1@@@@@@DEC_RAD=type_a@;@N@@@AXES=2@;@13@@@"
+            ],
+
+            title = ["<b> 1 </b> &nbsp;&nbsp;Ground States T<sub>1/2</sub>",
+                "<b> 2 </b> &nbsp;&nbsp;Sn for Led",
+                "<b> 3 </b> &nbsp;&nbsp;Mixing ratio vs A",
+                "<b> 4 </b> &nbsp;&nbsp;Delayed-n radiation"
+            ],
+
+            desc = ["Ground States Half-life",
+                "Sn for Lead isotopes ",
+                "A vs Mixing ratio for E2-mixed &gamma; from even-even nuclides, connecting two Jp 2+ levels ",
+                "A vs T1/2 for 1 &le; Z &le; 100 , decaying &beta;- emitting delayed-n radiation"
+            ],
+            div, maindiv = document.getElementById('example_div');
+
+        for (var i = 0; i < req.length; i++) {
+            div = document.createElement('div');
+            div.className = 'example_item'
+            div.id = 'example_item_id_' + i
+            div.innerHTML = title[i]
+            div.style.width = '200px'
+
+            maindiv.appendChild(div)
+
+            div.onmouseenter = (function(idx) {
+                var div = document.getElementById('example_item_id_' + idx),
+                    offsets = div.getBoundingClientRect(),
+                    top = offsets.top,
+                    left = offsets.left;
+
+                return function(event) {
+                    var desc_div = document.getElementById('example_desc')
+                    desc_div.innerHTML = desc[idx] + he
+                    desc_div.style.display = 'block'
+                    desc_div.style.top = (top + 25) + 'px'
+                    desc_div.style.left = left + 'px'
+                }
+            })(i)
+
+            div.onmouseout = (function() {
+                return function(event) {
+                    document.getElementById('example_desc').style.display = 'none'
+                }
+
+            })()
+
+            div.onclick = (function(idx) {
+                return function(event) {
+                    reverse(req[idx])
+                }
+            })(i)
+
+        }
+
+
+        function add_previous(query) {
+
+            var div = document.getElementById('previous_div'),
+                child = document.createElement('div'),
+                d = new Date(),
+                date = d.getDate() + "-" + (d.getMonth() + 1) + "-" + d.getFullYear() + " " +
+                d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+            child.style.borderBottom = '1px solid grey'
+            child.style.width = '200px'
+            child.style.cursor = 'pointer'
+            child.className = 'histo_items'
+
+            child.innerHTML = "<b>" + div.childElementCount + "</b> &nbsp; " + date;
+
+            child.onclick = (function(qry) {
+                return function() {
+                    reverse(qry)
+                }
+            })(query)
+            div.appendChild(child)
+        }
+
+        //ss= "DBCOL=LEVELS.ENERGY_NUM@;@MIN=0@;@MAX=0@@@ZRANGE=1@;@100@@@GSMETA=Y@@@DECAY=6@@@@@@DEC_RAD=type_a@;@N@@@ORDER=1@;@12@@@";
+    </script>
+
+
+
+    <script>
+        var tc;
+
+        function displaytabs(query) {
+            // set setShowLivechart=true inside the GWT code if the opener is Livechart
+            try {
+                if (window.opener && !window.opener.closed && window.opener.islivechart) {
+                    // this is declared in QueryfForm.java
+                    setShowLivechartStub();
+                }
+            } catch (err) {}
+
+            tc.displaytabs(query);
+
+        }
+
+        /* called by GWT, tab must match one of the comm.js values*/
+        function selectDataTab(tab) {
+            tc.selectTab(tab)
+        }
+
+
+        // Stores the handle of Livechart window.
+        var liveChart;
+        // Stores the filtered nuclides waiting to livechart to be loaded
+        var nucidsFilter;
+        // this is to tell livechart to open in "small" mode
+        var opensmall = true;
+        // set setShowLivechart=true inside the GWT code if the opener is Livechart
+
+        var queryreset = false;
+
+        function beforeShow() {
+            //document.getElementById("tc1").style.display = 'block';
+        }
+
+        function cleartabs() {
+            // get livechart if already opened
+            queryreset = true;
+            var lc = getLiveChart(false);
+            nucidsFilter = "";
+            if (lc) {
+                lc.filterNucs(nucidsFilter);
+            }
+        }
+
+        // create true: creates livechart if not already existing
+        function getLiveChart(create) {
+            var opt = "width=1200, height=1000,toolbar=no,location=no,directories=no,status=no,alwaysRaised,menubar=no,scrollbars=1,resizable=1";
+            try {
+                if (liveChart) {
+                    if (!liveChart.closed) {
+                        return liveChart;
+                    }
+                }
+                // Livechart is the parent			
+                if (window.opener && !window.opener.closed && window.opener.islivechart) {
+                    return window.opener;
+                } else {
+
+                    if (create) {
+                        //otherwise open Livechart as child
+
+                        //opt = "width=800, height=600,toolbar=yes,location=no,directories=yes,status=yes,alwaysRaised,menubar=yes,scrollbars=1,resizable=1";
+
+                        liveChart = window.open("/" + window.location.pathname.split("/")[1] + "/vcharthtml/VChartHTML.html", "lchart", opt);
+
+                        return liveChart;
+                    }
+                }
+
+            } catch (err) {
+
+                if (queryreset) {
+                    queryreset = false;
+                    return;
+                }
+
+                try {
+                    liveChart = window.open("/" + window.location.pathname.split("/")[1] + "/vcharthtml/VChartHTML.html", "lchart", opt);
+                } catch (err) {
+                    console.log('err', err)
+                }
+
+                return liveChart;
+
+
+            }
+            return null;
+        }
+
+        // enable-disable the livechart popup with the selected nuclides
+        function activateNucid() {
+            return true;
+        }
+
+
+
+        function lcFilteredNucidsStub(nucids) {
+
+            if (!nucids) {
+                alert('First perform a search or a plot')
+                return;
+            }
+
+            // do not show if only few nuclides
+
+            try {
+                if ((nucids == null || nucids.length < 14) && (window.opener && !window.opener.closed && !window.opener.islivechart)) {
+
+                    if (getLiveChart(false)) {
+                        // in some browser you still get liveChart.closed = false
+                        // then put it null
+                        liveChart = null;
+                    }
+
+                    return;
+                }
+            } catch (err) {
+                console.log(err.message);
+
+            }
+            // if one tryes to put if-then condition, the pop-up blocker gets fired
+            //console.log("D");
+            getLiveChart(true);
+            if (nucids) {
+                // if livechart has not finished loading this will throw an error.
+                // Store the filtered nuclides if livechart has not finished loading,
+                // livechart itself will then check if there is anything in this variable
+                nucidsFilter = nucids;
+                //delay(2000).then(() => console.log('ran after 1 second1 passed'));
+                delay(500).then(() => getLiveChart(false).filterNucs(nucids));
+                //getLiveChart(false).filterNucs(nucids);
+            }
+        }
+
+        function delay(time) {
+            return new Promise(resolve => setTimeout(resolve, time));
+        }
+
+        function getDisplayForObj(tag) {
+            if (document.all) {
+                disp = "";
+            } else {
+                switch (tag) {
+                    case "TABLE":
+                        var disp = "table";
+                        break;
+                    case "TR":
+                        var disp = "table-row";
+                        break;
+                    case "A":
+                        var disp = "inline";
+                        break;
+                    default:
+                        var disp = "block";
+                        break;
+                }
+            }
+            return disp
+        }
+
+        function switchLay(n) {
+
+            var stato = document.getElementById(n).style.display;
+            var displ = "table-row";
+
+            if (stato == "none") {
+                document.getElementById(n).style.display = getDisplayForObj("TR")
+
+            } else {
+                document.getElementById(n).style.display = "none";
+            }
+        }
+
+        function showPlot(nucid) {
+
+            var url = iaea.nds.comm.jspshowensdf + "?nucid=" + nucid;
+            var wdw = window.open(url, "_nucid");
+        }
+
+        // call to 	function in vchart.js from the decay data table
+        function showdecay(nucid) {
+            iaea.nds.comm.openlivechartdecay(nucid);
+        }
+
+        function getJspPath() {
+            if (window.location.pathname.indexOf('vchart') == -1) {
+                return "";
+            }
+            return "../NdsEnsdf/";
+
+        }
+
+        function showEnsdfDecayData(nucid, level, dectype) {
+            window.open(iaea.nds.comm.jspshowensdfdata + 'NUCID=' + nucid + '&LEVEL=' + level + '&DECTYPE=' + dectype, "_ensdfdecay");
+        }
+
+        // called by the decay radiation tab
+        // the same as in vchart.js
+        function RedrawPlot(imageId, servletQuery) {
+
+            //document.getElementById('divcontainer').style.width='3000px';
+            if (document.images[imageId].src.indexOf("pleasewait") == -1) {
+                document.images[imageId].src = iaea.nds.comm.getContainer() + "/img/pleasewait.gif";
+            }
+            // add unique id behind the url to avoid local caching of browsers
+            tmp = new Date();
+            tmp = "&uniqueid=" + tmp.getTime();
+            //create an IMG in memory, and set
+            //it's onload event to replace our waiting pic
+            var newIMG = new Image();
+            newIMG.onload = function() {
+                document.images[imageId].onload = null;
+                document.images[imageId].src = newIMG.src;
+                //resetWidth(nucPlotImage.width); 
+                //alert(newIMG.width);
+            }
+            //begin downloading the plot image src
+            //when done, it's onload event will trigger
+            newIMG.src = servletQuery + tmp;
+            return;
+        }
+
+        /*this is the same as in vchart.js*/
+        function switchLayByClass(n) {
+
+            var x = document.getElementsByClassName(n),
+                i, stato;
+            for (i = 0; i < x.length; i++) {
+
+                stato = x[i].style.display;
+                if (stato == "none") {
+                    x[i].style.display = getDisplayForObj("TR");
+                } else {
+                    x[i].style.display = "none";
+                }
+
+            }
+
+        }
+
+        /* call to 	function in vchart.js from the decay data table*/
+        function popDecayPlot(dsseqno) {
+            iaea.nds.vchart.popDecayPlot(dsseqno);
+        }
+    </script>
+
+    <div id="rslt" style="clear:left"></div>
+
+    <script>
+        function plotter(xy_json) {
+
+            var xtitle = x_plot.get_active(),
+                ytitle = y_plot.get_active()
+
+            /*var lbls_xy = ['. . .', "Z", "A", "N", " Q(&beta;) ", " Q(&alpha;) ", " Q(EC) ", " Q(&beta;- n) ", "Sn", "Sp", "R", " AM ",
+            "E", "T<font size=-2>1/2</font>", "BR", "&mu;", "Q", "E<small>rad</small>", "I<small>rad</small>", "Log ft", "HF",
+            "E&gamma;", "&alpha;", "B(E)", "B(M)", "&delta;"],
+            x_plot*/
+
+            var layout = {
+                autosize: true,
+                xaxis: {
+                    title: xtitle
+                },
+                yaxis: {
+                    title: ytitle
+                }
+            }
+
+            traces = []
+
+            var newtrace = {
+                x: xy_json.x,
+                y: xy_json.y,
+                mode: 'markers',
+                type: 'scatter'
+            }
+
+            traces.push(newtrace)
+
+            var config = {
+                    responsive: true
+                },
+                plot_div = document.getElementById('plot_div')
+
+            document.getElementById('plot_container_div').style.display = 'block'
+            Plotly.newPlot(plot_div, traces, layout, config);
+
+        }
+
+        function logaxis(axis) {
+            var plt = document.getElementById('plot_div'),
+                chk = document.getElementById(axis + '_axis')
+
+            if (!plt) return;
+            if (axis == 'y') {
+                var type = plt.layout.yaxis.type == 'log' ? 'linear' : 'log';
+                Plotly.relayout(plt, {
+                    'yaxis.type': type
+                });
+            } else if (axis == 'x') {
+                var type = plt.layout.xaxis.type == 'log' ? 'linear' : 'log';
+                Plotly.relayout(plt, {
+                    'xaxis.type': type
+                });
+            }
+
+            return type;
+        }
+
+        function plot_height() {
+            var plt = document.getElementById('plot_div'),
+                val = document.getElementById('plot_height').value
+            Plotly.relayout(plt, {
+                'height': val
+            });
+
+        }
+
+        function scatter(axis) {
+            var plt = document.getElementById('plot_div'),
+                chk = document.getElementById(axis + 'scatter')
+
+            if (!plt) return;
+            plt.data[0].type = 'scatter'
+            plt.data[0].mode = plt.data[0].mode == 'markers' ? 'lines' : 'markers';
+            Plotly.redraw(plt);
+        }
+
+        function show_plot_data() {
+
+            var data = document.getElementById('plot_div').data[0],
+                tbl = document.getElementById('table_div'),
+                html = '<table><tr><th style="width:60px">X</th><th style="width:60px">Y</th></tr>';
+
+            tbl.style.display = tbl.style.display == 'none' ? 'block' : 'none'
+
+            for (var i = 0; i < data.x.length; i++) {
+                html += "<tr><td>" + data.x[i] + "</td><td>" + data.y[i] + "</td></tr>";
+            }
+            html += "</table>"
+            document.getElementById('table_div').innerHTML = html
+
+        }
+    </script>
+
+    <div id="plot_container_div" style="display:none;width:100%;clear:both;margin-bottom:30px;margin-top:30px">
+        <input type="checkbox" id="x_axis" style="margin-left:20px;float:left" onclick="logaxis('x')">
+        <div style="float:left;margin-right: 20px;;margin-left: 6px;font-weight: bold;"> Log X </div>
+
+        <input type="checkbox" id="x_axis" style="float:left" onclick="logaxis('y')">
+        <div style="float:left;;margin-right: 20px;;margin-left: 6px;font-weight: bold"> Log Y </div>
+
+        <input type="checkbox" id="scatter" style="float:left" onclick="scatter()">
+        <div style="float:left;;margin-right: 20px;margin-left: 6px;font-weight: bold"> scatter </div>
+
+        <input type="number" id="plot_height" style="float:left;width:60px" onchange="plot_height()">
+        <div style="float:left;;margin-right: 20px;margin-left: 6px;font-weight: bold"> height </div>
+
+        <input type="checkbox" style="float:left" onclick="show_plot_data()">
+        <div style="float:left;;margin-right: 20px;margin-left: 6px;font-weight: bold"> show data </div>
+
+        <div style="float:left; width:60px;height:28px;background-color: lightgray;font-weight: bold; padding:3px;padding-left:6px" onclick="document.getElementById('plot_container_div').style.display = 'none'">Close</div>
+
+        <div id="plot_div" style="clear:left;margin-top: 50px;"></div>
+
+        <div id="table_div" style="display:none;margin-left:100px"></div>
+    </div>
+    <div style="margin-top: 20px;" id="buttons">
+
+
+        <!-- search-->
+        <div style="float:left;margin-left: 45px;margin-right: 15px;" title="search">
+            <button class=buttons id=search onclick="request_displaytabs();"> <span style="color:green;font-size:30px;">
+                    <i class="fab fa-searchengin"></i></span></button>
+        </div>
+
+        <!-- plot-->
+        <div id=div_plot_btn style="float:left;margin-right: 15px;" title="plot">
+            <button class=buttons onclick="request_plot()"> <span style="color:green;font-size:30px;"> <i class="fas fa-chart-line"></i></span></button>
+        </div>
+
+
+        <!-- chart-->
+        <div id=div_chart_btn style="cursor:pointer;border-radius: 4px;border: 2px solid #798087;float:left;margin-right: 15px;padding:5px" title="show result on Livechart">
+            <img id='img_lc' style="cursor:pointer;" src=" ../images/lc_white.png" width="50" height="37" onclick="lcFilteredNucidsStub(FILTERED_NUCIDS)">
+
+        </div>
+
+        <!-- clear-->
+        <div style="cursor:pointer;float:left;margin-left: 45px;margin-right: 15px;">
+            <button class=buttons id=clear onclick="reset();" title="reset form"> <span style="cursor:pointer;font-size:30px;"><i style="cursor:pointer;" class=" far fa-trash-alt"></i></span></button>
+        </div>
+
+        <!-- info-->
+        <div style="float:left;margin-right: 15px;clear:right" title="how to">
+            <button class=buttons id=help> <a href="help.html" target="_blank"><span style="font-size:30px;"><i class="fas fa-info"></i></span></a></button>
+        </div>
+
+    </div>
+
+    <div id="query_desc" style="clear:both;height:20px"></div>
+
+
+
+
+    <script>
+        tc = new Tabdisplayer_queryform();
+
+        if (parent.mylivechart) {
+            var elem = document.getElementsByClassName('main-lbl')
+            for (let i = 0; i < elem.length; i++) {
+                elem[i].style.display = 'none';
+
+            }
+
+            var elem = document.getElementsByClassName('logo')
+            for (let i = 0; i < elem.length; i++) {
+                elem[i].style.display = 'none';
+
+            }
+
+            var elem = document.getElementsByClassName('flag')
+            for (let i = 0; i < elem.length; i++) {
+                elem[i].style.display = 'none';
+
+            }
+            document.getElementById('orderby').style.display = 'none'
+            document.getElementById('more_qvals').style.display = 'none'
+            document.getElementById('chk_nuc_hidden').style.display = 'none'
+            document.getElementById('chk_lev_hidden').style.display = 'none'
+            document.getElementById('more_field_lev').style.display = 'none'
+            //document.getElementById('buttons').style.marginTop = '-200px'
+            document.getElementById('div_plot_btn').style.display = 'none'
+            document.getElementById('div_chart_btn').style.display = 'none'
+            document.getElementById('help').style.display = 'none'
+
+            document.getElementById('query_desc').style.display = 'none'
+            document.getElementById('nav-wrap').style.display = 'none'
+            document.getElementById('xplot_option_button').style.display = 'none'
+            document.getElementById('yplot_option_button').style.display = 'none'
+
+            document.getElementById('previous_div').style.display = 'none'
+            document.getElementById('example_more').style.display = 'none'
+            document.getElementById('example_div').style.display = 'none'
+
+            document.getElementById('rslt').style.display = 'none'
+
+
+            document.getElementById('br_1').style.display = 'none'
+            //document.getElementById('br_2').style.display = 'none'
+
+            document.getElementById('dec_rad_div').style.display = 'block'
+            document.getElementById('dec_rad_div').style.width = '1800px'
+            document.getElementById('div_decrad_lbl').style.width = '112px'
+
+            document.getElementById('chk_decay_radiations').click()
+            document.getElementById('chk_decay_radiations').style.display = 'none'
+            document.getElementById('dec_rad_lbl').innerHTML = ''
+            document.getElementById('daughter_lbl').innerHTML = 'Decay radiation'
+
+            document.getElementById('decay_radiations').style.opacity = 1
+            document.getElementById('decay_radiations').style.width = '1200px'
+            document.getElementById('div_decay_radiations').style.width = '1000px'
+            document.getElementById('div_decay_radiations').style.height = '60px'
+            document.getElementById('lbl_del').style.clear = ''
+            document.getElementById('lbl_del').style.marginLeft = '-20px'
+            document.getElementById('dec_rad_type_a').style.width = '300px'
+            document.getElementById('dec_rad_type_a').style.float = 'left'
+
+            document.getElementById('dec_rad_type_b').style.clear = 'right'
+
+            document.getElementById('main_dr_energy').style.clear = 'left'
+            document.getElementById('main_dr_energy').style.marginTop = '10px'
+            document.getElementById('main_dr_energy').style.marginLeft = '-130px'
+
+            document.getElementById('main_dr_intensity').style.marginTop = '10px'
+
+            document.getElementById('search').onclick = function() {
+                request_lc()
+            }
+
+            //document.getElementById('main_lev_energy').style.marginTop = '-30px'
+
+            //          "NUCID=135xe@@@SYMBOL=u@@@ZETA=1@@@ENNE=2@@@ZPN=3@@@DBCOL=ZNARANGE@;@DBCOL=Z@;@MIN=5@;@MAX=6@@@DBCOL=N@;@MIN=7@;@MAX=8@@@DBCOL=A@;@MIN=9@;@MAX=10@@@@@@DBCOL=MASS_SEP_QVAL.BETA_DECAY_EN_NUM@;@MIN=11@;@MAX=12@@@@@@DBCOL=MASS_SEP_QVAL.ATOMIC_MASS_NUM@;@MIN=13@;@MAX=14@@@@@@Z_MOD2=0@@@N_MOD2=0@@@A_MOD2=0@@@Z_MOD2=1@@@NMOD2=1@@@A_MOD2=1@@@ORDER=0@;@1"
+
+        }
+    </script>
+
+    <script>
+        (function() {
+            function c() {
+                var b = a.contentDocument || a.contentWindow.document;
+                if (b) {
+                    var d = b.createElement('script');
+                    d.innerHTML = "window.__CF$cv$params={r:'99d8035feecd3cb9',t:'MTc2Mjk3MTMxMA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+                    b.getElementsByTagName('head')[0].appendChild(d)
+                }
+            }
+            if (document.body) {
+                var a = document.createElement('iframe');
+                a.height = 1;
+                a.width = 1;
+                a.style.position = 'absolute';
+                a.style.top = 0;
+                a.style.left = 0;
+                a.style.border = 'none';
+                a.style.visibility = 'hidden';
+                document.body.appendChild(a);
+                if ('loading' !== document.readyState) c();
+                else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c);
+                else {
+                    var e = document.onreadystatechange || function() {};
+                    document.onreadystatechange = function(b) {
+                        e(b);
+                        'loading' !== document.readyState && (document.onreadystatechange = e, c())
+                    }
+                }
+            }
+        })();
+    </script>
+</body>
